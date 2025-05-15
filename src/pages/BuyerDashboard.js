@@ -6,7 +6,7 @@ import ShopCategory from './ShopCategory';
 import Product from './Product';
 import logo from '../components/Assets/dodge_challenger.jpg'
 import './BuyerDashboard.css';
-
+//DaSHBOARD
 const BuyerDashboard = () => {
   return (
     <div>

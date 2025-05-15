@@ -10,7 +10,7 @@ import Navbar from './components/navbar/navbar';
 function AppWrapper() {
   const location = useLocation();
   const hideNavbar = location.pathname === '/' || location.pathname === '/login';
-
+//just to test commit
   return (
     <>
       {!hideNavbar && <Navbar />}
@@ -18,9 +18,9 @@ function AppWrapper() {
         <Route path="/" element={<Login />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/admin" element={<AdminDashboard />} />
-        <Route path="/buyer/*" element={<BuyerDashboard />} />
-        <Route path="/seller" element={<SellerDashboard />} />
+        <Route path="/AdminDashboard" element={<AdminDashboard />} />
+        <Route path="/BuyerDashboard/*" element={<BuyerDashboard />} />
+        <Route path="/sellerDashboard" element={<SellerDashboard />} />
       </Routes>
     </>
   );
