@@ -7,7 +7,7 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleContinue = () => {
-    console.log('Selected role:', role); // Debug log
+    console.log('Selected role:', role); 
 
     if (role === 'buyer') {
       navigate('/BuyerDashboard');
