@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import Mens from './pages/Mens';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import AdminDashboard from './pages/AdminDashboard';
@@ -21,6 +22,7 @@ function AppWrapper() {
         <Route path="/admin" element={<AdminDashboard />} />
         <Route path="/buyer/*" element={<BuyerDashboard />} />
         <Route path="/seller" element={<SellerDashboard />} />
+        <Route path="/Mens" element={<Mens />} />
       </Routes>
     </>
   );
