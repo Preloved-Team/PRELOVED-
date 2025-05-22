@@ -26,8 +26,8 @@ const Login = () => {
         <div className='login-container'>
           <h1>Login Page</h1>
           <div className='login-field'>
-            <input type='email' placeholder='Enter your email' />
-            <input type='password' placeholder='Password' />
+            <input type='email' placeholder='Enter your email' required/>
+            <input type='password' placeholder='Password' required/>
           </div>
           <div className='login-role'>
             <select value={role} onChange={(e) => setRole(e.target.value)}>

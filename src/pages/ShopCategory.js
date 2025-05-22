@@ -4,18 +4,14 @@ import './ShopCategory.css';
 import Item from '../components/Items/Items';
 import { ShopContext } from '../components/Context/ShopContext';
 
-const ShopCategory = (props) => {
+const ShopCategory= (props) => {
   const { Products } = useContext(ShopContext); 
-
-  console.log("All Products:", Products);
-  console.log("Current Category:", props.category);
 
   const filteredProducts = Products.filter(item => props.category === item.category);
 
   if (filteredProducts.length === 0) {
     return (
       <div className='shop-category'>
-        <Navbar />
         <div className='shopCategory-indexSort'>
           <p>No products found in the {props.category} category</p>
         </div>
@@ -25,7 +21,8 @@ const ShopCategory = (props) => {
 
   return (
     <div className='shop-category'>
-      <Navbar />
+      <Navbar/>
+      <h1>SHUBHAM</h1>
       <div className='shopCategory-indexSort'>
         <p>
           <span>Showing 1-{filteredProducts.length}</span> out of {filteredProducts.length} products

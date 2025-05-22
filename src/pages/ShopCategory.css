@@ -62,3 +62,6 @@
 .product-card button:hover {
   background-color: #388e3c;
 }
+.shopCategory-products{
+  grid-template-columns: repeat(4, 1fr);
+}

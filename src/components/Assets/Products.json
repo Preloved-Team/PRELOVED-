@@ -2,7 +2,7 @@
   {
     "id": 1,
     "name": "Men's Denim Jacket",
-    "category": "Clothing & Accessories",
+    "category":"Clothing_Accessories",
     "price": 25.99,
     "condition": "Gently Used",
     "image": "/images/denim-jacket.jpg",
@@ -11,7 +11,7 @@
   {
     "id": 2,
     "name": "Leather Handbag",
-    "category": "Clothing & Accessories",
+    "category":"Clothing_Accessories",
     "price": 45.00,
     "condition": "Like New",
     "image": "leather-handbag.jpg",
@@ -20,7 +20,7 @@
   {
     "id": 3,
     "name": "Men’s Sneakers",
-    "category": "Clothing & Accessories",
+    "category":"Clothing_Accessories",
     "price": 30.00,
     "condition": "Good",
     "image": "/images/mens-sneakers.jpg",
@@ -29,7 +29,7 @@
   {
     "id": 4,
     "name": "Winter Scarf",
-    "category": "Clothing & Accessories",
+    "category":"Clothing_Accessories",
     "price": 10.00,
     "condition": "Good",
     "image": "/images/winter-scarf.jpg",
@@ -38,7 +38,7 @@
   {
     "id": 5,
     "name": "Formal Dress",
-    "category": "Clothing & Accessories",
+    "category": "Clothing_Accessories",
     "price": 60.00,
     "condition": "Like New",
     "image": "/images/formal-dress.jpg",
@@ -48,7 +48,7 @@
   {
     "id": 6,
     "name": "Wireless Bluetooth Earbuds",
-    "category": "Electronics & Gadgets",
+    "category": "Electronics_Gadgets",
     "price": 15.0,
     "condition": "Like New",
     "image": "/images/earbuds.jpg",
@@ -57,7 +57,7 @@
   {
     "id": 7,
     "name": "Smartphone - Samsung Galaxy A20",
-    "category": "Electronics & Gadgets",
+    "category": "Electronics_Gadgets",
     "price": 90.00,
     "condition": "Used",
     "image": "/images/galaxy-a20.jpg",
@@ -66,7 +66,7 @@
   {
     "id": 8,
     "name": "Laptop Charger - Dell 65W",
-    "category": "Electronics & Gadgets",
+    "category": "Electronics_Gadgets",
     "price": 20.00,
     "condition": "Like New",
     "image": "/images/laptop-charger.jpg",
@@ -75,7 +75,7 @@
   {
     "id": 9,
     "name": "Power Bank 10000mAh",
-    "category": "Electronics & Gadgets",
+    "category": "Electronics_Gadgets",
     "price": 12.00,
     "condition": "Good",
     "image": "/images/power-bank.jpg",
@@ -84,7 +84,7 @@
   {
     "id": 10,
     "name": "Bluetooth Speaker",
-    "category": "Electronics & Gadgets",
+    "category": "Electronics_Gadgets",
     "price": 25.00,
     "condition": "Gently Used",
     "image": "/images/bluetooth-speaker.jpg",
@@ -94,7 +94,7 @@
   {
     "id": 11,
     "name": "Wooden Coffee Table",
-    "category": "Home & Living",
+    "category": "Home_Living",
     "price": 40.0,
     "condition": "Used",
     "image": "/images/coffee-table.jpg",
@@ -103,7 +103,7 @@
   {
     "id": 12,
     "name": "Wall Art Painting",
-    "category": "Home & Living",
+    "category": "Home_Living",
     "price": 18.00,
     "condition": "Like New",
     "image": "/images/wall-art.jpg",
@@ -112,7 +112,7 @@
   {
     "id": 13,
     "name": "Lamp - Bedside",
-    "category": "Home & Living",
+    "category": "Home_Living",
     "price": 12.00,
     "condition": "Good",
     "image": "/images/lamp.jpg",
@@ -121,7 +121,7 @@
   {
     "id": 14,
     "name": "Curtains - Set of 2",
-    "category": "Home & Living",
+    "category": "Home_Living",
     "price": 22.00,
     "condition": "Used",
     "image": "/images/curtains.jpg",
@@ -130,7 +130,7 @@
   {
     "id": 15,
     "name": "Office Chair",
-    "category": "Home & Living",
+    "category": "Home_Living",
     "price": 35.00,
     "condition": "Used",
     "image": "/images/office-chair.jpg",
@@ -140,7 +140,7 @@
   {
     "id": 16,
     "name": "Toddler Toy Set",
-    "category": "Kids & Baby Items",
+    "category": "Kids_Baby_Items",
     "price": 10.0,
     "condition": "Good",
     "image": "/images/toddler-toy.jpg",
@@ -149,7 +149,7 @@
   {
     "id": 17,
     "name": "Baby Stroller",
-    "category": "Kids & Baby Items",
+    "category": "Kids_Baby_Items",
     "price": 50.00,
     "condition": "Used",
     "image": "/images/baby-stroller.jpg",
@@ -158,7 +158,7 @@
   {
     "id": 18,
     "name": "Children’s Books - Set of 5",
-    "category": "Kids & Baby Items",
+    "category": "Kids_Baby_Items",
     "price": 8.00,
     "condition": "Like New",
     "image": "/images/childrens-books.jpg",
@@ -167,7 +167,7 @@
   {
     "id": 19,
     "name": "Baby Crib Mattress",
-    "category": "Kids & Baby Items",
+    "category": "Kids_Baby_Items",
     "price": 30.00,
     "condition": "Good",
     "image": "/images/crib-mattress.jpg",
@@ -176,7 +176,7 @@
   {
     "id": 20,
     "name": "Infant Bath Tub",
-    "category": "Kids & Baby Items",
+    "category": "Kids_Baby_Items",
     "price": 15.00,
     "condition": "Good",
     "image": "/images/baby-bath.jpg",
@@ -186,7 +186,7 @@
   {
     "id": 21,
     "name": "Used Mountain Bike",
-    "category": "Vehicles & Automotive",
+    "category": "Vehicles_Automotive",
     "price": 120.0,
     "condition": "Fair",
     "image": "/images/mountain-bike.jpg",
@@ -195,7 +195,7 @@
   {
     "id": 22,
     "name": "Car Seat Covers",
-    "category": "Vehicles & Automotive",
+    "category": "Vehicles_Automotive",
     "price": 35.00,
     "condition": "Like New",
     "image": "/images/car-seat-covers.jpg",
@@ -204,7 +204,7 @@
   {
     "id": 23,
     "name": "Motorbike Helmet",
-    "category": "Vehicles & Automotive",
+    "category": "Vehicles_Automotive",
     "price": 28.00,
     "condition": "Good",
     "image": "/images/motorbike-helmet.jpg",
@@ -213,7 +213,7 @@
   {
     "id": 24,
     "name": "Portable Tire Inflator",
-    "category": "Vehicles & Automotive",
+    "category": "Vehicles_Automotive",
     "price": 22.00,
     "condition": "Like New",
     "image": "/images/tire-inflator.jpg",
@@ -222,7 +222,7 @@
   {
     "id": 25,
     "name": "Roof Rack - Universal",
-    "category": "Vehicles & Automotive",
+    "category": "Vehicles_Automotive",
     "price": 65.00,
     "condition": "Used",
     "image": "/images/roof-rack.jpg",
