@@ -17,8 +17,9 @@ const TopAdmin = () => {
         </div>
         <div className='cardSection-left'>
             <div className='main'>
-                <div className='textDiv'>
-                    <h1>MY STAT</h1>
+                <div lassName='textDiv'>
+
+                    <h1>My Stat</h1>
                     <div className='flex'>
                       
                     </div>
