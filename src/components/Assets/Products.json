@@ -1,0 +1,231 @@
+[
+  {
+    "id": 1,
+    "name": "Men's Denim Jacket",
+    "category":"Clothing_Accessories",
+    "price": 25.99,
+    "condition": "Gently Used",
+    "image": "/images/denim-jacket.jpg",
+    "description": "Classic blue denim jacket, lightly worn. Size M."
+  },
+  {
+    "id": 2,
+    "name": "Leather Handbag",
+    "category":"Clothing_Accessories",
+    "price": 45.00,
+    "condition": "Like New",
+    "image": "leather-handbag.jpg",
+    "description": "Brown leather handbag in excellent condition."
+  },
+  {
+    "id": 3,
+    "name": "Men’s Sneakers",
+    "category":"Clothing_Accessories",
+    "price": 30.00,
+    "condition": "Good",
+    "image": "/images/mens-sneakers.jpg",
+    "description": "Nike running shoes, size 9."
+  },
+  {
+    "id": 4,
+    "name": "Winter Scarf",
+    "category":"Clothing_Accessories",
+    "price": 10.00,
+    "condition": "Good",
+    "image": "/images/winter-scarf.jpg",
+    "description": "Wool scarf, suitable for cold weather."
+  },
+  {
+    "id": 5,
+    "name": "Formal Dress",
+    "category": "Clothing_Accessories",
+    "price": 60.00,
+    "condition": "Like New",
+    "image": "/images/formal-dress.jpg",
+    "description": "Black evening gown, worn once."
+  },
+
+  {
+    "id": 6,
+    "name": "Wireless Bluetooth Earbuds",
+    "category": "Electronics_Gadgets",
+    "price": 15.0,
+    "condition": "Like New",
+    "image": "/images/earbuds.jpg",
+    "description": "Wireless earbuds with charging case, barely used."
+  },
+  {
+    "id": 7,
+    "name": "Smartphone - Samsung Galaxy A20",
+    "category": "Electronics_Gadgets",
+    "price": 90.00,
+    "condition": "Used",
+    "image": "/images/galaxy-a20.jpg",
+    "description": "Samsung phone, no cracks, minor scratches."
+  },
+  {
+    "id": 8,
+    "name": "Laptop Charger - Dell 65W",
+    "category": "Electronics_Gadgets",
+    "price": 20.00,
+    "condition": "Like New",
+    "image": "/images/laptop-charger.jpg",
+    "description": "Original Dell charger, almost new."
+  },
+  {
+    "id": 9,
+    "name": "Power Bank 10000mAh",
+    "category": "Electronics_Gadgets",
+    "price": 12.00,
+    "condition": "Good",
+    "image": "/images/power-bank.jpg",
+    "description": "Compact power bank with dual output."
+  },
+  {
+    "id": 10,
+    "name": "Bluetooth Speaker",
+    "category": "Electronics_Gadgets",
+    "price": 25.00,
+    "condition": "Gently Used",
+    "image": "/images/bluetooth-speaker.jpg",
+    "description": "Loud and clear sound, rechargeable battery."
+  },
+
+  {
+    "id": 11,
+    "name": "Wooden Coffee Table",
+    "category": "Home_Living",
+    "price": 40.0,
+    "condition": "Used",
+    "image": "/images/coffee-table.jpg",
+    "description": "Solid wood coffee table with some scratches."
+  },
+  {
+    "id": 12,
+    "name": "Wall Art Painting",
+    "category": "Home_Living",
+    "price": 18.00,
+    "condition": "Like New",
+    "image": "/images/wall-art.jpg",
+    "description": "Canvas art with vibrant colors."
+  },
+  {
+    "id": 13,
+    "name": "Lamp - Bedside",
+    "category": "Home_Living",
+    "price": 12.00,
+    "condition": "Good",
+    "image": "/images/lamp.jpg",
+    "description": "Small table lamp with fabric shade."
+  },
+  {
+    "id": 14,
+    "name": "Curtains - Set of 2",
+    "category": "Home_Living",
+    "price": 22.00,
+    "condition": "Used",
+    "image": "/images/curtains.jpg",
+    "description": "Blue cotton curtains for medium-sized windows."
+  },
+  {
+    "id": 15,
+    "name": "Office Chair",
+    "category": "Home_Living",
+    "price": 35.00,
+    "condition": "Used",
+    "image": "/images/office-chair.jpg",
+    "description": "Ergonomic chair with adjustable height."
+  },
+
+  {
+    "id": 16,
+    "name": "Toddler Toy Set",
+    "category": "Kids_Baby_Items",
+    "price": 10.0,
+    "condition": "Good",
+    "image": "/images/toddler-toy.jpg",
+    "description": "Colorful plastic toy set for ages 1-3."
+  },
+  {
+    "id": 17,
+    "name": "Baby Stroller",
+    "category": "Kids_Baby_Items",
+    "price": 50.00,
+    "condition": "Used",
+    "image": "/images/baby-stroller.jpg",
+    "description": "Foldable stroller in working condition."
+  },
+  {
+    "id": 18,
+    "name": "Children’s Books - Set of 5",
+    "category": "Kids_Baby_Items",
+    "price": 8.00,
+    "condition": "Like New",
+    "image": "/images/childrens-books.jpg",
+    "description": "Fun and educational books for toddlers."
+  },
+  {
+    "id": 19,
+    "name": "Baby Crib Mattress",
+    "category": "Kids_Baby_Items",
+    "price": 30.00,
+    "condition": "Good",
+    "image": "/images/crib-mattress.jpg",
+    "description": "Comfortable foam mattress for crib."
+  },
+  {
+    "id": 20,
+    "name": "Infant Bath Tub",
+    "category": "Kids_Baby_Items",
+    "price": 15.00,
+    "condition": "Good",
+    "image": "/images/baby-bath.jpg",
+    "description": "Plastic bath tub for 0-2 years old."
+  },
+
+  {
+    "id": 21,
+    "name": "Used Mountain Bike",
+    "category": "Vehicles_Automotive",
+    "price": 120.0,
+    "condition": "Fair",
+    "image": "/images/mountain-bike.jpg",
+    "description": "Used mountain bike with good gears, needs a new tire."
+  },
+  {
+    "id": 22,
+    "name": "Car Seat Covers",
+    "category": "Vehicles_Automotive",
+    "price": 35.00,
+    "condition": "Like New",
+    "image": "/images/car-seat-covers.jpg",
+    "description": "Black covers, full set for sedan."
+  },
+  {
+    "id": 23,
+    "name": "Motorbike Helmet",
+    "category": "Vehicles_Automotive",
+    "price": 28.00,
+    "condition": "Good",
+    "image": "/images/motorbike-helmet.jpg",
+    "description": "Black full-face helmet, scratch-free."
+  },
+  {
+    "id": 24,
+    "name": "Portable Tire Inflator",
+    "category": "Vehicles_Automotive",
+    "price": 22.00,
+    "condition": "Like New",
+    "image": "/images/tire-inflator.jpg",
+    "description": "Electric inflator with car adapter."
+  },
+  {
+    "id": 25,
+    "name": "Roof Rack - Universal",
+    "category": "Vehicles_Automotive",
+    "price": 65.00,
+    "condition": "Used",
+    "image": "/images/roof-rack.jpg",
+    "description": "Universal metal roof rack with straps."
+  }
+]

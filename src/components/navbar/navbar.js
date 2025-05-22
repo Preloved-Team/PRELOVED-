@@ -11,6 +11,7 @@ const Navbar = () => {
         <p>PRELOVED APP</p>
       </div>
       <ul className='nav-menu'>
+<<<<<<< HEAD
         <li onClick={() => setMenu("Clothing & Accessories")}>
           <Link style={{textDecoration:'none'}} to='/BuyerDashboard/Clothing & Accessories'>Clothing & Accessories</Link> {menu === "Clothing & Accessories" ? <hr /> : null}
         </li>
@@ -25,6 +26,22 @@ const Navbar = () => {
         </li>
         <li onClick={() => setMenu("Vehicles & Automotive")}>
           <Link style={{textDecoration:'none'}} to='/BuyerDashboard/Vehicles & Automotive'>Vehicles & Automotive</Link> {menu === "Vehicles & Automotive" ? <hr /> : null}
+=======
+        <li onClick={() => setMenu("Clothing_Accessories")}>
+          <Link style={{textDecoration:'none'}} to='/Clothing_Accessories'>Clothing & Accessories</Link> {menu === "Clothing_Accessories" ? <hr /> : null}
+        </li>
+        <li onClick={() => setMenu("Electronics_Gadgets")}>
+          <Link style={{textDecoration:'none'}} to='/Electronics_Gadgets'>Electronics & Gadgets</Link> {menu === "Electronics_Gadgets" ? <hr /> : null}
+        </li>
+        <li onClick={() => setMenu("Home_Living")}>
+          <Link style={{textDecoration:'none'}} to='/Home_Living'>Home & Living</Link> {menu === "Home_Living" ? <hr /> : null}
+        </li>
+        <li onClick={() => setMenu("Kids_Baby_Items")}>
+          <Link style={{textDecoration:'none'}} to='/Kids_Baby_Items'>Kids & Baby Items</Link> {menu === "Kids_Baby_Items" ? <hr /> : null}
+        </li>
+        <li onClick={() => setMenu("Vehicles_Automotive")}>
+          <Link style={{textDecoration:'none'}} to='/Vehicles_Automotive'>Vehicles & Automotive</Link> {menu === "Vehicles_Automotive" ? <hr /> : null}
+>>>>>>> 3b7195c (The Work done in Week3 by Arsh.)
         </li>
       </ul>
       <div className='nav-login-cart'>

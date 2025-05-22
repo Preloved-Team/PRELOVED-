@@ -7,7 +7,11 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleContinue = () => {
+<<<<<<< HEAD
     console.log('Selected role:', role); // Debug log
+=======
+    console.log('Selected role:', role); 
+>>>>>>> 3b7195c (The Work done in Week3 by Arsh.)
 
     if (role === 'buyer') {
       navigate('/BuyerDashboard');
@@ -26,8 +30,13 @@ const Login = () => {
         <div className='login-container'>
           <h1>Login Page</h1>
           <div className='login-field'>
+<<<<<<< HEAD
             <input type='email' placeholder='Enter your email' />
             <input type='password' placeholder='Password' />
+=======
+            <input type='email' placeholder='Enter your email' required/>
+            <input type='password' placeholder='Password' required/>
+>>>>>>> 3b7195c (The Work done in Week3 by Arsh.)
           </div>
           <div className='login-role'>
             <select value={role} onChange={(e) => setRole(e.target.value)}>
