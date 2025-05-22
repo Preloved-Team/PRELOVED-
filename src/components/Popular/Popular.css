@@ -1,0 +1,40 @@
+.popular {
+  padding: 40px 60px;
+  background-color: #f9f9f9;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.popular h1 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.popular hr {
+  width: 80px;
+  height: 4px;
+  background-color: #007bff;
+  border: none;
+  margin: 10px auto 30px;
+  border-radius: 10px;
+}
+
+.popular.item {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 30px;
+  justify-items: center;
+}
+
+/* Optional: Add hover effect if your <Item /> component supports styling */
+.popular.item > * {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.popular.item > *:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+  margin-top: 50px;
+  display: flex;
+}

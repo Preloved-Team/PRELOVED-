@@ -1,4 +1,5 @@
 import React from 'react';
+<<<<<<< HEAD
 
 const Men = () => {
   // 🔸 Nearby listings mock data
@@ -30,6 +31,26 @@ const Men = () => {
             <li key={item.id}>{item.name} – {item.location}</li>
           ))}
         </ul>
+=======
+import products from '../data/products';
+import './Category.css';
+
+const Men = () => {
+  const menProducts = products.filter(product => product.category === 'men');
+
+  return (
+    <div className="category-container">
+      <h2>Men's Collection</h2>
+      <div className="product-grid">
+        {menProducts.map(product => (
+          <div key={product.id} className="product-card">
+            <img src={product.image} alt={product.name} />
+            <h3>{product.name}</h3>
+            <p>${product.price}</p>
+            <button>Add to Cart</button>
+          </div>
+        ))}
+>>>>>>> 3b7195c (The Work done in Week3 by Arsh.)
       </div>
     </div>
   );
