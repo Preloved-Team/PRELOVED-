@@ -1,4 +1,5 @@
 import React from 'react'
+<<<<<<< HEAD
 import { Link } from 'react-router-dom';
 import './Item.css';
 
@@ -13,6 +14,13 @@ const Items = (props) => {
           ${props.price}
         </div>
       </div>
+=======
+
+const Items = () => {
+  return (
+    <div>
+      
+>>>>>>> a517e045b1014febe2067dce28d35ff7f2bbe603
     </div>
   )
 }

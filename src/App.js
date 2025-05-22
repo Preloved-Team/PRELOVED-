@@ -1,4 +1,8 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+<<<<<<< HEAD
+=======
+import Mens from './pages/Mens';
+>>>>>>> a517e045b1014febe2067dce28d35ff7f2bbe603
 import Login from './pages/Login';
 import Register from './pages/Register';
 import AdminDashboard from './pages/AdminDashboard';
@@ -6,6 +10,7 @@ import BuyerDashboard from './pages/BuyerDashboard';
 import SellerDashboard from './pages/SellerDashboard';
 import ShopCategory from './pages/ShopCategory';
 import Navbar from './components/navbar/navbar';
+<<<<<<< HEAD
 import Product from './pages/Product';
 import Cart from './pages/Cart';
 import PreLoved_banner from './components/Assets/preloved banner.jpeg';
@@ -19,10 +24,21 @@ import Vechile_banner from './components/Assets/Vehicles_Automotive.jpeg'
 function AppWrapper() {
   return (
     <>
+=======
+
+function AppWrapper() {
+  const location = useLocation();
+  const hideNavbar = location.pathname === '/' || location.pathname === '/login';
+
+  return (
+    <>
+      {!hideNavbar && <Navbar />}
+>>>>>>> a517e045b1014febe2067dce28d35ff7f2bbe603
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+<<<<<<< HEAD
         <Route path="/AdminDashboard" element={<AdminDashboard />} />
         <Route path="/BuyerDashboard/*" element={<BuyerDashboard />} />
         <Route path="/sellerDashboard" element={<SellerDashboard />} />
@@ -35,6 +51,12 @@ function AppWrapper() {
         <Route path="/product" element={<Product />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/login" element={<Login />} />
+=======
+        <Route path="/admin" element={<AdminDashboard />} />
+        <Route path="/buyer/*" element={<BuyerDashboard />} />
+        <Route path="/seller" element={<SellerDashboard />} />
+        <Route path="/Mens" element={<Mens />} />
+>>>>>>> a517e045b1014febe2067dce28d35ff7f2bbe603
       </Routes>
     </>
   );
