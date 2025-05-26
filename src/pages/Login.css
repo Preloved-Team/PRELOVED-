@@ -1,112 +1,115 @@
-/* Reset some base styles for consistent rendering across browsers */
+
 body, input, select, button {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Consistent font stack */
-  box-sizing: border-box; /* Include padding and border in element's total width/height */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  box-sizing: border-box;
 }
 
-/* Main login container styling */
 .login {
-  display: flex; /* Use flexbox for centering */
-  justify-content: center; /* Horizontal centering */
-  align-items: center; /* Vertical centering */
-  height: 100vh; /* Full viewport height */
-  background: linear-gradient(to right, #e0eafc, #cfdef3); /* Subtle blue gradient background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(to right, #e0eafc, #cfdef3);
 }
 
-/* Login form container */
 .login-container {
-  background-color: #fff; /* White background */
-  padding: 40px; /* Generous padding */
-  border-radius: 16px; /* Rounded corners */
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
-  width: 100%; /* Full width */
-  max-width: 400px; /* But not wider than 400px */
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
 }
 
-/* Login heading style */
 .login-container h1 {
-  text-align: center; /* Center the heading */
-  margin-bottom: 24px; /* Space below heading */
-  color: #333; /* Dark gray color */
+  text-align: center;
+  margin-bottom: 24px;
+  color: #333;
 }
 
-/* Form field container */
 .login-field {
-  display: flex; /* Flex layout */
-  flex-direction: column; /* Stack children vertically */
-  gap: 16px; /* Space between form elements */
-  margin-bottom: 20px; /* Space below the field group */
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 20px;
 }
 
-/* Input field styling */
 .login-field input {
-  padding: 12px; /* Comfortable padding */
-  border: 1px solid #ccc; /* Light gray border */
-  border-radius: 8px; /* Slightly rounded corners */
-  font-size: 16px; /* Readable font size */
-  transition: border 0.3s ease; /* Smooth border color transition */
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border 0.3s ease;
 }
 
-/* Input field focus state */
 .login-field input:focus {
-  border-color: #4a90e2; /* Blue border when focused */
-  outline: none; /* Remove default browser outline */
+  border-color: #4a90e2;
+  outline: none;
 }
 
-/* Role selection dropdown */
 .login-role select {
-  width: 100%; /* Full width */
-  padding: 12px; /* Matching input padding */
-  margin-bottom: 20px; /* Space below dropdown */
-  border: 1px solid #ccc; /* Consistent with input fields */
-  border-radius: 8px; /* Matching border radius */
-  font-size: 16px; /* Consistent font size */
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
 }
 
-/* Terms agreement checkbox section */
 .login-agree {
-  display: flex; /* Flex layout */
-  align-items: center; /* Vertical alignment */
-  gap: 10px; /* Space between checkbox and label */
-  font-size: 14px; /* Slightly smaller text */
-  margin-bottom: 20px; /* Space below this section */
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  margin-bottom: 20px;
 }
 
-/* Checkbox styling */
 .login-agree input[type="checkbox"] {
-  width: 18px; /* Custom width */
-  height: 18px; /* Custom height */
+  width: 18px;
+  height: 18px;
 }
 
-/* Submit button styling */
 .login-container button {
-  width: 100%; /* Full width button */
-  padding: 12px; /* Comfortable padding */
-  background-color: #4a90e2; /* Primary blue color */
-  color: white; /* White text */
-  border: none; /* No border */
-  border-radius: 8px; /* Matching rounded corners */
-  font-size: 16px; /* Readable font size */
-  cursor: pointer; /* Pointer cursor on hover */
-  transition: background 0.3s ease; /* Smooth background transition */
+  width: 100%;
+  padding: 12px;
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease;
 }
 
-/* Button hover state */
 .login-container button:hover {
-  background-color: #357ABD; /* Darker blue on hover */
+  background-color: #357ABD;
 }
 
-/* Footer text below form */
 .login-guide {
-  text-align: center; /* Center alignment */
-  margin-top: 16px; /* Space above footer */
-  font-size: 14px; /* Slightly smaller text */
-  color: #666; /* Medium gray color */
+  text-align: center;
+  margin-top: 16px;
+  font-size: 14px;
+  color: #666;
 }
 
-/* Interactive text in footer */
 .login-guide span {
-  color: #4a90e2; /* Matching primary blue */
-  cursor: pointer; /* Indicates clickable */
-  text-decoration: underline; /* Visual cue for link */
+  color: #4a90e2;
+  cursor: pointer;
+  text-decoration: underline;
+}
+.forgot-password {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.forgot-password a {
+  color: #1e90ff; 
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.forgot-password a:hover {
+  color: #0d6efd; 
+  text-decoration: underline;
 }

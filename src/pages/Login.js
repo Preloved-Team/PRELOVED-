@@ -1,17 +1,25 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Login.css';
+import { auth } from '../Firebase';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 
 const Login = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [role, setRole] = useState('');
   const navigate = useNavigate();
 
-  const handleContinue = () => {
-<<<<<<< HEAD
-    console.log('Selected role:', role); // Debug log
-=======
-    console.log('Selected role:', role); 
->>>>>>> 3b7195c (The Work done in Week3 by Arsh.)
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+  try {
+    await signInWithEmailAndPassword(auth, email, password);
+    console.log('Login successful');
+    
+    if (!role) {
+      alert('Please select a role before continuing');
+      return;
+    }
 
     if (role === 'buyer') {
       navigate('/BuyerDashboard');
@@ -19,24 +27,37 @@ const Login = () => {
       navigate('/SellerDashboard');
     } else if (role === 'admin') {
       navigate('/AdminDashboard');
-    } else {
-      alert('Please select a role before continuing');
     }
-  };
+
+  } catch (err) {
+    console.error('Login failed:', err.code);
+
+    if (err.code === 'auth/user-not-found') {
+      alert('User does not exist. Please sign up first.');
+    } else if (err.code === 'auth/wrong-password') {
+      alert('Incorrect password. Please try again.');
+    } else if (err.code === 'auth/invalid-email') {
+      alert('Invalid email format.');
+    } else {
+      alert('Login failed. Please try again.');
+    }
+  }
+};
 
   return (
     <div>
       <div className='login'>
-        <div className='login-container'>
+        <form className='login-container' onSubmit={handleSubmit}>
           <h1>Login Page</h1>
           <div className='login-field'>
-<<<<<<< HEAD
-            <input type='email' placeholder='Enter your email' />
-            <input type='password' placeholder='Password' />
-=======
-            <input type='email' placeholder='Enter your email' required/>
-            <input type='password' placeholder='Password' required/>
->>>>>>> 3b7195c (The Work done in Week3 by Arsh.)
+            <input type='email' 
+            onChange={(e) => setEmail(e.target.value)} 
+            placeholder='Enter your email' 
+            required />
+            <input type='password' 
+            onChange={(e) => setPassword(e.target.value)} 
+            placeholder='Password' 
+            required />
           </div>
           <div className='login-role'>
             <select value={role} onChange={(e) => setRole(e.target.value)}>
@@ -52,11 +73,14 @@ const Login = () => {
               By continuing, I agree to the Terms of Use and Privacy.
             </label>
           </div>
-          <button onClick={handleContinue}>Continue</button>
+          <button type='submit'>Continue</button>
           <p className='login-guide'>
-            Don't have an account? Sign up <span>here</span>
+            Don't have an account? Sign up <Link to='/Register'>here</Link>
           </p>
-        </div>
+          <p className='forgot-password'>
+            <Link to='/ResetPassword'>Forgot password ?</Link>
+          </p>
+        </form>
       </div>
     </div>
   );

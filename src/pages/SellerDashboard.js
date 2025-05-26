@@ -24,6 +24,7 @@ const SellerDashboard = () => {
   const [newCategory, setNewCategory] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
+  const [previewImages, setPreviewImages] = useState([]);
 
   // Fetch seller's items on component mount
   useEffect(() => {
@@ -50,6 +51,19 @@ const SellerDashboard = () => {
     }));
   };
 
+  const handleImageChange = (e) => {
+    const files = Array.from(e.target.files);
+    
+    // Create preview URLs
+    const previewUrls = files.map(file => URL.createObjectURL(file));
+    setPreviewImages(previewUrls);
+    
+    setNewItem(prev => ({
+      ...prev,
+      images: files
+    }));
+  };
+
   const handleAddCategory = () => {
     if (newCategory.trim() && !categories.includes(newCategory)) {
       setCategories(prev => [...prev, newCategory]);
@@ -66,6 +80,7 @@ const SellerDashboard = () => {
     
     try {
       setIsLoading(true);
+      setError('');
       
       const formData = new FormData();
       formData.append('name', newItem.name);
@@ -73,6 +88,11 @@ const SellerDashboard = () => {
       formData.append('price', newItem.price);
       formData.append('category', newItem.category);
       formData.append('stock', newItem.stock);
+      
+      // Append each image file
+      newItem.images.forEach((image, index) => {
+        formData.append(`images`, image);
+      });
       
       const response = await axios.post('/api/items', formData, {
         headers: {
@@ -90,8 +110,9 @@ const SellerDashboard = () => {
         stock: 1,
         images: []
       });
+      setPreviewImages([]);
     } catch (err) {
-      setError('Failed to add item');
+      setError(err.response?.data?.message || 'Failed to add item');
     } finally {
       setIsLoading(false);
     }
@@ -184,6 +205,26 @@ const SellerDashboard = () => {
                 required
               />
             </div>
+
+            <div className="form-group">
+              <label>Images (Max 5)</label>
+              <input
+                type="file"
+                multiple
+                accept="image/*"
+                onChange={handleImageChange}
+              />
+              <div className="image-previews">
+                {previewImages.map((src, index) => (
+                  <img 
+                    key={index} 
+                    src={src} 
+                    alt={`Preview ${index}`} 
+                    style={{ width: '100px', height: '100px', objectFit: 'cover', margin: '5px' }}
+                  />
+                ))}
+              </div>
+            </div>
             
             <button type="submit" disabled={isLoading}>
               {isLoading ? 'Adding...' : 'Add Item'}
@@ -209,6 +250,13 @@ const SellerDashboard = () => {
                   <p>Price: ${item.price}</p>
                   <p>Category: {item.category}</p>
                   <p>Stock: {item.stock}</p>
+                  {item.images?.length > 0 && (
+                    <img 
+                      src={item.images[0]} 
+                      alt={item.name}
+                      style={{ width: '100px', height: '100px', objectFit: 'cover' }}
+                    />
+                  )}
                   <button onClick={() => handleDeleteItem(item._id)}>
                     Delete
                   </button>
