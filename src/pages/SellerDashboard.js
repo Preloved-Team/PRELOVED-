@@ -1,21 +1,29 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const SellerDashboard = () => {
   const [items, setItems] = useState([]);
+  const [categories, setCategories] = useState([
+    'Electronics',
+    'Clothing',
+    'Home & Garden',
+    'Books',
+    'Toys',
+    'Sports',
+    'Beauty',
+    'Other'
+  ]);
   const [newItem, setNewItem] = useState({
     name: '',
     description: '',
     price: '',
-    category: 'electronics',
+    category: 'Electronics',
     stock: 1,
     images: []
   });
+  const [newCategory, setNewCategory] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
-  const [previewImages, setPreviewImages] = useState([]);
-  const navigate = useNavigate();
 
   // Fetch seller's items on component mount
   useEffect(() => {
@@ -42,17 +50,15 @@ const SellerDashboard = () => {
     }));
   };
 
-  const handleImageUpload = (e) => {
-    const files = Array.from(e.target.files);
-    
-    // Create preview URLs
-    const imagePreviews = files.map(file => URL.createObjectURL(file));
-    setPreviewImages(imagePreviews);
-    
-    setNewItem(prev => ({
-      ...prev,
-      images: files
-    }));
+  const handleAddCategory = () => {
+    if (newCategory.trim() && !categories.includes(newCategory)) {
+      setCategories(prev => [...prev, newCategory]);
+      setNewItem(prev => ({
+        ...prev,
+        category: newCategory
+      }));
+      setNewCategory('');
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -68,11 +74,6 @@ const SellerDashboard = () => {
       formData.append('category', newItem.category);
       formData.append('stock', newItem.stock);
       
-      // Append each image file
-      newItem.images.forEach(image => {
-        formData.append('images', image);
-      });
-      
       const response = await axios.post('/api/items', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
@@ -80,24 +81,20 @@ const SellerDashboard = () => {
       });
       
       setItems(prev => [...prev, response.data]);
-      resetForm();
+      // Reset form
+      setNewItem({
+        name: '',
+        description: '',
+        price: '',
+        category: 'Electronics',
+        stock: 1,
+        images: []
+      });
     } catch (err) {
       setError('Failed to add item');
     } finally {
       setIsLoading(false);
     }
-  };
-
-  const resetForm = () => {
-    setNewItem({
-      name: '',
-      description: '',
-      price: '',
-      category: 'electronics',
-      stock: 1,
-      images: []
-    });
-    setPreviewImages([]);
   };
 
   const handleDeleteItem = async (itemId) => {
@@ -112,8 +109,9 @@ const SellerDashboard = () => {
   return (
     <div className="seller-dashboard">
       <h1>Seller Dashboard</h1>
+      
       <div className="dashboard-container">
-        {/* Add New Item Form */}
+        {/* Add New Item Section */}
         <div className="add-item-section">
           <h2>Add New Item</h2>
           <form onSubmit={handleSubmit}>
@@ -158,12 +156,21 @@ const SellerDashboard = () => {
                 value={newItem.category}
                 onChange={handleInputChange}
               >
-                <option value="electronics">Electronics</option>
-                <option value="clothing">Clothing</option>
-                <option value="home">Home & Garden</option>
-                <option value="books">Books</option>
-                <option value="other">Other</option>
+                {categories.map(category => (
+                  <option key={category} value={category}>{category}</option>
+                ))}
               </select>
+              <div className="add-category">
+                <input
+                  type="text"
+                  value={newCategory}
+                  onChange={(e) => setNewCategory(e.target.value)}
+                  placeholder="Add new category"
+                />
+                <button type="button" onClick={handleAddCategory}>
+                  Add
+                </button>
+              </div>
             </div>
             
             <div className="form-group">
@@ -178,29 +185,13 @@ const SellerDashboard = () => {
               />
             </div>
             
-            <div className="form-group">
-              <label>Images (Max 5)</label>
-              <input
-                type="file"
-                multiple
-                accept="image/*"
-                onChange={handleImageUpload}
-                required
-              />
-              <div className="image-previews">
-                {previewImages.map((preview, index) => (
-                  <img key={index} src={preview} alt={`Preview ${index}`} />
-                ))}
-              </div>
-            </div>
-            
             <button type="submit" disabled={isLoading}>
               {isLoading ? 'Adding...' : 'Add Item'}
             </button>
           </form>
         </div>
         
-        {/* Current Items List */}
+        {/* Current Items Section */}
         <div className="current-items-section">
           <h2>Your Listed Items</h2>
           {error && <div className="error-message">{error}</div>}
@@ -210,27 +201,17 @@ const SellerDashboard = () => {
           ) : items.length === 0 ? (
             <p>You haven't listed any items yet.</p>
           ) : (
-            <div className="items-grid">
+            <div className="items-list">
               {items.map(item => (
                 <div key={item._id} className="item-card">
-                  <div className="item-image">
-                    {item.images.length > 0 && (
-                      <img src={item.images[0]} alt={item.name} />
-                    )}
-                  </div>
-                  <div className="item-details">
-                    <h3>{item.name}</h3>
-                    <p>${item.price.toFixed(2)}</p>
-                    <p>Stock: {item.stock}</p>
-                    <div className="item-actions">
-                      <button onClick={() => navigate(`/edit-item/${item._id}`)}>
-                        Edit
-                      </button>
-                      <button onClick={() => handleDeleteItem(item._id)}>
-                        Delete
-                      </button>
-                    </div>
-                  </div>
+                  <h3>{item.name}</h3>
+                  <p>{item.description}</p>
+                  <p>Price: ${item.price}</p>
+                  <p>Category: {item.category}</p>
+                  <p>Stock: {item.stock}</p>
+                  <button onClick={() => handleDeleteItem(item._id)}>
+                    Delete
+                  </button>
                 </div>
               ))}
             </div>
