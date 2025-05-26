@@ -93,3 +93,47 @@
     color: #f44336;
     margin-bottom: 15px;
   }
+
+  /* Add these styles to your existing CSS */
+.add-category {
+  display: flex;
+  margin-top: 8px;
+  gap: 8px;
+}
+
+.add-category input {
+  flex: 1;
+  padding: 6px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.add-category button {
+  padding: 6px 12px;
+  background: #2196F3;
+}
+
+.add-category button:hover {
+  background: #0b7dda;
+}
+
+.items-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.item-card {
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.error-message {
+  color: #f44336;
+  padding: 10px;
+  background: #ffebee;
+  border-radius: 4px;
+  margin-bottom: 15px;
+}
