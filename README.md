@@ -1,3 +1,13 @@
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+# PRELOVED-
+Preloved is an e-commerce platform designed for buying and selling second-hand goods. Built with modern web technologies, it provides a user-friendly interface for listing, browsing, and purchasing pre-owned items.
+=======
+=======
+>>>>>>> 9fe7257 (updated files after fixing crash in cart.)
+>>>>>>> 305074c (updated files after fixing crash in cart.)
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -68,3 +78,10 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 3b7195c (The Work done in Week3 by Arsh.)
+=======
+>>>>>>> 9fe7257 (updated files after fixing crash in cart.)
+>>>>>>> 305074c (updated files after fixing crash in cart.)

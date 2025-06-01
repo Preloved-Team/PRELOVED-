@@ -1,4 +1,17 @@
 import React from 'react'
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+
+const Items = () => {
+  return (
+    <div>
+      
+=======
+=======
+>>>>>>> 9fe7257 (updated files after fixing crash in cart.)
+>>>>>>> 305074c (updated files after fixing crash in cart.)
 import { Link } from 'react-router-dom';
 import './Item.css';
 
@@ -13,6 +26,13 @@ const Items = (props) => {
           ${props.price}
         </div>
       </div>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 3b7195c (The Work done in Week3 by Arsh.)
+=======
+>>>>>>> 9fe7257 (updated files after fixing crash in cart.)
+>>>>>>> 305074c (updated files after fixing crash in cart.)
     </div>
   )
 }

@@ -1,3 +1,24 @@
+<<<<<<< HEAD
+import React, { useContext } from 'react';
+=======
+<<<<<<< HEAD
+import React from 'react'
+>>>>>>> 305074c (updated files after fixing crash in cart.)
+import './ProductDisplay.css';
+import Footer from '../footer/Footer';
+import { ShopContext } from '../Context/ShopContext';
+import { useNavigate } from 'react-router-dom'; 
+import Top from '../AdminBodySection/TopSection/Top';
+
+const ProductDisplay = (props) => {
+    const { product } = props;
+    const { addToCart } = useContext(ShopContext);
+    const navigate = useNavigate(); 
+
+<<<<<<< HEAD
+=======
+export default ProductDisplay
+=======
 import React, { useContext } from 'react';
 import './ProductDisplay.css';
 import Footer from '../footer/Footer';
@@ -10,6 +31,7 @@ const ProductDisplay = (props) => {
     const { addToCart } = useContext(ShopContext);
     const navigate = useNavigate(); 
 
+>>>>>>> 305074c (updated files after fixing crash in cart.)
     const handleAddToCart = () => {
         addToCart(product.id);
         navigate('/cart'); 
@@ -48,4 +70,9 @@ const ProductDisplay = (props) => {
     );
 };
 
+<<<<<<< HEAD
 export default ProductDisplay;
+=======
+export default ProductDisplay;
+>>>>>>> 9fe7257 (updated files after fixing crash in cart.)
+>>>>>>> 305074c (updated files after fixing crash in cart.)

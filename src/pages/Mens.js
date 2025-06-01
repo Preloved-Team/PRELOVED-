@@ -1,4 +1,43 @@
 import React from 'react';
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+
+const Men = () => {
+  // 🔸 Nearby listings mock data
+  const sampleItems = [
+    { id: 1, name: "Used Shoes", location: "Auckland" },
+    { id: 2, name: "Jeans", location: "Wellington" },
+    { id: 3, name: "Leather Jacket", location: "Auckland" },
+  ];
+
+  const userLocation = "Auckland";
+  const nearbyItems = sampleItems.filter(item => item.location === userLocation);
+
+  return (
+    <div style={{ padding: '20px', color: 'white' }}>
+      <h2>Men's Collection (Nearby Listings Only)</h2>
+
+      {/* 📍 Nearby Listings */}
+      <div style={{
+        marginTop: '20px',
+        padding: '15px',
+        backgroundColor: '#ffe4b5',
+        color: 'black',
+        border: '2px dashed #000',
+        borderRadius: '10px'
+      }}>
+        <h3>Nearby Listings in {userLocation}</h3>
+        <ul>
+          {nearbyItems.map(item => (
+            <li key={item.id}>{item.name} – {item.location}</li>
+          ))}
+        </ul>
+=======
+=======
+>>>>>>> 9fe7257 (updated files after fixing crash in cart.)
+>>>>>>> 305074c (updated files after fixing crash in cart.)
 import products from '../data/products';
 import './Category.css';
 
@@ -17,6 +56,13 @@ const Men = () => {
             <button>Add to Cart</button>
           </div>
         ))}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 3b7195c (The Work done in Week3 by Arsh.)
+=======
+>>>>>>> 9fe7257 (updated files after fixing crash in cart.)
+>>>>>>> 305074c (updated files after fixing crash in cart.)
       </div>
     </div>
   );

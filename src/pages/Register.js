@@ -1,3 +1,25 @@
+<<<<<<< HEAD
+import React, { useState } from 'react';
+import { auth } from '../Firebase';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import RegisterStyle from './Register.css';
+import { Link } from 'react-router-dom';
+=======
+<<<<<<< HEAD
+import React from 'react'
+>>>>>>> 305074c (updated files after fixing crash in cart.)
+
+const Register = () => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [ID, setID] = useState('');
+  const [file, setFile] = useState(null);
+
+<<<<<<< HEAD
+=======
+export default Register
+=======
 import React, { useState } from 'react';
 import { auth } from '../Firebase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
@@ -11,6 +33,7 @@ const Register = () => {
   const [ID, setID] = useState('');
   const [file, setFile] = useState(null);
 
+>>>>>>> 305074c (updated files after fixing crash in cart.)
   const handleSignup = async (e) => {
     e.preventDefault();
     try {
@@ -89,3 +112,7 @@ const Register = () => {
 };
 
 export default Register;
+<<<<<<< HEAD
+=======
+>>>>>>> 9fe7257 (updated files after fixing crash in cart.)
+>>>>>>> 305074c (updated files after fixing crash in cart.)
