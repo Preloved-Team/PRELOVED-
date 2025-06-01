@@ -1,0 +1,127 @@
+/* Main container */
+.cartitems {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Empty cart message */
+.empty-cart {
+    text-align: center;
+    margin: 100px 0;
+    font-size: 1.5rem;
+    color: #555;
+}
+
+/* Individual cart item */
+.cartitems-format {
+    display: grid;
+    grid-template-columns: 100px 3fr 1fr 1fr 1fr;
+    align-items: center;
+    gap: 30px;
+    padding: 20px 0;
+    border-bottom: 1px solid #e0e0e0;
+    transition: all 0.3s ease;
+}
+
+.cartitems-format:hover {
+    background-color: #f9f9f9;
+}
+
+/* Product image */
+.carticon-product-icon {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.carticon-product-icon:hover {
+    transform: scale(1.05);
+}
+
+/* Product name */
+.cartitems-format p:nth-of-type(1) {
+    font-weight: 600;
+    color: #333;
+    font-size: 1.1rem;
+}
+
+/* Price and total */
+.cartitems-format p:nth-of-type(2),
+.cartitems-format p:nth-of-type(3) {
+    color: #555;
+    font-weight: 500;
+}
+
+/* Quantity controls */
+.cartitems-quantity {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.cartitems-quantity button {
+    width: 30px;
+    height: 30px;
+    border: none;
+    background-color: #f0f0f0;
+    border-radius: 50%;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.cartitems-quantity button:hover {
+    background-color: #e0e0e0;
+}
+
+.cartitems-quantity span {
+    min-width: 30px;
+    text-align: center;
+    font-weight: 600;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .cartitems-format {
+        grid-template-columns: 80px 2fr 1fr;
+        grid-template-rows: auto auto;
+        gap: 15px;
+        padding: 15px 0;
+    }
+    
+    .cartitems-quantity {
+        grid-column: 2;
+        grid-row: 2;
+    }
+    
+    .cartitems-format p:nth-of-type(3) {
+        grid-column: 3;
+        grid-row: 2;
+        text-align: right;
+    }
+}
+
+/* Animation for cart actions */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.cartitems-quantity button:active {
+    animation: pulse 0.3s ease;
+}
+
+/* Total price highlight */
+.cartitems-format p:nth-of-type(3) {
+    font-weight: 600;
+    color: #2a7f62;
+}
