@@ -1,8 +1,13 @@
+<<<<<<< HEAD
 import React, { useContext, useState, useEffect } from 'react'
+=======
+import React, { useContext } from 'react'
+>>>>>>> 68a673ce7b7fbd8eaa71e1f8244373c5a6d8edf5
 import { ShopContext } from '../components/Context/ShopContext'
 import { useParams } from 'react-router-dom';
 import Breadcrum from '../components/Breadcrum/Breadcrum';
 import ProductDisplay from '../components/ProductDisplay/ProductDisplay';
+<<<<<<< HEAD
 import { doc, getDoc } from "firebase/firestore";
 import { db } from '../Firebase';
 
@@ -40,6 +45,13 @@ const Product = () => {
     return <div>Product not found</div>;
   }
 
+=======
+
+const Product = () => {
+const {Products}=useContext(ShopContext);
+const {productID}=useParams();
+const product =Products.find((e)=> e.id === Number(productID))
+>>>>>>> 68a673ce7b7fbd8eaa71e1f8244373c5a6d8edf5
   return (
     <div>
       <Breadcrum product={product}/>
@@ -48,4 +60,8 @@ const Product = () => {
   )
 }
 
+<<<<<<< HEAD
 export default Product
+=======
+export default Product
+>>>>>>> 68a673ce7b7fbd8eaa71e1f8244373c5a6d8edf5

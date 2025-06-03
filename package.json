@@ -3,15 +3,24 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+<<<<<<< HEAD
+=======
+    "@stripe/stripe-js": "^7.3.0",
+>>>>>>> 68a673ce7b7fbd8eaa71e1f8244373c5a6d8edf5
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.9.0",
+<<<<<<< HEAD
     "firebase": "^11.8.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-icons": "^5.5.0",
+=======
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+>>>>>>> 68a673ce7b7fbd8eaa71e1f8244373c5a6d8edf5
     "react-router-dom": "^7.6.0",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"

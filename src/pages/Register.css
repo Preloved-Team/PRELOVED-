@@ -1,4 +1,5 @@
 .Register-container {
+<<<<<<< HEAD
   max-width: 500px;
   margin: 60px auto;
   padding: 40px 30px;
@@ -94,3 +95,101 @@
 .Register-guide a:hover {
   text-decoration: underline;
 }
+=======
+    max-width: 500px;
+    margin: 60px auto;
+    padding: 40px 30px;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .Register-container h1 {
+    text-align: center;
+    color: #333;
+    font-size: 28px;
+    margin-bottom: 10px;
+  }
+  
+  .Register-container input[type='text'],
+  .Register-container input[type='email'],
+  .Register-container input[type='password'],
+  .Register-container select {
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+    transition: border-color 0.3s ease;
+  }
+  
+  .Register-container input:focus,
+  .Register-container select:focus {
+    border-color: #3b82f6;
+    outline: none;
+  }
+  
+  .IDProof select {
+    width: 100%;
+  }
+  
+  .file-upload label {
+    display: block;
+    font-size: 14px;
+    margin-top: 5px;
+    color: #444;
+  }
+  
+  .file-upload input[type='file'] {
+    margin-top: 10px;
+    font-size: 14px;
+  }
+  
+  .register-agree {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #555;
+  }
+  
+  .register-agree input[type='checkbox'] {
+    margin-right: 8px;
+    transform: scale(1.2);
+  }
+  
+  .Register-container button {
+    background-color: #3b82f6;
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .Register-container button:hover {
+    background-color: #2563eb;
+  }
+  
+  .Register-guide {
+    text-align: center;
+    font-size: 14px;
+    color: #555;
+  }
+  
+  .Register-guide a {
+    color: #3b82f6;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  
+  .Register-guide a:hover {
+    text-decoration: underline;
+  }
+  
+>>>>>>> 68a673ce7b7fbd8eaa71e1f8244373c5a6d8edf5

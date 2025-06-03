@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { createContext, useState, useEffect } from "react";
 import { db } from '../../Firebase';
 import { collection, getDocs } from "firebase/firestore";
@@ -50,6 +51,24 @@ const ShopContextProvider = (props) => {
     return (
         <ShopContext.Provider value={contextValue}>
             {!loading && props.children}
+=======
+import React, { createContext } from "react";
+import Products from '../Assets/Products.json'
+
+export const ShopContext = createContext(null);
+const ShopContextProvider = (props) => {
+    const contentValue = { Products };
+    const getDefaultCart = ()=>{
+        let cart = null
+        for(let i=0; i<Products.length; i++){
+            cart[i]=0;
+        }
+        return cart;
+    }
+    return (
+        <ShopContext.Provider value={contentValue}>
+            {props.children}
+>>>>>>> 68a673ce7b7fbd8eaa71e1f8244373c5a6d8edf5
         </ShopContext.Provider>
     );
 };
