@@ -1,9 +1,21 @@
 <<<<<<< HEAD
+import React from 'react';
+import CartItems from '../components/cartItems/CartItems';
+import Footer from '../components/footer/Footer';
+import Top from '../components/AdminBodySection/TopSection/Top';
+=======
+<<<<<<< HEAD
 import React from 'react'
+>>>>>>> 68a673ce7b7fbd8eaa71e1f8244373c5a6d8edf5
 
 const Cart = () => {
   return (
     <div>
+<<<<<<< HEAD
+      <Top/>
+      <CartItems/>
+      <Footer/>
+=======
       
     </div>
   )
@@ -74,9 +86,14 @@ const Cart = () => {
         <button className="checkout-btn">Proceed to Checkout</button>
         <button className="clear-cart-btn" onClick={clearCart}>Clear Cart</button>
       </div>
+>>>>>>> 68a673ce7b7fbd8eaa71e1f8244373c5a6d8edf5
     </div>
   );
 };
 
+<<<<<<< HEAD
+export default Cart;
+=======
 export default Cart;
 >>>>>>> 3b7195c (The Work done in Week3 by Arsh.)
+>>>>>>> 68a673ce7b7fbd8eaa71e1f8244373c5a6d8edf5

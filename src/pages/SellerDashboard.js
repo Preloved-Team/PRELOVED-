@@ -1,3 +1,37 @@
+<<<<<<< HEAD
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import './SellerDashboard.css';
+import Popular from '../components/Popular/Popular';
+import Footer from '../components/footer/Footer';
+
+const SellerDashboard = () => {
+  const navigate = useNavigate();
+
+  const handleAddProductClick = () => {
+    navigate('/AddProduct'); 
+  };
+
+  return (
+    <>
+    <div className="seller-dashboard">
+      <h1>Welcome, Shubham</h1>
+      <p>Manage your listings and add new preloved items to the marketplace.</p>
+
+      <button className="add-product-btn" onClick={handleAddProductClick}>
+         Add New Product
+      </button>
+    </div>
+    <div className='all-item-dispaly'>
+      <Popular/>
+    </div>
+    <Footer/>
+    </>
+  );
+};
+
+export default SellerDashboard;
+=======
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -271,3 +305,4 @@ const SellerDashboard = () => {
 };
 
 export default SellerDashboard;
+>>>>>>> 68a673ce7b7fbd8eaa71e1f8244373c5a6d8edf5

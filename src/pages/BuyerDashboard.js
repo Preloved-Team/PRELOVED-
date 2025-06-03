@@ -1,4 +1,11 @@
 <<<<<<< HEAD
+import Navbar from '../components/navbar/navbar';
+import './BuyerDashboard.css';
+import Popular from '../components/Popular/Popular';
+import Top from '../components/AdminBodySection/TopSection/Top';
+import Footer from '../components/footer/Footer';
+=======
+<<<<<<< HEAD
 import Login from './Login';
 import Navbar from '../components/navbar/navbar';
 import Cart from './Cart';
@@ -9,10 +16,21 @@ import logo from '../components/Assets/dodge_challenger.jpg'
 import './BuyerDashboard.css';
 import Notification from '../components/Notification';
 
+>>>>>>> 68a673ce7b7fbd8eaa71e1f8244373c5a6d8edf5
 
 const BuyerDashboard = () => {
   return (
     <div>
+<<<<<<< HEAD
+      <Top/>
+    <div>
+      <Navbar/>
+      <Popular/>
+      <Footer/>
+    </div>
+      
+    </div>
+=======
       <Routes>
         <Route path="menClothing & Accessories" element={<ShopCategory category="Clothing & Accessories" />} />
         <Route path="Electronics & Gadgets" element={<ShopCategory category="Electronics & Gadgets" />} />
@@ -32,10 +50,13 @@ const BuyerDashboard = () => {
       </div>
     </div>
     
+>>>>>>> 68a673ce7b7fbd8eaa71e1f8244373c5a6d8edf5
   );
 };
 
 export default BuyerDashboard;
+<<<<<<< HEAD
+=======
 =======
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -506,3 +527,4 @@ const ClothingAccessoriesSection = () => {
 
 export default ClothingAccessoriesSection;
 >>>>>>> 3b7195c (The Work done in Week3 by Arsh.)
+>>>>>>> 68a673ce7b7fbd8eaa71e1f8244373c5a6d8edf5

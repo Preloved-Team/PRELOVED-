@@ -7,6 +7,12 @@ const Navbar = () => {
 
   return (
     <div className='navbar'>
+<<<<<<< HEAD
+      <ul className='nav-menu'>
+        <li onClick={() => setMenu("Home")}>
+          <Link style={{textDecoration:'none'}} to='/BuyerDashboard'>Home</Link> {menu === "Home" ? <hr /> : null}
+        </li>
+=======
       <div className='navbar-logo'>
         <p>PRELOVED APP</p>
       </div>
@@ -27,6 +33,7 @@ const Navbar = () => {
         <li onClick={() => setMenu("Vehicles & Automotive")}>
           <Link style={{textDecoration:'none'}} to='/BuyerDashboard/Vehicles & Automotive'>Vehicles & Automotive</Link> {menu === "Vehicles & Automotive" ? <hr /> : null}
 =======
+>>>>>>> 68a673ce7b7fbd8eaa71e1f8244373c5a6d8edf5
         <li onClick={() => setMenu("Clothing_Accessories")}>
           <Link style={{textDecoration:'none'}} to='/Clothing_Accessories'>Clothing & Accessories</Link> {menu === "Clothing_Accessories" ? <hr /> : null}
         </li>
@@ -41,6 +48,10 @@ const Navbar = () => {
         </li>
         <li onClick={() => setMenu("Vehicles_Automotive")}>
           <Link style={{textDecoration:'none'}} to='/Vehicles_Automotive'>Vehicles & Automotive</Link> {menu === "Vehicles_Automotive" ? <hr /> : null}
+<<<<<<< HEAD
+        </li>
+      </ul>
+=======
 >>>>>>> 3b7195c (The Work done in Week3 by Arsh.)
         </li>
       </ul>
@@ -48,6 +59,7 @@ const Navbar = () => {
         <Link to='Login'><button>Login</button></Link>
         <div className='nav-cart-count'>0</div>
       </div>
+>>>>>>> 68a673ce7b7fbd8eaa71e1f8244373c5a6d8edf5
     </div>
   );
 };
