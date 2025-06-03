@@ -1,0 +1,56 @@
+.mainContent {
+  padding: 20px;
+}
+
+.bottons {
+  display: flex;
+  justify-content: space-between; /* Optional: adds space between them */
+  gap: 20px; /* Optional: adds space between Listing and Activity */
+  align-items: flex-start; /* Align items to the top */
+}
+/* Main content wrapper */
+.mainContent {
+  padding: 20px;
+  background-color: #f9f9f9;
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Container for listing and activity sections */
+.bottons {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+  flex-wrap: wrap; /* Makes it responsive */
+}
+
+/* Listing section */
+.listing {
+  flex: 2;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  min-width: 300px;
+}
+
+/* Activity section */
+.activity {
+  flex: 1;
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  min-width: 250px;
+}
+
+/* Optional: Add responsive behavior */
+@media (max-width: 768px) {
+  .bottons {
+    flex-direction: column;
+  }
+
+  .listing, .activity {
+    width: 100%;
+  }
+}
