@@ -1,72 +1,42 @@
-.ITEM-LISTING {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr); /* Four in a row */
-  gap: 30px;
-  justify-items: center;
-}
-
-/* Optional: Add hover effect if your <Item /> component supports styling */
-.ITEM-LISTING > * {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.ITEM-LISTING > *:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-}
-.ITEM-LISTING{
-  display: flex;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  gap: 20px;
-  padding: 10px;
-  scrollbar-width: thin;
-}
-.ITEM-LISTING {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 4 items per row */
-  gap: 20px;
-  max-height: 300px; /* Adjust based on how many rows you want visible */
-  overflow-y: auto;
+.listing-container {
   padding: 20px;
 }
 
-/* Optional: Make the scrollbar prettier */
-.ITEM-LISTING::-webkit-scrollbar {
-  width: 8px;
+.listing-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
-.ITEM-LISTING::-webkit-scrollbar-thumb {
-  background-color: #ccc;
-  border-radius: 10px;
-  max-height: calc(250px * 2 + 20px);
+.listing-title {
+  font-size: 2rem;
+  color: #333;
 }
+
 .addProduct-bttn {
-  display: block;
-  margin: 20px auto 40px; /* centers button below h1 */
-  padding: 12px 24px;
-  background-color: #007bff;
-  color: white;
-  font-size: 16px;
-  font-weight: 600;
+  padding: 10px 20px;
+  background-color: #2e86de;
+  color: #fff;
   border: none;
   border-radius: 8px;
+  font-weight: bold;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2);
+  transition: background-color 0.3s ease;
 }
+
 .addProduct-bttn:hover {
-  background-color: #0056b3;
-  transform: translateY(-2px);
+  background-color: #1e5fb3;
 }
-/* H1 Styling */
-h1 {
-  font-size: 28px;
-  color: #333;
+
+.item-listing-grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+}
+
+.no-products-msg {
   text-align: center;
-  margin-top: 20px;
-  margin-bottom: 10px;
-  font-weight: 700;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  letter-spacing: 1px;
+  font-size: 1.2rem;
+  color: #777;
 }
