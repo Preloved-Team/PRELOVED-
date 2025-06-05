@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import ResetPasswordStyle from './ResetPassword.css';
-import { sendPasswordResetEmail } from 'firebase/auth';
+import './ResetPassword.css';
+import { sendPasswordResetEmail } from "firebase/auth";
 import { auth } from "../../Firebase";
 
 const ResetPassword = () => {
@@ -17,8 +17,7 @@ const ResetPassword = () => {
     try {
       await sendPasswordResetEmail(auth, email);
       setSubmitted(true);
-    } 
-    catch (err) {
+    } catch (err) {
       console.error("Reset Error:", err.message);
       if (err.code === "auth/user-not-found") {
         setError("No user found with this email.");
@@ -41,7 +40,7 @@ const ResetPassword = () => {
             <label>Email Address</label>
             <input
               type="email"
-              placeholder="enter your email"
+              placeholder="Enter your email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
