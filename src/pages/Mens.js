@@ -1,8 +1,6 @@
 import React from 'react';
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
+import products from '../data/products';
+import './Category.css';
 
 const Men = () => {
   // 🔸 Nearby listings mock data
@@ -15,11 +13,14 @@ const Men = () => {
   const userLocation = "Auckland";
   const nearbyItems = sampleItems.filter(item => item.location === userLocation);
 
-  return (
-    <div style={{ padding: '20px', color: 'white' }}>
-      <h2>Men's Collection (Nearby Listings Only)</h2>
+  // 🔹 Filter real products (optional if products has real men's data)
+  const menProducts = products.filter(product => product.category === 'men');
 
-      {/* 📍 Nearby Listings */}
+  return (
+    <div style={{ padding: '20px' }}>
+      <h2>Men's Collection</h2>
+
+      {/* 🧭 Nearby Listings */}
       <div style={{
         marginTop: '20px',
         padding: '15px',
@@ -34,20 +35,10 @@ const Men = () => {
             <li key={item.id}>{item.name} – {item.location}</li>
           ))}
         </ul>
-=======
-=======
->>>>>>> 9fe7257 (updated files after fixing crash in cart.)
->>>>>>> 305074c (updated files after fixing crash in cart.)
-import products from '../data/products';
-import './Category.css';
+      </div>
 
-const Men = () => {
-  const menProducts = products.filter(product => product.category === 'men');
-
-  return (
-    <div className="category-container">
-      <h2>Men's Collection</h2>
-      <div className="product-grid">
+      {/* 🛍️ Men's Products */}
+      <div className="product-grid" style={{ marginTop: '30px' }}>
         {menProducts.map(product => (
           <div key={product.id} className="product-card">
             <img src={product.image} alt={product.name} />
@@ -56,13 +47,6 @@ const Men = () => {
             <button>Add to Cart</button>
           </div>
         ))}
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 3b7195c (The Work done in Week3 by Arsh.)
-=======
->>>>>>> 9fe7257 (updated files after fixing crash in cart.)
->>>>>>> 305074c (updated files after fixing crash in cart.)
       </div>
     </div>
   );
