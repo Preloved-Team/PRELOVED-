@@ -1,63 +1,4 @@
 .popular {
-<<<<<<< HEAD
-  padding: 60px 40px;
-  background: linear-gradient(180deg, #f9f9f9 0%, #ffffff 100%);
-  font-family: 'Poppins', 'Segoe UI', sans-serif;
-=======
-<<<<<<< HEAD
-  padding: 40px 60px;
-  background-color: #f9f9f9;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
->>>>>>> 305074c (updated files after fixing crash in cart.)
-}
-
-.popular h1 {
-  font-size: 2.5rem;
-  color: #2c3e50;
-  margin-bottom: 15px;
-  text-align: center;
-  position: relative;
-  display: inline-block;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.popular h1::after {
-  content: '';
-  position: absolute;
-  width: 80%;
-  height: 4px;
-  background: linear-gradient(90deg, #007bff, #00bfff);
-  bottom: -10px;
-  left: 10%;
-  border-radius: 10px;
-}
-
-.popular-item {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 30px;
-  margin-top: 40px;
-  padding: 20px;
-}
-
-/* Item card styling */
-.popular-item > * {
-  background: white;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-  position: relative;
-}
-
-.popular-item > *:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 15px 30px rgba(0, 123, 255, 0.2);
-}
-<<<<<<< HEAD
-=======
-=======
   padding: 60px 40px;
   background: linear-gradient(180deg, #f9f9f9 0%, #ffffff 100%);
   font-family: 'Poppins', 'Segoe UI', sans-serif;
@@ -107,7 +48,6 @@
   transform: translateY(-8px);
   box-shadow: 0 15px 30px rgba(0, 123, 255, 0.2);
 }
->>>>>>> 305074c (updated files after fixing crash in cart.)
 
 /* Add a subtle shine effect on hover */
 .popular-item > *:hover::before {
@@ -141,11 +81,11 @@
   .popular {
     padding: 40px 20px;
   }
-  
+
   .popular h1 {
     font-size: 2rem;
   }
-  
+
   .popular-item {
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 20px;
@@ -156,9 +96,4 @@
   .popular-item {
     grid-template-columns: 1fr;
   }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 9fe7257 (updated files after fixing crash in cart.)
->>>>>>> 305074c (updated files after fixing crash in cart.)
