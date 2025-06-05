@@ -12,25 +12,25 @@ const SideBar = () => {
       <div className='menu-container'>
         <h3>QUICK MENU</h3>
         <ul className='menuList'>
-          <li className='itemList'><Link style={{textDecoration:'none'}} className='heading' to='/AdminDashboard'>DASHBOARD</Link></li>
-          <li className='itemList'><Link style={{textDecoration:'none'}} className='heading' to='/AdminOrder'>ORDERS</Link></li>
-          <li className='itemList'><Link style={{textDecoration:'none'}} className='heading' to='/Adminexplore'>EXPLORE</Link></li>
-          <li className='itemList'><Link style={{textDecoration:'none'}} className='heading' to='/AddProduct'>PRODUCTS</Link></li>
+          <li className='itemList'><Link className='heading' to='/AdminDashboard'>Dashboard</Link></li>
+          <li className='itemList'><Link className='heading' to='/AdminOrder'>Orders</Link></li>
+          <li className='itemList'><Link className='heading' to='/Adminexplore'>Explore</Link></li>
+          <li className='itemList'><Link className='heading' to='/AddProduct'>Products</Link></li>
         </ul>
 
         <h3>SETTINGS</h3>
         <ul className='menuList'>
-          <li className='itemList'><Link style={{textDecoration:'none'}} className='heading' to='/Admincharts'>CHARTS</Link></li>
-          <li className='itemList'><Link style={{textDecoration:'none'}} className='heading' to='/Admintrends'>TRENDS</Link></li>
-          <li className='itemList'><Link style={{textDecoration:'none'}} className='heading' to='/Admincontact'>CONTACT</Link></li>
-          <li className='itemList'><Link style={{textDecoration:'none'}} className='heading' to='/Adminbilling'>BILLING</Link></li>
+          <li className='itemList'><Link className='heading' to='/Admincharts'>Charts</Link></li>
+          <li className='itemList'><Link className='heading' to='/Admintrends'>Trends</Link></li>
+          <li className='itemList'><Link className='heading' to='/Admincontact'>Contact</Link></li>
+          <li className='itemList'><Link className='heading' to='/Adminbilling'>Billing</Link></li>
         </ul>
       </div>
 
       <div className='helpCentre'>
         <h3>HELP CENTRE</h3>
         <p>Having trouble in <br />Preloved? Please <br />contact us.</p>
-        <button className='helpBtn'>GO TO HELP</button>
+        <button className='helpBtn'>Go to Help</button>
       </div>
     </div>
   );
