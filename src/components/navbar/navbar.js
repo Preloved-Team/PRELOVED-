@@ -1,44 +1,47 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './navbar.css';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
-  const [menu, setMenu] = useState("shop");
+  const location = useLocation();
+  const [menu, setMenu] = useState("");
+
+  useEffect(() => {
+    const path = location.pathname.split('/')[1]; // Get route segment
+    setMenu(path || "Home");
+  }, [location]);
+
+  const links = [
+    { name: "Home", path: "BuyerDashboard" },
+    { name: "Clothing_Accessories", label: "Clothing & Accessories" },
+    { name: "Electronics_Gadgets", label: "Electronics & Gadgets" },
+    { name: "Home_Living", label: "Home & Living" },
+    { name: "Kids_Baby_Items", label: "Kids & Baby Items" },
+    { name: "Vehicles_Automotive", label: "Vehicles & Automotive" },
+  ];
 
   return (
     <div className='navbar'>
       <div className='navbar-logo'>
         <p>PRELOVED APP</p>
       </div>
+
       <ul className='nav-menu'>
-        <li onClick={() => setMenu("Home")}>
-          <Link style={{ textDecoration: 'none' }} to='/BuyerDashboard'>Home</Link>
-          {menu === "Home" && <hr />}
-        </li>
-        <li onClick={() => setMenu("Clothing_Accessories")}>
-          <Link style={{ textDecoration: 'none' }} to='/Clothing_Accessories'>Clothing & Accessories</Link>
-          {menu === "Clothing_Accessories" && <hr />}
-        </li>
-        <li onClick={() => setMenu("Electronics_Gadgets")}>
-          <Link style={{ textDecoration: 'none' }} to='/Electronics_Gadgets'>Electronics & Gadgets</Link>
-          {menu === "Electronics_Gadgets" && <hr />}
-        </li>
-        <li onClick={() => setMenu("Home_Living")}>
-          <Link style={{ textDecoration: 'none' }} to='/Home_Living'>Home & Living</Link>
-          {menu === "Home_Living" && <hr />}
-        </li>
-        <li onClick={() => setMenu("Kids_Baby_Items")}>
-          <Link style={{ textDecoration: 'none' }} to='/Kids_Baby_Items'>Kids & Baby Items</Link>
-          {menu === "Kids_Baby_Items" && <hr />}
-        </li>
-        <li onClick={() => setMenu("Vehicles_Automotive")}>
-          <Link style={{ textDecoration: 'none' }} to='/Vehicles_Automotive'>Vehicles & Automotive</Link>
-          {menu === "Vehicles_Automotive" && <hr />}
-        </li>
+        {links.map(({ name, path, label }) => (
+          <li key={name} onClick={() => setMenu(name)}>
+            <Link style={{ textDecoration: 'none' }} to={`/${path || name}`}>
+              {label || name.replace(/_/g, ' ')}
+            </Link>
+            {menu === name && <hr />}
+          </li>
+        ))}
       </ul>
+
       <div className='nav-login-cart'>
-        <Link to='/login'><button>Login</button></Link>
-        <div className='nav-cart-count'>0</div>
+        <Link to='/login'>
+          <button aria-label="Login Button">Login</button>
+        </Link>
+        <div className='nav-cart-count' aria-label="Cart count">0</div>
       </div>
     </div>
   );
