@@ -3,43 +3,46 @@ import Products from '../Assets/Products.json';
 
 export const ShopContext = createContext(null);
 
+// Initializes cart with 0 quantity for each product ID
 const getDefaultCart = () => {
-    let cart = {};
-    Products.forEach(product => {
-        cart[product.id] = 0;
-    });
-    return cart;
+  const cart = {};
+  Products.forEach(product => {
+    cart[product.id] = 0;
+  });
+  return cart;
 };
 
 const ShopContextProvider = (props) => {
-    const [cartItem, setCartItem] = useState(getDefaultCart());
+  const [cartItem, setCartItem] = useState(getDefaultCart());
 
-    const addToCart = (itemID) => {
-        setCartItem((prev) => ({
-            ...prev,
-            [itemID]: (prev[itemID] || 0) + 1
-        }));
-    };
+  // Add item to cart
+  const addToCart = (itemID) => {
+    setCartItem(prev => ({
+      ...prev,
+      [itemID]: (prev[itemID] || 0) + 1
+    }));
+  };
 
-    const removeFromCart = (itemID) => {
-        setCartItem((prev) => ({
-            ...prev,
-            [itemID]: Math.max((prev[itemID] || 0) - 1, 0)
-        }));
-    };
+  // Remove item from cart
+  const removeFromCart = (itemID) => {
+    setCartItem(prev => ({
+      ...prev,
+      [itemID]: Math.max((prev[itemID] || 0) - 1, 0)
+    }));
+  };
 
-    const contextValue = {
-        Products,
-        cartItem,
-        addToCart,
-        removeFromCart
-    };
+  const contextValue = {
+    Products,
+    cartItem,
+    addToCart,
+    removeFromCart
+  };
 
-    return (
-        <ShopContext.Provider value={contextValue}>
-            {props.children}
-        </ShopContext.Provider>
-    );
+  return (
+    <ShopContext.Provider value={contextValue}>
+      {props.children}
+    </ShopContext.Provider>
+  );
 };
 
 export default ShopContextProvider;
