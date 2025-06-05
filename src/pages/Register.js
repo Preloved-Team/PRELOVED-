@@ -1,29 +1,7 @@
-<<<<<<< HEAD
 import React, { useState } from 'react';
 import { auth } from '../Firebase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import RegisterStyle from './Register.css';
-import { Link } from 'react-router-dom';
-=======
-<<<<<<< HEAD
-import React from 'react'
->>>>>>> 305074c (updated files after fixing crash in cart.)
-
-const Register = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [ID, setID] = useState('');
-  const [file, setFile] = useState(null);
-
-<<<<<<< HEAD
-=======
-export default Register
-=======
-import React, { useState } from 'react';
-import { auth } from '../Firebase';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-import RegisterStyle from './Register.css';
+import './Register.css';
 import { Link } from 'react-router-dom';
 
 const Register = () => {
@@ -33,7 +11,6 @@ const Register = () => {
   const [ID, setID] = useState('');
   const [file, setFile] = useState(null);
 
->>>>>>> 305074c (updated files after fixing crash in cart.)
   const handleSignup = async (e) => {
     e.preventDefault();
     try {
@@ -97,22 +74,19 @@ const Register = () => {
       )}
 
       <div className='register-agree'>
-            <input type='checkbox' id='agree' />
-            <label htmlFor='agree'>
-              Remember me
-            </label>
-          </div>
+        <input type='checkbox' id='agree' />
+        <label htmlFor='agree'>
+          Remember me
+        </label>
+      </div>
 
       <button type='submit'>Sign Up</button>
+
       <p className='Register-guide'>
-            Already have an account? login <Link to='/Login'>here</Link>
-          </p>
+        Already have an account? login <Link to='/Login'>here</Link>
+      </p>
     </form>
   );
 };
 
 export default Register;
-<<<<<<< HEAD
-=======
->>>>>>> 9fe7257 (updated files after fixing crash in cart.)
->>>>>>> 305074c (updated files after fixing crash in cart.)
