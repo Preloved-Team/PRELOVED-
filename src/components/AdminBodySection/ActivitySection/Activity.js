@@ -1,12 +1,13 @@
-import React from 'react'
-import ActivityStyle from './Activity.css';
+import React from 'react';
+import './Activity.css';
 
 const Activity = () => {
   return (
-    <div>
-      <h1>NOTIFICATINS</h1>
+    <div className="activity-container">
+      <h1>🔔 Notifications</h1>
+      <p>You currently have no new notifications.</p>
     </div>
-  )
-}
+  );
+};
 
-export default Activity
+export default Activity;
