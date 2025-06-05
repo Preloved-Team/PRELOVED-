@@ -1,0 +1,98 @@
+/* SideBar.css */
+
+/* Wrapper for the entire sidebar */
+.sidebar {
+  width: 250px;
+  background: linear-gradient(to bottom right, #1e3c72, #2a5298);
+  display: flex;
+  flex-direction: column;
+  color: white;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Logo Section */
+.logo {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.logo h1 {
+  font-size: 26px;
+  font-weight: bold;
+  color: #fff;
+  letter-spacing: 2px;
+}
+
+/* Menu Section */
+.menu-container {
+  flex-grow: 1;
+}
+
+.menu-container h3 {
+  margin: 20px 0 10px;
+  font-size: 16px;
+  color: #ccc;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding-bottom: 5px;
+}
+
+.menuList {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.itemList {
+  margin: 10px 0;
+}
+
+.heading {
+  display: block;
+  padding: 10px 15px;
+  border-radius: 8px;
+  color: white;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.heading:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: translateX(8px);
+}
+
+/* Help Centre (bottom) */
+.helpCentre {
+  background-color: rgba(255, 255, 255, 0.08);
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.05);
+}
+
+.helpCentre h3 {
+  font-size: 15px;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.helpCentre p {
+  font-size: 13px;
+  color: #ddd;
+  line-height: 1.4;
+}
+
+.helpBtn {
+  margin-top: 10px;
+  background-color: #00c6ff;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.helpBtn:hover {
+  background-color: #007ecc;
+}

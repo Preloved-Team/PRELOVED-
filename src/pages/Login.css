@@ -1,4 +1,4 @@
-/* Reset some base styles */
+
 body, input, select, button {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   box-sizing: border-box;
@@ -95,5 +95,21 @@ body, input, select, button {
 .login-guide span {
   color: #4a90e2;
   cursor: pointer;
+  text-decoration: underline;
+}
+.forgot-password {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.forgot-password a {
+  color: #1e90ff; 
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.forgot-password a:hover {
+  color: #0d6efd; 
   text-decoration: underline;
 }

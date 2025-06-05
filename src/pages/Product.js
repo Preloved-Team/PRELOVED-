@@ -1,46 +1,67 @@
-const products = [
-  {
-    id: 1,
-    name: "Men's Jacket",
-    category: "men",
-    price: 120,
-    image: "/images/men-jacket.jpg",
-  },
-  {
-    id: 2,
-    name: "Women's Dress",
-    category: "women",
-    price: 80,
-    image: "/images/women-dress.jpg",
-  },
-  {
-    id: 3,
-    name: "Kids' T-shirt",
-    category: "kids",
-    price: 25,
-    image: "/images/kids-shirt.jpg",
-  },
-  {
-    id: 4,
-    name: "Men's Shoes",
-    category: "men",
-    price: 90,
-    image: "/images/men-shoes.jpg",
-  },
-  {
-    id: 5,
-    name: "Women's Handbag",
-    category: "women",
-    price: 150,
-    image: "/images/women-bag.jpg",
-  },
-  {
-    id: 6,
-    name: "Kids' Toy Car",
-    category: "kids",
-    price: 40,
-    image: "/images/kids-toy.jpg",
-  },
-];
+<<<<<<< HEAD
+import React, { useContext, useState, useEffect } from 'react'
+=======
+import React, { useContext } from 'react'
+>>>>>>> 68a673ce7b7fbd8eaa71e1f8244373c5a6d8edf5
+import { ShopContext } from '../components/Context/ShopContext'
+import { useParams } from 'react-router-dom';
+import Breadcrum from '../components/Breadcrum/Breadcrum';
+import ProductDisplay from '../components/ProductDisplay/ProductDisplay';
+<<<<<<< HEAD
+import { doc, getDoc } from "firebase/firestore";
+import { db } from '../Firebase';
 
-export default products;
+const Product = () => {
+  const { productID } = useParams();
+  const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const docRef = doc(db, "products", productID);
+        const docSnap = await getDoc(docRef);
+        
+        if (docSnap.exists()) {
+          setProduct({ id: docSnap.id, ...docSnap.data() });
+        } else {
+          console.log("No such product!");
+        }
+      } catch (error) {
+        console.error("Error fetching product:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProduct();
+  }, [productID]);
+
+  if (loading) {
+    return <div>Loading product...</div>;
+  }
+
+  if (!product) {
+    return <div>Product not found</div>;
+  }
+
+=======
+
+const Product = () => {
+const {Products}=useContext(ShopContext);
+const {productID}=useParams();
+const product =Products.find((e)=> e.id === Number(productID))
+>>>>>>> 68a673ce7b7fbd8eaa71e1f8244373c5a6d8edf5
+  return (
+    <div>
+      <Breadcrum product={product}/>
+      <ProductDisplay product={product}/>
+    </div>
+  )
+}
+
+<<<<<<< HEAD
+export default Product
+=======
+export default Product
+>>>>>>> 68a673ce7b7fbd8eaa71e1f8244373c5a6d8edf5
