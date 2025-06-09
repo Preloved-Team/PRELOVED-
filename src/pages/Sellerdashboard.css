@@ -1,3 +1,4 @@
+/* Seller Dashboard Container */
 .seller-dashboard {
   padding: 40px 20px;
   text-align: center;
@@ -8,6 +9,7 @@
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
 }
 
+/* Dashboard Headings */
 .seller-dashboard h1 {
   font-size: 2.2rem;
   margin-bottom: 10px;
@@ -20,6 +22,7 @@
   margin-bottom: 30px;
 }
 
+/* Add Product Button */
 .add-product-btn {
   background-color: #4CAF50;
   color: white;
@@ -28,14 +31,51 @@
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s ease;
 }
 
 .add-product-btn:hover {
   background-color: #45a049;
 }
 
-/* Main Container (Now single-column full width) */
+/* Custom Top Header */
+.custom-top-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ffffff;
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid #eee;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.custom-top-header .top-left h2 {
+  margin: 0;
+  font-size: 1.8rem;
+  color: #1a237e;
+  font-weight: 700;
+}
+
+.custom-top-header .top-left p {
+  margin-top: 0.25rem;
+  color: #555;
+  font-size: 1rem;
+}
+
+.custom-top-header .top-right {
+  display: flex;
+  align-items: center;
+}
+
+.search-input {
+  padding: 0.6rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  min-width: 280px;
+}
+
+/* Main Dashboard Container */
 .seller-dashboard-container {
   display: flex;
   flex-direction: column;
@@ -44,12 +84,12 @@
   margin: 0 auto;
 }
 
-/* Main Content Area */
+/* Dashboard Main Section */
 .dashboard-main {
   width: 100%;
 }
 
-/* Header */
+/* Header Block */
 .dashboard-header {
   margin-bottom: 2rem;
 }
@@ -64,20 +104,34 @@
   margin: 0;
 }
 
-/* Button Area */
+/* Button Section */
 .dashboard-actions {
   margin-bottom: 2rem;
 }
 
-/* Item Display */
+/* Item Display Area */
 .all-item-display {
   margin-top: 2rem;
 }
 
-/* Responsive Design */
+/* Responsive Layout */
 @media (max-width: 768px) {
   .seller-dashboard-container {
     padding: 1rem;
+  }
+
+  .custom-top-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .custom-top-header .top-right {
+    width: 100%;
+  }
+
+  .search-input {
+    width: 100%;
   }
 
   .add-product-btn {
