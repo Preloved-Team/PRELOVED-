@@ -8,16 +8,22 @@ import Footer from '../components/footer/Footer';
 const BuyerDashboard = () => {
   return (
     <div className="buyer-dashboard">
-      {/* Top Banner / Header Section */}
-      <Top />
-
-      {/* Main Content */}
-      <main>
-        {/* Navigation Bar */}
+      {/* Header */}
+      <header>
+        <Top />
         <Navbar />
+      </header>
 
-        {/* Popular Items Section */}
+      {/* Welcome Section */}
+      <section className="welcome-banner">
+        <h1>Welcome to Preloved Marketplace 👋</h1>
+        <p>Discover great deals on secondhand items from trusted sellers.</p>
+      </section>
+
+      {/* Main content */}
+      <main>
         <section className="popular-section">
+          <h2>🔥 Trending Now</h2>
           <Popular />
         </section>
       </main>
