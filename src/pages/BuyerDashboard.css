@@ -1,48 +1,47 @@
-.buyer-dashboard {
+.search-controls {
+  margin-top: 1rem;
   display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  background-color: #fafafa;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
-header {
-  background-color: #fff;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-  z-index: 10;
-  position: sticky;
-  top: 0;
+.search-controls input,
+.search-controls select {
+  padding: 0.6rem 1rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  min-width: 200px;
 }
 
-.welcome-banner {
+.dashboard-stats {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
   padding: 2rem;
-  background-color: #f0f4f8;
+  background-color: #ffffff;
+  border-bottom: 1px solid #eee;
+  flex-wrap: wrap;
+}
+
+.stat-box {
   text-align: center;
-  border-bottom: 1px solid #e0e0e0;
+  padding: 1rem 2rem;
+  background: #f4f6fa;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
-.welcome-banner h1 {
-  font-size: 2rem;
-  color: #1a237e;
-  margin-bottom: 0.5rem;
-}
-
-.welcome-banner p {
-  color: #555;
+.feedback-banner {
+  text-align: center;
+  background-color: #e3f2fd;
+  padding: 1.5rem;
   font-size: 1.1rem;
+  margin-top: 2rem;
 }
 
-.popular-section {
-  padding: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.popular-section h2 {
-  margin-bottom: 1.5rem;
-  color: #333;
-  font-size: 1.5rem;
-}
-
-footer {
-  margin-top: auto;
+.feedback-banner a {
+  color: #1565c0;
+  text-decoration: underline;
 }
