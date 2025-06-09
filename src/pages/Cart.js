@@ -1,44 +1,43 @@
 import React, { useContext } from 'react';
 import { ShopContext } from '../components/Context/ShopContext';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import CartItems from '../components/cartItems/CartItems';
 import Footer from '../components/footer/Footer';
 import Top from '../components/AdminBodySection/TopSection/Top';
 import './Cart.css';
 
 const Cart = () => {
-  const {
-    cartItem,
-    Products,
-    removeFromCart,
-    addToCart,
-  } = useContext(ShopContext);
+  const { cartItem, Products, removeFromCart, addToCart } = useContext(ShopContext);
+  const navigate = useNavigate();
 
-  const getTotalCartAmount = () => {
-    return Products.reduce((total, product) => {
-      return total + product.price * (cartItem[product.id] || 0);
-    }, 0);
+  const cartProducts = Products.filter(product => cartItem[product.id] > 0);
+  const totalAmount = cartProducts.reduce(
+    (total, product) => total + product.price * cartItem[product.id],
+    0
+  );
+
+  const handleCheckout = () => {
+    navigate('/payment'); // Navigate to payment page
   };
 
-  const totalAmount = getTotalCartAmount();
-
-  const cartProductList = Products.filter(product => cartItem[product.id] > 0);
-
   return (
-    <div>
+    <div className="cart-page">
       <Top />
-      {cartProductList.length === 0 ? (
-        <div className="cart-container empty">
-          <h2>Your cart is empty</h2>
+
+      {cartProducts.length === 0 ? (
+        <section className="cart-container empty">
+          <h2>Your cart is empty 😕</h2>
+          <p>Looks like you haven't added anything yet.</p>
           <Link to="/BuyerDashboard">
-            <button className="continue-shopping-btn">Continue Shopping</button>
+            <button className="continue-shopping-btn">🛍️ Continue Shopping</button>
           </Link>
-        </div>
+        </section>
       ) : (
-        <div className="cart-container">
+        <section className="cart-container">
           <h2>Your Shopping Cart</h2>
+
           <div className="cart-items">
-            {cartProductList.map(product => (
+            {cartProducts.map(product => (
               <div key={product.id} className="cart-item">
                 <img src={product.image} alt={product.name} />
                 <div className="cart-details">
@@ -56,14 +55,17 @@ const Cart = () => {
           </div>
 
           <div className="cart-summary">
-            <h3>Cart Summary</h3>
+            <h3>🧾 Cart Summary</h3>
             <p>Subtotal: ${totalAmount.toFixed(2)}</p>
             <p>Shipping: $0.00</p>
             <h4>Total: ${totalAmount.toFixed(2)}</h4>
-            <button className="checkout-btn">Proceed to Checkout</button>
+            <button className="checkout-btn" onClick={handleCheckout}>
+              ✅ Proceed to Checkout
+            </button>
           </div>
-        </div>
+        </section>
       )}
+
       <Footer />
     </div>
   );
