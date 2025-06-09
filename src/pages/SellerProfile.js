@@ -12,12 +12,24 @@ const SellerProfile = () => {
     profilePicUrl: ''
   });
 
+  const [darkMode, setDarkMode] = useState(() => {
+    return localStorage.getItem('darkMode') === 'true';
+  });
+
   useEffect(() => {
     const stored = localStorage.getItem('sellerProfile');
     if (stored) {
       setProfile(JSON.parse(stored));
     }
   }, []);
+
+  useEffect(() => {
+    if (darkMode) {
+      document.body.classList.add('dark-mode');
+    } else {
+      document.body.classList.remove('dark-mode');
+    }
+  }, [darkMode]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -40,8 +52,37 @@ const SellerProfile = () => {
     alert('Profile saved successfully!');
   };
 
+  const toggleDarkMode = () => {
+    setDarkMode(prev => {
+      localStorage.setItem('darkMode', !prev);
+      return !prev;
+    });
+  };
+
   return (
-    <div className="profile-page">
+    <div className={`profile-page ${darkMode ? 'dark' : ''}`}>
+      <header className="profile-header">
+        <h2>Seller Profile</h2>
+        <div
+          className="dark-mode-toggle-wrapper"
+          onClick={() => setDarkMode(d => {
+            localStorage.setItem('darkMode', !d);
+            return !d;
+          })}
+        >
+          <label className="switch">
+            <input
+              type="checkbox"
+              checked={darkMode}
+              onChange={toggleDarkMode}
+              aria-label="Toggle dark mode"
+            />
+            <span className="slider round"></span>
+          </label>
+          <span className="dark-toggle-label">Dark</span>
+        </div>
+      </header>
+
       <div className="profile-card">
         <div className="profile-top">
           {profile.profilePicUrl ? (
