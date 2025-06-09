@@ -5,14 +5,19 @@ import AdminDashboard from './pages/AdminDashboard';
 import BuyerDashboard from './pages/BuyerDashboard';
 import SellerDashboard from './pages/SellerDashboard';
 import ShopCategory from './pages/ShopCategory';
-import Navbar from './components/navbar/navbar';
 import Product from './pages/Product';
 import Cart from './pages/Cart';
+import Wishlist from './pages/Wishlist';
+import Orders from './pages/Orders';
+import Profile from './pages/profile/Profile';
+import Payment from './pages/payment/Payment';
+import ProductDetail from './pages/ProductDetail';
 import AdminAddProduct from './pages/AdminAddProducts/AddProduct';
 import ResetPassword from './pages/resetPassword/ResetPassword';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // Category banners
-import PreLovedBanner from './components/Assets/preloved banner.jpeg';
 import ClothingBanner from './components/Assets/Clothing_Accessories banner.jpeg';
 import ElectronicBanner from './components/Assets/Electronics_Gadgets.jpg';
 import HomeBanner from './components/Assets/Home_Living.jpg';
@@ -23,13 +28,18 @@ function AppWrapper() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<BuyerDashboard />} />
+        {/* Auth & Reset */}
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/ResetPassword" element={<ResetPassword />} />
-        <Route path="/AdminDashboard" element={<AdminDashboard />} />
+
+        {/* Dashboards */}
+        <Route path="/" element={<BuyerDashboard />} />
         <Route path="/BuyerDashboard/*" element={<BuyerDashboard />} />
         <Route path="/SellerDashboard" element={<SellerDashboard />} />
+        <Route path="/AdminDashboard" element={<AdminDashboard />} />
+
+        {/* Shop Category Pages */}
         <Route
           path="/Clothing_Accessories"
           element={<ShopCategory banner={ClothingBanner} category="Clothing_Accessories" />}
@@ -50,11 +60,20 @@ function AppWrapper() {
           path="/Vehicles_Automotive"
           element={<ShopCategory banner={VehicleBanner} category="Vehicles_Automotive" />}
         />
-        <Route path="/product/:productID" element={<Product />} />
+
+        {/* Pages */}
         <Route path="/AddProduct" element={<AdminAddProduct />} />
-        <Route path="/product" element={<Product />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/wishlist" element={<Wishlist />} />
+        <Route path="/orders" element={<Orders />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/payment" element={<Payment />} />
+        <Route path="/product" element={<Product />} />
+        <Route path="/product/:id" element={<ProductDetail />} />
       </Routes>
+
+      {/* Global Toast Notifications */}
+      <ToastContainer position="top-right" autoClose={2000} />
     </>
   );
 }
