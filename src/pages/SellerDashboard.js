@@ -6,9 +6,8 @@ import Footer from '../components/footer/Footer';
 
 const SellerDashboard = () => {
   const navigate = useNavigate();
-  const [darkMode, setDarkMode] = useState(() => {
-    return localStorage.getItem('darkMode') === 'true';
-  });
+  const [darkMode, setDarkMode] = useState(() => localStorage.getItem('darkMode') === 'true');
+  const [sortOrder, setSortOrder] = useState('newest'); // default sort by newest
 
   const handleAddProductClick = () => {
     navigate('/AddProduct');
@@ -29,6 +28,10 @@ const SellerDashboard = () => {
     }
   }, [darkMode]);
 
+  const handleSortChange = (e) => {
+    setSortOrder(e.target.value);
+  };
+
   return (
     <div className={`seller-dashboard-wrapper ${darkMode ? 'dark' : ''}`}>
       {/* Custom Top Header */}
@@ -39,12 +42,9 @@ const SellerDashboard = () => {
         </div>
         <div className="top-right">
           <input type="text" placeholder="Search..." className="search-input" />
-
-          {/* Add Product button moved here */}
           <button className="add-product-btn" onClick={handleAddProductClick}>
             Add New Product
           </button>
-
           <button className="profile-btn" onClick={() => navigate('/SellerProfile')}>
             Profile
           </button>
@@ -52,6 +52,15 @@ const SellerDashboard = () => {
             {darkMode ? 'Light Mode' : 'Dark Mode'}
           </button>
         </div>
+      </div>
+
+      {/* Sort Filter */}
+      <div className="sort-filter" style={{ maxWidth: '1200px', margin: '1rem auto', padding: '0 2rem' }}>
+        <label htmlFor="sortOrder" style={{ marginRight: '0.5rem' }}>Sort by Date:</label>
+        <select id="sortOrder" value={sortOrder} onChange={handleSortChange}>
+          <option value="newest">Newest First</option>
+          <option value="oldest">Oldest First</option>
+        </select>
       </div>
 
       {/* Main Seller Dashboard */}
@@ -62,10 +71,8 @@ const SellerDashboard = () => {
             <p>Manage your listings and add new preloved items to the marketplace.</p>
           </div>
 
-          {/* Removed old Add Product button */}
-
           <div className="all-item-display">
-            <Popular />
+            <Popular sortOrder={sortOrder} />
           </div>
         </div>
       </div>
