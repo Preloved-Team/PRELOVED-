@@ -7,13 +7,23 @@ import Footer from '../components/footer/Footer';
 
 const BuyerDashboard = () => {
   return (
-    <div>
+    <div className="buyer-dashboard">
+      {/* Top Banner / Header Section */}
       <Top />
-      <div>
+
+      {/* Main Content */}
+      <main>
+        {/* Navigation Bar */}
         <Navbar />
-        <Popular />
-        <Footer />
-      </div>
+
+        {/* Popular Items Section */}
+        <section className="popular-section">
+          <Popular />
+        </section>
+      </main>
+
+      {/* Footer */}
+      <Footer />
     </div>
   );
 };
