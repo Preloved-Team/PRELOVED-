@@ -13,21 +13,24 @@ const SellerDashboard = () => {
 
   return (
     <div>
-      {/* Custom Top Section (replaces <Top />) */}
+      {/* Custom Top Header */}
       <div className="custom-top-header">
         <div className="top-left">
-          <h2>WELCOME TO PRELOVED</h2>
-          <p>hello Shubham, Welcome back!</p>
+          <h2>Welcome Seller</h2>
+          <p>Dashboard Overview</p>
         </div>
         <div className="top-right">
-          <input
-            type="text"
-            className="search-input"
-            placeholder="Search for an Item or Product"
-          />
+          <input type="text" placeholder="Search..." className="search-input" />
+          <button
+            className="profile-btn"
+            onClick={() => navigate('/SellerProfile')}
+          >
+            Profile
+          </button>
         </div>
       </div>
 
+      {/* Main Seller Dashboard */}
       <div className="seller-dashboard-container">
         <div className="dashboard-main">
           <div className="dashboard-header">

@@ -139,3 +139,52 @@
     font-size: 1rem;
   }
 }
+
+.custom-top-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.top-left h2 {
+  font-size: 1.5rem;
+  color: #333;
+  margin: 0;
+}
+
+.top-left p {
+  color: #777;
+  margin: 0.25rem 0 0;
+}
+
+.top-right {
+  display: flex;
+  align-items: center;
+}
+
+.search-input {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.profile-btn {
+  background-color: #2196f3;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-left: 1rem;
+}
+
+.profile-btn:hover {
+  background-color: #1976d2;
+}
+
