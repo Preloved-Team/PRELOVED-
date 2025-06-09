@@ -39,25 +39,18 @@ const SellerDashboard = () => {
         </div>
         <div className="top-right">
           <input type="text" placeholder="Search..." className="search-input" />
+
+          {/* Add Product button moved here */}
+          <button className="add-product-btn" onClick={handleAddProductClick}>
+            Add New Product
+          </button>
+
           <button className="profile-btn" onClick={() => navigate('/SellerProfile')}>
             Profile
           </button>
-
-          <div className="dark-mode-toggle-wrapper" onClick={() => setDarkMode(d => {
-            localStorage.setItem('darkMode', !d);
-            return !d;
-          })}>
-            <label className="switch">
-              <input
-                type="checkbox"
-                checked={darkMode}
-                onChange={toggleDarkMode}
-                aria-label="Toggle dark mode"
-              />
-              <span className="slider round"></span>
-            </label>
-            <span className="dark-toggle-label">Dark</span>
-          </div>
+          <button className="dark-mode-toggle" onClick={toggleDarkMode}>
+            {darkMode ? 'Light Mode' : 'Dark Mode'}
+          </button>
         </div>
       </div>
 
@@ -69,11 +62,7 @@ const SellerDashboard = () => {
             <p>Manage your listings and add new preloved items to the marketplace.</p>
           </div>
 
-          <div className="dashboard-actions">
-            <button className="add-product-btn" onClick={handleAddProductClick}>
-              Add New Product
-            </button>
-          </div>
+          {/* Removed old Add Product button */}
 
           <div className="all-item-display">
             <Popular />
