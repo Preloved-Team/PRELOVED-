@@ -1,30 +1,91 @@
 import React, { useState } from 'react';
+import { toast } from 'react-toastify'; // Optional toast notification
+import 'react-toastify/dist/ReactToastify.css';
 
 const Profile = () => {
   const [userInfo, setUserInfo] = useState({
     name: 'John Doe',
     email: 'johndoe@example.com',
-    phone: '021 123 4567'
+    phone: '021 123 4567',
   });
+
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     setUserInfo({ ...userInfo, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert('Profile updated!');
-    // Firebase update logic can go here
+    setLoading(true);
+
+    // Simulate Firebase update
+    setTimeout(() => {
+      setLoading(false);
+      toast.success('✅ Profile updated successfully!');
+    }, 1000);
   };
 
   return (
-    <div className="p-6 max-w-xl mx-auto">
-      <h2 className="text-2xl font-semibold mb-4">Edit Profile</h2>
-      <form className="space-y-4" onSubmit={handleSubmit}>
-        <input name="name" value={userInfo.name} onChange={handleChange} className="w-full p-2 border rounded" />
-        <input name="email" value={userInfo.email} onChange={handleChange} className="w-full p-2 border rounded" />
-        <input name="phone" value={userInfo.phone} onChange={handleChange} className="w-full p-2 border rounded" />
-        <button type="submit" className="px-4 py-2 bg-blue-600 text-white rounded">Save Changes</button>
+    <div className="max-w-3xl mx-auto p-6 bg-white shadow-md rounded-lg mt-10">
+      <div className="text-center mb-6">
+        <img
+          src="https://via.placeholder.com/100"
+          alt="User Avatar"
+          className="rounded-full mx-auto mb-2"
+        />
+        <h2 className="text-2xl font-bold">My Profile</h2>
+        <p className="text-gray-500">Update your personal details</p>
+      </div>
+
+      <form onSubmit={handleSubmit} className="space-y-6">
+        <div>
+          <label className="block font-medium mb-1 text-gray-700">Name</label>
+          <input
+            type="text"
+            name="name"
+            value={userInfo.name}
+            onChange={handleChange}
+            className="w-full border border-gray-300 p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            required
+          />
+        </div>
+
+        <div>
+          <label className="block font-medium mb-1 text-gray-700">Email</label>
+          <input
+            type="email"
+            name="email"
+            value={userInfo.email}
+            onChange={handleChange}
+            className="w-full border border-gray-300 p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            required
+          />
+        </div>
+
+        <div>
+          <label className="block font-medium mb-1 text-gray-700">Phone</label>
+          <input
+            type="tel"
+            name="phone"
+            value={userInfo.phone}
+            onChange={handleChange}
+            className="w-full border border-gray-300 p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            required
+          />
+        </div>
+
+        <div className="text-center">
+          <button
+            type="submit"
+            disabled={loading}
+            className={`px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition ${
+              loading && 'opacity-50 cursor-not-allowed'
+            }`}
+          >
+            {loading ? 'Saving...' : 'Save Changes'}
+          </button>
+        </div>
       </form>
     </div>
   );
