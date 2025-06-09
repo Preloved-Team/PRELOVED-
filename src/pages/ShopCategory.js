@@ -1,18 +1,18 @@
-<<<<<<< HEAD
 import React, { useContext } from 'react';
 import Navbar from '../components/navbar/navbar';
 import './ShopCategory.css';
 import Item from '../components/Items/Items';
 import { ShopContext } from '../components/Context/ShopContext';
 
-const ShopCategory= (props) => {
-  const { Products } = useContext(ShopContext); 
+const ShopCategory = (props) => {
+  const { Products } = useContext(ShopContext);
 
   const filteredProducts = Products.filter(item => props.category === item.category);
 
   if (filteredProducts.length === 0) {
     return (
       <div className='shop-category'>
+        <Navbar />
         <div className='shopCategory-indexSort'>
           <p>No products found in the {props.category} category</p>
         </div>
@@ -22,63 +22,29 @@ const ShopCategory= (props) => {
 
   return (
     <div className='shop-category'>
-      <Navbar/>
-      <h1>SHUBHAM</h1>
+      <Navbar />
       <div className='shopCategory-indexSort'>
         <p>
-          <span>Showing 1-{filteredProducts.length}</span> out of {filteredProducts.length} products
+          <span>Showing 1–{filteredProducts.length}</span> out of {filteredProducts.length} products
         </p>
         <div className='shopCategory-sort'>
-          
+          {/* Optional: Sorting dropdown or filters can go here */}
         </div>
-        <div className='shopCategory-products'>
-          {filteredProducts.map((item, i) => (
-            <Item 
-              key={i} 
-              id={item.id} 
-              name={item.name} 
-              image={item.image} 
-              price={item.price} 
-            />
-          ))}
-        </div>
+      </div>
+
+      <div className='shopCategory-products'>
+        {filteredProducts.map((item, i) => (
+          <Item
+            key={i}
+            id={item.id}
+            name={item.name}
+            image={item.image}
+            price={item.price}
+          />
+        ))}
       </div>
     </div>
   );
 };
 
 export default ShopCategory;
-=======
-import React from 'react';
-import Navbar from '../components/navbar/navbar';
-
-const sampleItems = [
-  { id: 1, name: "Used Bicycle", location: "Auckland" },
-  { id: 2, name: "Old Camera", location: "Wellington" },
-  { id: 3, name: "Vintage Clock", location: "Auckland" },
-];
-
-const userLocation = "Auckland"; // simulate user location
-const nearbyItems = sampleItems.filter(item => item.location === userLocation);
-
-
-const ShopCategory = () => {
-  return (
-    <div>
-      <Navbar/>
-      <div style={{ marginTop: '30px', padding: '10px' }}>
-        <h2>📍 Nearby Listings in {userLocation}</h2>
-        <ul>
-          {nearbyItems.map(item => (
-            <li key={item.id}>
-              {item.name} – {item.location}
-          </li>
-        ))}
-      </ul>
-    </div>
-  </div>
-  );
-};
-
-export default ShopCategory;
->>>>>>> a517e045b1014febe2067dce28d35ff7f2bbe603
