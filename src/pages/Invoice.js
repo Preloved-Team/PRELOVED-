@@ -15,36 +15,63 @@ const Invoice = () => {
     if (!nameOnCard) navigate('/');
   }, [nameOnCard, navigate]);
 
-  const invoiceItems = products.filter(product => cartItem[product.id] > 0);
+  // Prepare invoice items from cart
+  const invoiceItems = products
+    .filter(product => cartItem[product.id] > 0)
+    .map(product => ({
+      name: product.name,
+      quantity: cartItem[product.id],
+      price: product.price
+    }));
 
-  const total = invoiceItems.reduce((sum, item) => sum + item.price * cartItem[item.id], 0);
+  // Calculate total
+  const totalAmount = invoiceItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+  // Assemble invoice data
+  const invoiceData = {
+    nameOnCard,
+    date: new Date().toLocaleString(),
+    items: invoiceItems,
+    totalAmount
+  };
 
   return (
     <div className="invoice-container">
-      <h2>🧾 Invoice</h2>
-      <p><strong>Name on Card:</strong> {nameOnCard}</p>
-      <p><strong>Date:</strong> {new Date().toLocaleString()}</p>
-      <table className="invoice-table">
-        <thead>
-          <tr>
-            <th>Item</th>
-            <th>Qty</th>
-            <th>Price</th>
-            <th>Subtotal</th>
-          </tr>
-        </thead>
-        <tbody>
-          {invoiceItems.map((item) => (
-            <tr key={item.id}>
-              <td>{item.name}</td>
-              <td>{cartItem[item.id]}</td>
-              <td>${item.price}</td>
-              <td>${(item.price * cartItem[item.id]).toFixed(2)}</td>
+      <div className="invoice-box">
+        <div className="header">
+          <h1>🧾 PRELOVED INVOICE</h1>
+          <p><strong>Date:</strong> {invoiceData.date}</p>
+        </div>
+
+        <div className="info">
+          <p><strong>Name on Card:</strong> {invoiceData.nameOnCard}</p>
+        </div>
+
+        <table className="invoice-table">
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Qty</th>
+              <th>Price</th>
+              <th>Subtotal</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-      <h3 className="invoice-total">Total: ${total.toFixed(2)}</h3>
+          </thead>
+          <tbody>
+            {invoiceData.items.map((item, idx) => (
+              <tr key={idx}>
+                <td>{item.name}</td>
+                <td>{item.quantity}</td>
+                <td>${item.price}</td>
+                <td>${(item.price * item.quantity).toFixed(2)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+
+        <div className="total-section">
+          <h2>Total: ${invoiceData.totalAmount.toFixed(2)}</h2>
+        </div>
+      </div>
     </div>
   );
 };
