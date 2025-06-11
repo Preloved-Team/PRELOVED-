@@ -1,0 +1,89 @@
+.feedback-container {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.feedback-container h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 30px;
+  color: #333;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 10px;
+}
+
+.feedback-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.feedback-table thead {
+  background-color: #f6f8fa;
+}
+
+.feedback-table th,
+.feedback-table td {
+  text-align: left;
+  padding: 14px 18px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.feedback-table th {
+  color: #444;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.feedback-table td {
+  font-size: 15px;
+  color: #555;
+}
+
+.feedback-table tr:hover {
+  background-color: #f0f4ff;
+  transition: background-color 0.2s ease-in-out;
+}
+
+@media (max-width: 768px) {
+  .feedback-container {
+    padding: 20px;
+  }
+
+  .feedback-table thead {
+    display: none;
+  }
+
+  .feedback-table,
+  .feedback-table tbody,
+  .feedback-table tr,
+  .feedback-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .feedback-table tr {
+    margin-bottom: 20px;
+    border-bottom: 2px solid #ddd;
+  }
+
+  .feedback-table td {
+    text-align: right;
+    padding-left: 50%;
+    position: relative;
+  }
+
+  .feedback-table td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 18px;
+    width: 45%;
+    text-align: left;
+    font-weight: bold;
+    color: #333;
+  }
+}

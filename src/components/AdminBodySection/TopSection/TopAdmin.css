@@ -1,0 +1,128 @@
+/* Entire body container styling */
+.headerSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 20px 40px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  margin-bottom: 30px;
+}
+
+/* Title Area */
+.tittle h1 {
+  font-size: 28px;
+  margin: 0;
+  color: #1e3c72;
+}
+
+.tittle p {
+  margin: 5px 0 0;
+  color: #555;
+  font-size: 16px;
+}
+
+/* Search Bar */
+.search-bar input[type="text"] {
+  padding: 10px 15px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  width: 250px;
+  font-size: 14px;
+  outline: none;
+  transition: border 0.3s;
+}
+
+.search-bar input[type="text"]:focus {
+  border-color: #1e3c72;
+}
+
+/* Notification Icon */
+.notificationIcon {
+  background-color: #ff4757;
+  color: white;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Card Section */
+.cardSection {
+  display: flex;
+  background: linear-gradient(to right, #f1f4f9, #dff1ff);
+  border-radius: 12px;
+  padding: 40px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Right Side Content */
+.cardSection-right {
+  flex: 1;
+  padding-right: 20px;
+}
+
+.cardSection-right h1 {
+  font-size: 32px;
+  color: #2a2a2a;
+  margin-bottom: 15px;
+}
+
+.cardSection-right p {
+  font-size: 16px;
+  color: #555;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+/* Buttons */
+.buttons {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.btm {
+  background-color: #1e3c72;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.btm:hover {
+  background-color: #163567;
+}
+
+.btn-transparent {
+  background-color: transparent;
+  color: #1e3c72;
+  border: 2px solid #1e3c72;
+  padding: 10px 20px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.btn-transparent:hover {
+  background-color: #1e3c72;
+  color: white;
+}
+
+/* Video Section */
+.videoPreloved video {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+}

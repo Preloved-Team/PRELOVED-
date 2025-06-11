@@ -1,0 +1,92 @@
+/* Center the form in the page */
+.login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #ffffff;
+}
+
+/* Container for login form */
+.login-container {
+  background-color: white;
+  padding: 40px;
+  width: 400px;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Heading */
+.login-container h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+/* Input fields */
+.login-field input[type='email'],
+.login-field input[type='password'] {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.2s ease-in-out;
+}
+
+.login-field input:focus {
+  border-color: #6c63ff;
+}
+
+/* Checkbox and label */
+.login-agree {
+  display: flex;
+  align-items: center;
+  margin: 15px 0;
+  font-size: 14px;
+}
+
+.login-agree input[type='checkbox'] {
+  margin-right: 10px;
+}
+
+/* Submit button */
+.login-container button {
+  padding: 12px;
+  background-color: #6c63ff;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.login-container button:hover {
+  background-color: #5a54e6;
+}
+
+/* Navigation links */
+.login-guide,
+.forgot-password {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.login-guide a,
+.forgot-password a {
+  color: #6c63ff;
+  text-decoration: none;
+}
+
+.login-guide a:hover,
+.forgot-password a:hover {
+  text-decoration: underline;
+}

@@ -1,0 +1,107 @@
+/* Popular.css */
+
+.popular {
+  padding: 40px 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  background: linear-gradient(180deg, #fde1ff 0%, #e1ffea22 60%);
+}
+
+.popular h1 {
+  color: #171717;
+  font-size: 3rem;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 20px;
+  position: relative;
+  animation: fadeInDown 1s ease-out;
+}
+
+.popular h1::after {
+  content: '';
+  width: 200px;
+  height: 4px;
+  background: #ff4141;
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 2px;
+}
+
+.popular-item {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 30px;
+  width: 100%;
+  margin-top: 20px;
+}
+
+@media (max-width: 1024px) {
+  .popular {
+    padding: 40px 60px;
+  }
+  
+  .popular-item {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .popular {
+    padding: 30px 40px;
+  }
+  
+  .popular h1 {
+    font-size: 2.5rem;
+  }
+  
+  .popular-item {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .popular {
+    padding: 20px;
+  }
+  
+  .popular h1 {
+    font-size: 2rem;
+  }
+  
+  .popular-item {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Loading animation */
+.popular.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  font-size: 1.5rem;
+  color: #666;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.6; }
+  50% { opacity: 1; }
+  100% { opacity: 0.6; }
+}
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px); /* Starts 20px above */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0); /* Ends at normal position */
+  }
+}

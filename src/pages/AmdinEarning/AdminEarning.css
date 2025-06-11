@@ -1,0 +1,77 @@
+/* Container Styling */
+.admin-earning-container {
+  max-width: 1200px;
+  margin: 50px auto;
+  padding: 40px;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  font-family: 'Poppins', sans-serif;
+  color: #2c3e50;
+}
+
+/* Title Styling */
+.admin-earning-container h2 {
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 30px;
+  color: #1f2d3d;
+  font-weight: 600;
+}
+
+/* Table Styling */
+.Admin-profit-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 12px;
+  font-size: 15px;
+  background-color: transparent;
+}
+
+.Admin-profit-table thead {
+  background-color: #1abc9c;
+  color: white;
+  border-radius: 10px;
+}
+
+.Admin-profit-table th {
+  padding: 16px;
+  text-align: left;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.Admin-profit-table td {
+  padding: 16px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+  vertical-align: top;
+}
+
+.Admin-profit-table ul {
+  margin: 0;
+  padding-left: 18px;
+  list-style-type: disc;
+}
+
+.Admin-profit-table li {
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: #555;
+}
+
+/* Profit Text */
+.admin-total-profit {
+  margin-top: 30px;
+  text-align: right;
+  font-size: 20px;
+  font-weight: 600;
+  color: #27ae60;
+  background-color: #ecf9f1;
+  padding: 12px 20px;
+  border-radius: 12px;
+  display: inline-block;
+  box-shadow: 0 4px 12px rgba(39, 174, 96, 0.2);
+}
