@@ -65,14 +65,13 @@ const SellerDashboard = () => {
   </div>
 </div>
 
-      {/* Sort Filter */}
-      <div className="sort-filter" style={{ maxWidth: '1200px', margin: '1rem auto', padding: '0 2rem' }}>
-        <label htmlFor="sortOrder" style={{ marginRight: '0.5rem' }}>Sort by Date:</label>
-        <select id="sortOrder" value={sortOrder} onChange={handleSortChange}>
-          <option value="newest">Newest First</option>
-          <option value="oldest">Oldest First</option>
-        </select>
-      </div>
+// Update sort options
+<select id="sortOrder" value={sortOrder} onChange={handleSortChange}>
+  <option value="newest">Newest First</option>
+  <option value="oldest">Oldest First</option>
+  <option value="price-high">Price (High to Low)</option>
+  <option value="price-low">Price (Low to High)</option>
+</select>
 
       {/* Main Seller Dashboard */}
       <div className="seller-dashboard-container">
