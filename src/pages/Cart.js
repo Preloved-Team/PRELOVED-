@@ -1,115 +1,100 @@
 import React, { useContext, useState } from 'react';
-import './Cart.css';
-import { ShopContext } from '../Context/ShopContext';
 import { useNavigate } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import { ShopContext } from '../Context/ShopContext';
+import './Cart.css';
 
 const Cart = () => {
   const { cartItems, products, removeFromCart, clearCart } = useContext(ShopContext);
-  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
 
-  const formatter = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-  });
+  const currencyFormat = (value) =>
+    new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+    }).format(value);
 
-  const totalAmount = products.reduce((acc, product) => {
-    const quantity = cartItems[product.id] || 0;
-    return acc + product.price * quantity;
+  const totalAmount = products.reduce((sum, item) => {
+    const quantity = cartItems[item.id] || 0;
+    return sum + item.price * quantity;
   }, 0);
 
   const handleCheckout = () => {
-    setLoading(true);
+    setIsLoading(true);
     setTimeout(() => {
       navigate('/checkout');
-    }, 800);
+    }, 1000);
   };
 
-  const handleClearCart = () => {
-    if (window.confirm('Are you sure you want to clear your cart?')) {
+  const handleClear = () => {
+    if (window.confirm('Are you sure you want to clear the cart?')) {
       clearCart();
     }
   };
 
   return (
-    <div className="cart-page">
-      <h2 className="cart-title">🛒 Your Cart</h2>
+    <main className="cart-container">
+      <header className="cart-header">
+        <h2>Your Shopping Cart</h2>
+      </header>
 
       {totalAmount > 0 ? (
         <>
-          <section className="cart-grid">
-            <AnimatePresence>
-              {products.map((product) => {
-                const quantity = cartItems[product.id] || 0;
-                if (quantity === 0) return null;
+          <section className="cart-items">
+            {products.map((item) => {
+              const quantity = cartItems[item.id];
+              if (!quantity) return null;
 
-                return (
-                  <motion.article
-                    className="cart-card"
-                    key={product.id}
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.95 }}
-                    layout
-                  >
-                    <img
-                      src={product.image || '/fallback-image.png'}
-                      alt={product.name}
-                      className="cart-img"
-                    />
-                    <div className="cart-info">
-                      <h4>{product.name}</h4>
-                      <p>
-                        {formatter.format(product.price)} x {quantity}
-                      </p>
-                      <strong>
-                        {formatter.format(product.price * quantity)}
-                      </strong>
-                      <button
-                        className="remove-btn"
-                        onClick={() => removeFromCart(product.id)}
-                        aria-label={`Remove ${product.name} from cart`}
-                      >
-                        ❌ Remove
-                      </button>
-                    </div>
-                  </motion.article>
-                );
-              })}
-            </AnimatePresence>
+              return (
+                <div key={item.id} className="cart-item">
+                  <img src={item.image} alt={item.name} className="cart-item-image" />
+                  <div className="cart-item-details">
+                    <h4>{item.name}</h4>
+                    <p>
+                      {currencyFormat(item.price)} × {quantity}
+                    </p>
+                    <strong>Total: {currencyFormat(item.price * quantity)}</strong>
+                    <button
+                      className="remove-btn"
+                      onClick={() => removeFromCart(item.id)}
+                      aria-label={`Remove ${item.name} from cart`}
+                    >
+                      Remove
+                    </button>
+                  </div>
+                </div>
+              );
+            })}
           </section>
 
-          <footer className="cart-footer">
-            <h3>Total: {formatter.format(totalAmount)}</h3>
-            <div className="cart-actions">
+          <footer className="cart-summary">
+            <div className="summary-info">
+              <h3>Total Amount: {currencyFormat(totalAmount)}</h3>
+            </div>
+            <div className="summary-actions">
               <button
                 className="checkout-btn"
                 onClick={handleCheckout}
-                disabled={loading}
+                disabled={isLoading}
               >
-                {loading ? 'Processing...' : 'Proceed to Checkout'}
+                {isLoading ? 'Processing...' : 'Proceed to Checkout'}
               </button>
-              <button className="clear-btn" onClick={handleClearCart}>
-                🧹 Clear Cart
+              <button className="clear-btn" onClick={handleClear}>
+                Clear Cart
               </button>
             </div>
           </footer>
         </>
       ) : (
-        <div className="empty-state">
-          <img
-            src="/empty-cart.svg"
-            alt="Empty cart"
-            className="empty-img"
-          />
-          <p>Your cart is empty.</p>
-          <button onClick={() => navigate('/shop')} className="browse-btn">
-            🛍️ Browse Products
+        <section className="empty-cart">
+          <img src="/empty-cart.svg" alt="Empty cart illustration" />
+          <p>Your cart is currently empty.</p>
+          <button onClick={() => navigate('/shop')} className="shop-now-btn">
+            Browse Products
           </button>
-        </div>
+        </section>
       )}
-    </div>
+    </main>
   );
 };
 
