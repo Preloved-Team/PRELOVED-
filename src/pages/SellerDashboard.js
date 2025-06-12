@@ -53,6 +53,17 @@ const SellerDashboard = () => {
           </button>
         </div>
       </div>
+      // Add to dashboard after header
+<div className="stats-overview">
+  <div className="stat-card">
+    <h3>Total Products</h3>
+    <p>24</p>
+  </div>
+  <div className="stat-card">
+    <h3>Total Sales</h3>
+    <p>156</p>
+  </div>
+</div>
 
       {/* Sort Filter */}
       <div className="sort-filter" style={{ maxWidth: '1200px', margin: '1rem auto', padding: '0 2rem' }}>
