@@ -8,11 +8,7 @@ const SellerDashboard = () => {
   const navigate = useNavigate();
   const [darkMode, setDarkMode] = useState(() => localStorage.getItem('darkMode') === 'true');
   const [sortOrder, setSortOrder] = useState('newest');
-  const [stats, setStats] = useState({
-    products: 24,
-    sales: 156,
-    views: 1243
-  });
+ 
 
   const handleAddProductClick = () => {
     navigate('/AddProduct');
