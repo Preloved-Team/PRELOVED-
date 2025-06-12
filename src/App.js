@@ -1,13 +1,11 @@
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-  useLocation,
-} from 'react-router-dom';
-import { Suspense, lazy } from 'react';
+// App.js
+import React, { Suspense, lazy } from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate, Outlet, useLocation } from 'react-router-dom';
+import { HelmetProvider, Helmet } from 'react-helmet-async';
 import Navbar from './components/navbar/navbar';
-import LoadingSpinner from './components/common/LoadingSpinner'; // Create this for a better UX
+import LoadingSpinner from './components/LoadingSpinner';
+import ErrorBoundary from './components/ErrorBoundary';
+import { useAuth } from './hooks/useAuth'; // Custom hook for auth status & role
 
 // Lazy-loaded pages
 const Login = lazy(() => import('./pages/Login'));
@@ -15,97 +13,156 @@ const Register = lazy(() => import('./pages/Register'));
 const AdminDashboard = lazy(() => import('./pages/AdminDashboard'));
 const BuyerDashboard = lazy(() => import('./pages/BuyerDashboard'));
 const SellerDashboard = lazy(() => import('./pages/SellerDashboard'));
-const Mens = lazy(() => import('./pages/Mens'));
 const ShopCategory = lazy(() => import('./pages/ShopCategory'));
 const Product = lazy(() => import('./pages/Product'));
 const Cart = lazy(() => import('./pages/Cart'));
+const Mens = lazy(() => import('./pages/Mens'));
+const NotFound = lazy(() => import('./pages/NotFound'));
 
-// Banner assets
-import ClothingBanner from './components/Assets/Clothing_Accessories banner.jpeg';
+// Banner images imports (consider moving to a constants file)
+import ClothingBanner from './components/Assets/Clothing_Accessories_banner.jpeg';
 import ElectronicsBanner from './components/Assets/Electronics_Gadgets.jpg';
 import HomeBanner from './components/Assets/Home_Living.jpg';
 import KidsBanner from './components/Assets/Kids_Baby_Items.webp';
-import VehicleBanner from './components/Assets/Vehicles_Automotive.jpeg';
+import VehiclesBanner from './components/Assets/Vehicles_Automotive.jpeg';
 
-// Layout wrapper
-const Layout = ({ children }) => {
+// Layout component to manage Navbar and layout wrappers
+const Layout = ({ hideNavbarPaths = [] }) => {
   const location = useLocation();
-  const hideNavbar = ['/login', '/'].includes(location.pathname);
-
+  const hideNavbar = hideNavbarPaths.includes(location.pathname);
   return (
     <>
       {!hideNavbar && <Navbar />}
-      <main className="main-content">{children}</main>
+      <Outlet />
     </>
   );
 };
 
-// 404 fallback component
-const NotFound = () => (
-  <div className="not-found-page">
-    <h1>404 - Page Not Found</h1>
-    <p>The page you are looking for does not exist.</p>
-    <a href="/" className="btn btn-primary">Go to Home</a>
-  </div>
-);
+// Role-based Private Route
+const PrivateRoute = ({ roles = [], children }) => {
+  const { isAuthenticated, userRole } = useAuth();
 
-// AppWrapper with advanced routing logic
-function AppWrapper() {
+  if (!isAuthenticated) {
+    return <Navigate to="/login" replace />;
+  }
+  if (roles.length > 0 && !roles.includes(userRole)) {
+    // Unauthorized access
+    return <Navigate to="/unauthorized" replace />;
+  }
+  return children;
+};
+
+// Centralized route config for scalability
+const routes = [
+  { path: '/', element: <Login />, meta: { title: 'Login' } },
+  { path: '/login', element: <Login />, meta: { title: 'Login' } },
+  { path: '/register', element: <Register />, meta: { title: 'Register' } },
+  {
+    path: '/admin',
+    element: (
+      <PrivateRoute roles={['admin']}>
+        <AdminDashboard />
+      </PrivateRoute>
+    ),
+    meta: { title: 'Admin Dashboard' },
+  },
+  {
+    path: '/buyer/*',
+    element: (
+      <PrivateRoute roles={['buyer']}>
+        <BuyerDashboard />
+      </PrivateRoute>
+    ),
+    meta: { title: 'Buyer Dashboard' },
+  },
+  {
+    path: '/seller',
+    element: (
+      <PrivateRoute roles={['seller']}>
+        <SellerDashboard />
+      </PrivateRoute>
+    ),
+    meta: { title: 'Seller Dashboard' },
+  },
+  { path: '/mens', element: <Mens />, meta: { title: "Men's Collection" } },
+  {
+    path: '/category/clothing',
+    element: <ShopCategory banner={ClothingBanner} category="Clothing_Accessories" />,
+    meta: { title: 'Clothing & Accessories' },
+  },
+  {
+    path: '/category/electronics',
+    element: <ShopCategory banner={ElectronicsBanner} category="Electronics_Gadgets" />,
+    meta: { title: 'Electronics & Gadgets' },
+  },
+  {
+    path: '/category/home-living',
+    element: <ShopCategory banner={HomeBanner} category="Home_Living" />,
+    meta: { title: 'Home & Living' },
+  },
+  {
+    path: '/category/kids-baby',
+    element: <ShopCategory banner={KidsBanner} category="Kids_Baby_Items" />,
+    meta: { title: 'Kids & Baby Items' },
+  },
+  {
+    path: '/category/vehicles',
+    element: <ShopCategory banner={VehiclesBanner} category="Vehicles_Automotive" />,
+    meta: { title: 'Vehicles & Automotive' },
+  },
+  { path: '/product/:productID', element: <Product />, meta: { title: 'Product Details' } },
+  { path: '/cart', element: <Cart />, meta: { title: 'Your Cart' } },
+  { path: '*', element: <NotFound />, meta: { title: 'Page Not Found' } },
+];
+
+// Dynamic Route Rendering Component with Helmet support
+const RenderRoutes = () => {
+  const location = useLocation();
+
+  // Find matching route meta for Helmet
+  const currentRoute = routes.find((route) => {
+    // Simple path match; for more complex matching use path-to-regexp or matchPath
+    if (route.path === location.pathname) return true;
+    if (route.path.includes(':') && location.pathname.startsWith(route.path.split('/:')[0])) return true;
+    return false;
+  });
+
   return (
-    <Suspense fallback={<LoadingSpinner />}>
-      <Layout>
-        <Routes>
-          {/* Auth routes */}
-          <Route path="/" element={<Navigate to="/login" replace />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
+    <>
+      <Helmet>
+        <title>{currentRoute?.meta?.title || 'PreLoved Store'}</title>
+        <meta name="description" content={`Page for ${currentRoute?.meta?.title || 'PreLoved Store'}`} />
+      </Helmet>
 
-          {/* Dashboards */}
-          <Route path="/admin" element={<AdminDashboard />} />
-          <Route path="/buyer/*" element={<BuyerDashboard />} />
-          <Route path="/seller" element={<SellerDashboard />} />
+      <Routes>
+        {routes.map(({ path, element }) => (
+          <Route key={path} path={path} element={element} />
+        ))}
+      </Routes>
+    </>
+  );
+};
 
-          {/* Shopping and category routes */}
-          <Route path="/mens" element={<Mens />} />
-          <Route
-            path="/category/clothing"
-            element={<ShopCategory banner={ClothingBanner} category="Clothing_Accessories" />}
-          />
-          <Route
-            path="/category/electronics"
-            element={<ShopCategory banner={ElectronicsBanner} category="Electronics_Gadgets" />}
-          />
-          <Route
-            path="/category/home"
-            element={<ShopCategory banner={HomeBanner} category="Home_Living" />}
-          />
-          <Route
-            path="/category/kids"
-            element={<ShopCategory banner={KidsBanner} category="Kids_Baby_Items" />}
-          />
-          <Route
-            path="/category/vehicles"
-            element={<ShopCategory banner={VehicleBanner} category="Vehicles_Automotive" />}
-          />
+const AppWrapper = () => {
+  const hideNavbarPaths = ['/', '/login', '/register'];
 
-          {/* Product and cart */}
-          <Route path="/product/:productID" element={<Product />} />
-          <Route path="/cart" element={<Cart />} />
+  return (
+    <Layout hideNavbarPaths={hideNavbarPaths}>
+      <ErrorBoundary>
+        <Suspense fallback={<LoadingSpinner />}>
+          <RenderRoutes />
+        </Suspense>
+      </ErrorBoundary>
+    </Layout>
+  );
+};
 
-          {/* Fallback */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </Layout>
-    </Suspense>
+export default function App() {
+  return (
+    <HelmetProvider>
+      <Router>
+        <AppWrapper />
+      </Router>
+    </HelmetProvider>
   );
 }
-
-function App() {
-  return (
-    <Router>
-      <AppWrapper />
-    </Router>
-  );
-}
-
-export default App;
