@@ -188,3 +188,188 @@
   background-color: #1976d2;
 }
 
+/* Dark Mode Styles */
+body.dark-mode {
+  background-color: #121212;
+  color: #f5f5f5;
+}
+
+.seller-dashboard-wrapper.dark {
+  background-color: #1e1e1e;
+  color: #f5f5f5;
+}
+
+.custom-top-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #f4f4f4;
+  border-bottom: 1px solid #ddd;
+}
+
+.dark .custom-top-header {
+  background-color: #222;
+  border-bottom: 1px solid #444;
+}
+
+.search-input {
+  padding: 0.5rem;
+  margin-right: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.dark .search-input {
+  background-color: #333;
+  border: 1px solid #555;
+  color: #eee;
+}
+
+.profile-btn,
+.dark-mode-toggle {
+  margin-left: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.dark .profile-btn,
+.dark .dark-mode-toggle {
+  background-color: #388e3c;
+}
+
+/* Override main dashboard background in dark mode */
+.dark .dashboard-main {
+  background-color: #1e1e1e;
+}
+
+.dark .dashboard-header p,
+.dark .dashboard-header h1 {
+  color: #ddd;
+}
+
+.dark .add-product-btn {
+  background-color: #388e3c;
+}
+
+.dark .add-product-btn:hover {
+  background-color: #2e7d32;
+}
+/* Dark mode body styling example */
+body.dark-mode {
+  background-color: #121212;
+  color: #f1f1f1;
+}
+
+/* Toggle Switch Styles */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+  margin-left: 10px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; 
+  left: 0; 
+  right: 0; 
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 24px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+
+.dark-mode-toggle-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+
+.dark-mode-toggle-wrapper {
+  display: flex;
+  align-items: center;
+  margin-left: 1rem;
+  user-select: none;
+}
+
+.dark-toggle-label {
+  margin-left: 8px;
+  font-weight: 600;
+  color: #333;
+  font-size: 1rem;
+  cursor: pointer;
+  /* Dark mode text color */
+}
+
+body.dark-mode .dark-toggle-label,
+.seller-dashboard-wrapper.dark .dark-toggle-label {
+  color: #f1f1f1;
+}
+
+.top-right .add-product-btn {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-left: 1rem;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.top-right .add-product-btn:hover {
+  background-color: #45a049;
+}
+
+.stat-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.loading-spinner {
+  animation: pulse 1.5s infinite;
+}
+@keyframes pulse {
+  0% { opacity: 0.6; }
+  50% { opacity: 1; }
+  100% { opacity: 0.6; }
+}
+
