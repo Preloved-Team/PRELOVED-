@@ -1,49 +1,92 @@
-/* Main app container styles */
-.App {
-  text-align: center;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
+/* ========== CSS VARIABLES for THEME & COLORS ========== */
+:root {
+  --color-bg: #282c34;
+  --color-text: #ffffff;
+  --color-primary: #61dafb;
+  --color-primary-hover: #4fa8d3;
+  --color-link-focus: #21a1f1;
+
+  --font-base-size: 16px;
+  --font-scale-factor: 1.125; /* ~1.125 = 18px on desktop */
+  --max-content-width: 1200px;
+
+  --padding-base: 20px;
+  --padding-sm: 10px;
+  --border-radius: 6px;
+
+  --animation-spin-duration: 20s;
 }
 
-/* Logo animation styles */
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-/* Animation only for users who don't prefer reduced motion */
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #1b1f27;
+    --color-text: #e1e4e8;
+    --color-primary: #66c0f4;
+    --color-primary-hover: #4098d7;
+    --color-link-focus: #0b75c9;
   }
 }
 
-/* Header section styles */
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* ========== GLOBAL RESET & BASE STYLES ========== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-size: var(--font-base-size);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ========== MAIN APP CONTAINER ========== */
+.App {
+  max-width: var(--max-content-width);
+  margin: 0 auto;
+  padding: var(--padding-base);
+  text-align: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  min-height: 100vh;
+}
+
+/* ========== HEADER SECTION ========== */
+.App-header {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-  padding: 20px;
+  align-items: center;
+  font-size: calc(var(--font-base-size) * var(--font-scale-factor));
+  padding: var(--padding-base);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  user-select: none;
 }
 
-/* Link styles */
-.App-link {
-  color: #61dafb;
-  text-decoration: none;
-  transition: color 0.3s ease;
+/* ========== LOGO STYLES ========== */
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+  will-change: transform;
+  margin-bottom: 1rem;
 }
 
-.App-link:hover {
-  color: #4fa8d3;
+/* Spin animation (prefers-reduced-motion support) */
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite linear var(--animation-spin-duration);
+  }
 }
 
-/* Keyframes for logo spin animation */
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -53,17 +96,91 @@
   }
 }
 
-/* Responsive breakpoints */
+/* ========== LINK STYLES ========== */
+.App-link {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease, box-shadow 0.3s ease;
+  outline-offset: 4px;
+  cursor: pointer;
+  border-radius: var(--border-radius);
+  padding: 0.25em 0.5em;
+  display: inline-block;
+}
+
+.App-link:hover,
+.App-link:focus-visible {
+  color: var(--color-primary-hover);
+  box-shadow: 0 2px 8px var(--color-primary-hover);
+  outline: none;
+}
+
+.App-link:focus-visible {
+  outline: 2px solid var(--color-link-focus);
+  outline-offset: 3px;
+}
+
+/* ========== RESPONSIVE BREAKPOINTS ========== */
+
+/* Tablet */
+@media (max-width: 992px) {
+  .App-logo {
+    height: 35vmin;
+  }
+
+  .App-header {
+    font-size: calc(var(--font-base-size) * (var(--font-scale-factor) - 0.1));
+    padding: calc(var(--padding-base) / 1.5);
+  }
+}
+
+/* Mobile */
 @media (max-width: 768px) {
   .App {
-    padding: 10px;
+    padding: var(--padding-sm);
   }
-  
+
   .App-logo {
     height: 30vmin;
   }
-  
+
   .App-header {
-    font-size: calc(8px + 2vmin);
+    font-size: calc(var(--font-base-size) * (var(--font-scale-factor) - 0.25));
+    padding: var(--padding-sm);
   }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  .App-logo {
+    height: 25vmin;
+  }
+
+  .App-header {
+    font-size: calc(var(--font-base-size) * (var(--font-scale-factor) - 0.4));
+    padding: var(--padding-sm);
+  }
+}
+
+/* ========== UTILITY CLASSES (Optional, add as needed) ========== */
+.text-center {
+  text-align: center !important;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  border: 0;
+  padding: 0;
+}
+
+/* ========== ACCESSIBILITY IMPROVEMENTS ========== */
+/* Better focus outlines for keyboard users */
+:focus:not(:focus-visible) {
+  outline: none;
 }
