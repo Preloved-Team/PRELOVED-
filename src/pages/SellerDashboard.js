@@ -7,7 +7,12 @@ import Footer from '../components/footer/Footer';
 const SellerDashboard = () => {
   const navigate = useNavigate();
   const [darkMode, setDarkMode] = useState(() => localStorage.getItem('darkMode') === 'true');
-  const [sortOrder, setSortOrder] = useState('newest'); // default sort by newest
+  const [sortOrder, setSortOrder] = useState('newest');
+  const [stats, setStats] = useState({
+    products: 24,
+    sales: 156,
+    views: 1243
+  });
 
   const handleAddProductClick = () => {
     navigate('/AddProduct');
@@ -21,11 +26,7 @@ const SellerDashboard = () => {
   };
 
   useEffect(() => {
-    if (darkMode) {
-      document.body.classList.add('dark-mode');
-    } else {
-      document.body.classList.remove('dark-mode');
-    }
+    document.body.classList.toggle('dark-mode', darkMode);
   }, [darkMode]);
 
   const handleSortChange = (e) => {
@@ -53,36 +54,35 @@ const SellerDashboard = () => {
           </button>
         </div>
       </div>
-      // Add to dashboard after header
-<div className="stats-overview">
-  <div className="stat-card">
-    <h3>Total Products</h3>
-    <p>24</p>
-  </div>
-  <div className="stat-card">
-    <h3>Total Sales</h3>
-    <p>156</p>
-  </div>
-</div>
 
-// Add to main content area
-<aside className="dashboard-sidebar">
-  <h3>Recent Activity</h3>
-  <ul>
-    <li>Product "Vintage Chair" sold</li>
-    <li>New message from buyer</li>
-  </ul>
-</aside>
+      {/* Stats Overview Section */}
+      <div className="stats-overview">
+        <div className="stat-card">
+          <h3>Total Products</h3>
+          <p>{stats.products}</p>
+        </div>
+        <div className="stat-card">
+          <h3>Total Sales</h3>
+          <p>{stats.sales}</p>
+        </div>
+        <div className="stat-card">
+          <h3>Total Views</h3>
+          <p>{stats.views}</p>
+        </div>
+      </div>
 
-// Update sort options
-<select id="sortOrder" value={sortOrder} onChange={handleSortChange}>
-  <option value="newest">Newest First</option>
-  <option value="oldest">Oldest First</option>
-  <option value="price-high">Price (High to Low)</option>
-  <option value="price-low">Price (Low to High)</option>
-</select>
+      {/* Sort Filter Section */}
+      <div className="sort-filter">
+        <label htmlFor="sortOrder">Sort by:</label>
+        <select id="sortOrder" value={sortOrder} onChange={handleSortChange}>
+          <option value="newest">Newest First</option>
+          <option value="oldest">Oldest First</option>
+          <option value="price-high">Price (High to Low)</option>
+          <option value="price-low">Price (Low to High)</option>
+        </select>
+      </div>
 
-      {/* Main Seller Dashboard */}
+      {/* Main Dashboard Content */}
       <div className="seller-dashboard-container">
         <div className="dashboard-main">
           <div className="dashboard-header">
@@ -94,8 +94,17 @@ const SellerDashboard = () => {
             <Popular sortOrder={sortOrder} />
           </div>
         </div>
+
+        {/* Recent Activity Sidebar */}
+        <aside className="dashboard-sidebar">
+          <h3>Recent Activity</h3>
+          <ul>
+            <li>Product "Vintage Chair" sold</li>
+            <li>New message from buyer</li>
+            <li>New review received</li>
+          </ul>
+        </aside>
       </div>
-      
 
       <Footer />
     </div>
