@@ -1,14 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './SellerDashboard.css';
-import Popular from '../components/Popular/Popular';
 import Footer from '../components/footer/Footer';
 
 const SellerDashboard = () => {
   const navigate = useNavigate();
   const [darkMode, setDarkMode] = useState(() => localStorage.getItem('darkMode') === 'true');
   const [sortOrder, setSortOrder] = useState('newest');
- 
+  const [stats, setStats] = useState({
+    products: 24,
+    sales: 156,
+    views: 1243
+  });
+
+  // Sample product list (replace with actual DB data)
+  const [products, setProducts] = useState([
+    { id: 'p1', title: 'Vintage Chair', price: 30, date: '2024-06-01' },
+    { id: 'p2', title: 'Retro Lamp', price: 45, date: '2024-05-15' },
+    { id: 'p3', title: 'Antique Table', price: 80, date: '2024-06-10' }
+  ]);
 
   const handleAddProductClick = () => {
     navigate('/AddProduct');
@@ -21,13 +31,32 @@ const SellerDashboard = () => {
     });
   };
 
+  const handleSortChange = (e) => {
+    setSortOrder(e.target.value);
+  };
+
+  const handleEditClick = (productId) => {
+    navigate(`/edit-product/${productId}`);
+  };
+
   useEffect(() => {
     document.body.classList.toggle('dark-mode', darkMode);
   }, [darkMode]);
 
-  const handleSortChange = (e) => {
-    setSortOrder(e.target.value);
-  };
+  useEffect(() => {
+    // Apply sorting logic
+    let sorted = [...products];
+    if (sortOrder === 'newest') {
+      sorted.sort((a, b) => new Date(b.date) - new Date(a.date));
+    } else if (sortOrder === 'oldest') {
+      sorted.sort((a, b) => new Date(a.date) - new Date(b.date));
+    } else if (sortOrder === 'price-high') {
+      sorted.sort((a, b) => b.price - a.price);
+    } else if (sortOrder === 'price-low') {
+      sorted.sort((a, b) => a.price - b.price);
+    }
+    setProducts(sorted);
+  }, [sortOrder]);
 
   return (
     <div className={`seller-dashboard-wrapper ${darkMode ? 'dark' : ''}`}>
@@ -87,7 +116,16 @@ const SellerDashboard = () => {
           </div>
 
           <div className="all-item-display">
-            <Popular sortOrder={sortOrder} />
+            {products.map(product => (
+              <div key={product.id} className="product-card">
+                <h4>{product.title}</h4>
+                <p>Price: ${product.price}</p>
+                <p>Date Listed: {product.date}</p>
+                <button onClick={() => handleEditClick(product.id)} className="edit-btn">
+                  Edit
+                </button>
+              </div>
+            ))}
           </div>
         </div>
 
