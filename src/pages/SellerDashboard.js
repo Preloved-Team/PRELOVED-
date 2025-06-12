@@ -65,6 +65,15 @@ const SellerDashboard = () => {
   </div>
 </div>
 
+// Add to main content area
+<aside className="dashboard-sidebar">
+  <h3>Recent Activity</h3>
+  <ul>
+    <li>Product "Vintage Chair" sold</li>
+    <li>New message from buyer</li>
+  </ul>
+</aside>
+
 // Update sort options
 <select id="sortOrder" value={sortOrder} onChange={handleSortChange}>
   <option value="newest">Newest First</option>
@@ -86,6 +95,7 @@ const SellerDashboard = () => {
           </div>
         </div>
       </div>
+      
 
       <Footer />
     </div>
