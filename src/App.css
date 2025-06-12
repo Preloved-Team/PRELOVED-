@@ -1,34 +1,54 @@
-/* ========== CSS VARIABLES for THEME & COLORS ========== */
+/* =================================================================
+  Variables: Define color palette, typography, spacing, animations
+================================================================= */
 :root {
+  /* Colors */
   --color-bg: #282c34;
+  --color-bg-alt: #20232a;
   --color-text: #ffffff;
+  --color-text-muted: #b0b0b0;
   --color-primary: #61dafb;
   --color-primary-hover: #4fa8d3;
-  --color-link-focus: #21a1f1;
+  --color-focus-outline: #21a1f1;
 
-  --font-base-size: 16px;
-  --font-scale-factor: 1.125; /* ~1.125 = 18px on desktop */
-  --max-content-width: 1200px;
+  /* Typography */
+  --font-family-base: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --font-size-base: clamp(1rem, 1vw + 0.5rem, 1.25rem);
+  --font-weight-normal: 400;
+  --font-weight-semibold: 600;
 
-  --padding-base: 20px;
-  --padding-sm: 10px;
+  /* Spacing Scale */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 40px;
+
+  /* Border & Radius */
   --border-radius: 6px;
 
+  /* Animation */
   --animation-spin-duration: 20s;
 }
 
-/* Dark mode support */
+/* =================================================================
+  Dark Mode Support (prefers-color-scheme)
+================================================================= */
 @media (prefers-color-scheme: dark) {
   :root {
     --color-bg: #1b1f27;
+    --color-bg-alt: #121518;
     --color-text: #e1e4e8;
+    --color-text-muted: #888d95;
     --color-primary: #66c0f4;
     --color-primary-hover: #4098d7;
-    --color-link-focus: #0b75c9;
+    --color-focus-outline: #0b75c9;
   }
 }
 
-/* ========== GLOBAL RESET & BASE STYLES ========== */
+/* =================================================================
+  Reset & Base Styles
+================================================================= */
 *,
 *::before,
 *::after {
@@ -37,57 +57,66 @@
 
 body {
   margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-normal);
+  line-height: 1.5;
   background-color: var(--color-bg);
   color: var(--color-text);
-  font-size: var(--font-base-size);
-  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.4s ease, color 0.4s ease;
 }
 
-/* ========== MAIN APP CONTAINER ========== */
+/* =================================================================
+  Main App Container: Centered, constrained width, responsive padding
+================================================================= */
 .App {
-  max-width: var(--max-content-width);
+  max-width: 1200px;
   margin: 0 auto;
-  padding: var(--padding-base);
-  text-align: center;
-  display: flex;
-  flex-direction: column;
+  padding: var(--space-lg);
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr auto;
   min-height: 100vh;
+  text-align: center;
 }
 
-/* ========== HEADER SECTION ========== */
-.App-header {
-  flex-grow: 1;
+/* =================================================================
+  Header Section: Flex center, scalable font, spacing, accessible
+================================================================= */
+.App__header {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-size: calc(var(--font-base-size) * var(--font-scale-factor));
-  padding: var(--padding-base);
-  background-color: var(--color-bg);
-  color: var(--color-text);
+  font-weight: var(--font-weight-semibold);
+  font-size: clamp(1.25rem, 2vw + 0.5rem, 2rem);
+  padding: var(--space-lg);
   user-select: none;
+  background-color: var(--color-bg-alt);
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 8px rgb(0 0 0 / 0.3);
 }
 
-/* ========== LOGO STYLES ========== */
-.App-logo {
+/* =================================================================
+  Logo: Animated spin, performance hint, accessible alt text
+================================================================= */
+.App__logo {
   height: 40vmin;
   pointer-events: none;
+  margin-bottom: var(--space-md);
   will-change: transform;
-  margin-bottom: 1rem;
 }
 
-/* Spin animation (prefers-reduced-motion support) */
+/* Spin animation - only if user prefers animation */
 @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite linear var(--animation-spin-duration);
+  .App__logo {
+    animation: app-logo-spin infinite linear var(--animation-spin-duration);
   }
 }
 
-@keyframes App-logo-spin {
+@keyframes app-logo-spin {
   from {
     transform: rotate(0deg);
   }
@@ -96,74 +125,84 @@ body {
   }
 }
 
-/* ========== LINK STYLES ========== */
-.App-link {
+/* =================================================================
+  Link Styles: Clear states with hover/focus/active, accessible focus
+================================================================= */
+.App__link {
   color: var(--color-primary);
   text-decoration: none;
-  font-weight: 600;
-  transition: color 0.3s ease, box-shadow 0.3s ease;
-  outline-offset: 4px;
-  cursor: pointer;
+  font-weight: var(--font-weight-semibold);
+  padding: var(--space-xs) var(--space-sm);
   border-radius: var(--border-radius);
-  padding: 0.25em 0.5em;
+  transition: color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  cursor: pointer;
   display: inline-block;
-}
-
-.App-link:hover,
-.App-link:focus-visible {
-  color: var(--color-primary-hover);
-  box-shadow: 0 2px 8px var(--color-primary-hover);
-  outline: none;
-}
-
-.App-link:focus-visible {
-  outline: 2px solid var(--color-link-focus);
   outline-offset: 3px;
+  outline-width: 2px;
+  outline-style: solid;
+  outline-color: transparent;
 }
 
-/* ========== RESPONSIVE BREAKPOINTS ========== */
+/* Hover & Active states */
+.App__link:hover,
+.App__link:active {
+  color: var(--color-primary-hover);
+  background-color: rgba(97, 218, 251, 0.1);
+  box-shadow: 0 4px 10px rgb(97 218 251 / 0.4);
+}
 
-/* Tablet */
+/* Focus-visible state for keyboard users */
+.App__link:focus-visible {
+  outline-color: var(--color-focus-outline);
+  box-shadow: 0 0 0 3px var(--color-focus-outline);
+}
+
+/* =================================================================
+  Responsive Adjustments: Font and layout scaling for tablets/mobiles
+================================================================= */
+
+/* Tablets */
 @media (max-width: 992px) {
-  .App-logo {
-    height: 35vmin;
+  .App {
+    padding: var(--space-md);
   }
 
-  .App-header {
-    font-size: calc(var(--font-base-size) * (var(--font-scale-factor) - 0.1));
-    padding: calc(var(--padding-base) / 1.5);
+  .App__logo {
+    height: 30vmin;
+  }
+
+  .App__header {
+    font-size: clamp(1rem, 1.5vw + 0.5rem, 1.75rem);
+    padding: var(--space-md);
   }
 }
 
 /* Mobile */
-@media (max-width: 768px) {
+@media (max-width: 576px) {
   .App {
-    padding: var(--padding-sm);
+    padding: var(--space-sm);
   }
 
-  .App-logo {
-    height: 30vmin;
-  }
-
-  .App-header {
-    font-size: calc(var(--font-base-size) * (var(--font-scale-factor) - 0.25));
-    padding: var(--padding-sm);
-  }
-}
-
-/* Small Mobile */
-@media (max-width: 480px) {
-  .App-logo {
+  .App__logo {
     height: 25vmin;
   }
 
-  .App-header {
-    font-size: calc(var(--font-base-size) * (var(--font-scale-factor) - 0.4));
-    padding: var(--padding-sm);
+  .App__header {
+    font-size: clamp(0.875rem, 1.2vw + 0.4rem, 1.5rem);
+    padding: var(--space-sm);
   }
 }
 
-/* ========== UTILITY CLASSES (Optional, add as needed) ========== */
+/* =================================================================
+  Accessibility: Remove outline if not keyboard focus
+================================================================= */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* =================================================================
+  Utility Classes for quick reuse (optional)
+================================================================= */
 .text-center {
   text-align: center !important;
 }
@@ -177,10 +216,4 @@ body {
   clip: rect(0 0 0 0);
   border: 0;
   padding: 0;
-}
-
-/* ========== ACCESSIBILITY IMPROVEMENTS ========== */
-/* Better focus outlines for keyboard users */
-:focus:not(:focus-visible) {
-  outline: none;
 }
