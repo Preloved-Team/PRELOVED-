@@ -4,6 +4,7 @@ import { collection, addDoc, Timestamp, doc, getDoc } from 'firebase/firestore';
 import { db } from '../../Firebase';
 import { getAuth } from 'firebase/auth';
 import { ShopContext } from '../../components/Context/ShopContext';
+import { useNavigate } from "react-router-dom";
 
 const Payment = () => {
   const [cardNumber, setCardNumber] = useState('');
@@ -13,6 +14,7 @@ const Payment = () => {
   const [success, setSuccess] = useState(false);
 
   const { cartItem, products } = useContext(ShopContext);
+  const navigate = useNavigate();
 
   const handlePayment = async (e) => {
     e.preventDefault();
@@ -80,7 +82,10 @@ const Payment = () => {
     <div className="payment-container">
       <h2>Payment Details</h2>
       {success ? (
-        <div className="success-message">Payment Successful!</div>
+        <div className="payment-success">
+          <p style={{ color: "green" }}>Payment Successful!</p>
+          <button onClick={() => navigate("/invoice")}>View Invoice</button>
+        </div>
       ) : (
         <form className="payment-form" onSubmit={handlePayment}>
           <label>Card Number</label>

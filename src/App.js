@@ -25,6 +25,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Messages from './pages/Messages';
 import Inbox from './pages/Inbox';
+import Invoice from "./pages/Invoice";
 
 
 
@@ -41,7 +42,8 @@ function AppWrapper() {
         <Route path="/resetpassword" element={<ResetPassword />} />
         <Route path="/wishlist" element={<Wishlist />} />
         <Route path="/order/:orderId" element={<OrderDetail />} />
-
+        <Route path="/invoice" element={<Invoice />} />
+        
         {/* Protected Routes */}
         <Route
           path="/AdminDashboard"
