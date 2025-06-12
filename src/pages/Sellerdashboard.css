@@ -372,4 +372,55 @@ body.dark-mode .dark-toggle-label,
   50% { opacity: 1; }
   100% { opacity: 0.6; }
 }
+/* SellerDashboard.css additions */
+.seller-dashboard-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
 
+.custom-top-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  background: var(--header-bg);
+}
+
+.stats-overview {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem 2rem;
+}
+
+.stat-card {
+  flex: 1;
+  padding: 1rem;
+  border-radius: 8px;
+  background: var(--card-bg);
+}
+
+.seller-dashboard-container {
+  display: flex;
+  flex: 1;
+  padding: 0 2rem;
+}
+
+.dashboard-main {
+  flex: 1;
+}
+
+.dashboard-sidebar {
+  width: 300px;
+  padding-left: 2rem;
+}
+
+.sort-filter {
+  padding: 0 2rem;
+  margin: 1rem 0;
+}
+
+/* Dark mode variables */
+.dark {
+  --header-bg: #1a1a1a;
+  --card-bg: #2d2d2d;
+}
