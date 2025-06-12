@@ -1,17 +1,17 @@
 import React from 'react';
 import SideBar from '../components/AdminSideBar/SideBar';
 import Body from '../components/AdminBodySection/Body';
-import './AdminDashboard.css'; // Add this import
+import './AdminDashboard.css'; // Import updated styles
 
 const AdminDashboard = () => {
   return (
-    <div className='container'>
-      <div className='sidebar'>
+    <div className="container">
+      <aside className="sidebar">
         <SideBar />
-      </div>
-      <div className='body'>
+      </aside>
+      <main className="body">
         <Body />
-      </div>
+      </main>
     </div>
   );
 };
