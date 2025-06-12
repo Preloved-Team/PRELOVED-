@@ -71,7 +71,6 @@ body.dark-theme {
   transform: translateZ(0);
 }
 
-/* Collapsed sidebar */
 .container.sidebar-collapsed .sidebar {
   width: var(--sidebar-width-collapsed);
   padding: 30px 10px;
@@ -86,13 +85,11 @@ body.dark-theme {
   transition: opacity var(--transition-speed), transform var(--transition-speed), width var(--transition-speed);
 }
 
-/* Sidebar hover effect */
 .sidebar:hover {
   background-color: var(--sidebar-hover-bg);
   box-shadow: 3px 0 15px var(--sidebar-hover-shadow);
 }
 
-/* Sidebar header */
 .sidebar h2 {
   margin-bottom: 40px;
   font-size: 24px;
@@ -106,7 +103,6 @@ body.dark-theme {
   white-space: nowrap;
 }
 
-/* Sidebar links */
 .sidebar a {
   color: var(--sidebar-text);
   text-decoration: none;
@@ -126,7 +122,6 @@ body.dark-theme {
   outline-offset: 2px;
 }
 
-/* Sidebar link hover */
 .sidebar a:hover,
 .sidebar a:focus {
   background-color: #1abc9c;
@@ -136,14 +131,12 @@ body.dark-theme {
   outline: none;
 }
 
-/* Focus visible for keyboard navigation */
 .sidebar a:focus-visible {
   outline: 2px solid var(--focus-outline-color);
   outline-offset: 2px;
   box-shadow: 0 0 8px var(--focus-outline-color);
 }
 
-/* Tooltip for collapsed sidebar */
 .container.sidebar-collapsed .sidebar a::after {
   content: attr(data-tooltip);
   position: absolute;
@@ -180,13 +173,11 @@ body.dark-theme {
   opacity: 1;
 }
 
-/* Tooltip fade animation */
 @keyframes fadeInTooltip {
   from { opacity: 0; transform: translate(5px, -50%); }
   to { opacity: 1; transform: translate(10px, -50%); }
 }
 
-/* Sidebar toggle button */
 .sidebar-toggle-btn {
   position: absolute;
   bottom: 30px;
@@ -229,7 +220,6 @@ body.dark-theme {
   scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
 }
 
-/* Scrollbar - WebKit */
 .body::-webkit-scrollbar {
   width: 12px;
 }
@@ -245,7 +235,6 @@ body.dark-theme {
   background-color: #159c76;
 }
 
-/* ========== REDUCED MOTION ========== */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     transition: none !important;
@@ -253,7 +242,6 @@ body.dark-theme {
   }
 }
 
-/* ========== RESPONSIVE DESIGN ========== */
 @media (max-width: 1024px) {
   .container.sidebar-collapsed .sidebar {
     width: var(--sidebar-width-collapsed);
