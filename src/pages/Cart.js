@@ -2,88 +2,111 @@ import React, { useContext, useState } from 'react';
 import './Cart.css';
 import { ShopContext } from '../Context/ShopContext';
 import { useNavigate } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const Cart = () => {
   const { cartItems, products, removeFromCart, clearCart } = useContext(ShopContext);
-  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+
+  const formatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+  });
 
   const totalAmount = products.reduce((acc, product) => {
     const quantity = cartItems[product.id] || 0;
     return acc + product.price * quantity;
   }, 0);
 
-  const formatCurrency = (amount) => `$${amount.toFixed(2)}`;
-
   const handleCheckout = () => {
     setLoading(true);
     setTimeout(() => {
       navigate('/checkout');
-    }, 500); // simulate loading
+    }, 800);
   };
 
   const handleClearCart = () => {
-    if (window.confirm("Are you sure you want to clear your cart?")) {
+    if (window.confirm('Are you sure you want to clear your cart?')) {
       clearCart();
     }
   };
 
   return (
-    <div className="cart-container">
-      <h2>🛍️ Your Shopping Cart</h2>
+    <div className="cart-page">
+      <h2 className="cart-title">🛒 Your Cart</h2>
 
       {totalAmount > 0 ? (
         <>
-          <div className="cart-items">
-            {products.map((product) => {
-              const quantity = cartItems[product.id] || 0;
-              if (quantity === 0) return null;
+          <section className="cart-grid">
+            <AnimatePresence>
+              {products.map((product) => {
+                const quantity = cartItems[product.id] || 0;
+                if (quantity === 0) return null;
 
-              return (
-                <div className="cart-item" key={product.id}>
-                  <img
-                    src={product.image || '/fallback-image.png'}
-                    alt={product.name}
-                    className="item-image"
-                  />
-                  <div className="item-details">
-                    <h4>{product.name}</h4>
-                    <p>
-                      {formatCurrency(product.price)} x {quantity} ={" "}
-                      <strong>{formatCurrency(product.price * quantity)}</strong>
-                    </p>
-                    <button
-                      className="remove-btn"
-                      onClick={() => removeFromCart(product.id)}
-                      aria-label={`Remove ${product.name} from cart`}
-                    >
-                      ❌ Remove
-                    </button>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
+                return (
+                  <motion.article
+                    className="cart-card"
+                    key={product.id}
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    layout
+                  >
+                    <img
+                      src={product.image || '/fallback-image.png'}
+                      alt={product.name}
+                      className="cart-img"
+                    />
+                    <div className="cart-info">
+                      <h4>{product.name}</h4>
+                      <p>
+                        {formatter.format(product.price)} x {quantity}
+                      </p>
+                      <strong>
+                        {formatter.format(product.price * quantity)}
+                      </strong>
+                      <button
+                        className="remove-btn"
+                        onClick={() => removeFromCart(product.id)}
+                        aria-label={`Remove ${product.name} from cart`}
+                      >
+                        ❌ Remove
+                      </button>
+                    </div>
+                  </motion.article>
+                );
+              })}
+            </AnimatePresence>
+          </section>
 
-          <div className="cart-summary">
-            <h3>Total: {formatCurrency(totalAmount)}</h3>
-            <button
-              className="checkout-btn"
-              onClick={handleCheckout}
-              disabled={loading}
-              aria-label="Proceed to checkout"
-            >
-              {loading ? 'Processing...' : 'Proceed to Checkout'}
-            </button>
-            <button className="clear-btn" onClick={handleClearCart}>
-              🧹 Clear Cart
-            </button>
-          </div>
+          <footer className="cart-footer">
+            <h3>Total: {formatter.format(totalAmount)}</h3>
+            <div className="cart-actions">
+              <button
+                className="checkout-btn"
+                onClick={handleCheckout}
+                disabled={loading}
+              >
+                {loading ? 'Processing...' : 'Proceed to Checkout'}
+              </button>
+              <button className="clear-btn" onClick={handleClearCart}>
+                🧹 Clear Cart
+              </button>
+            </div>
+          </footer>
         </>
       ) : (
-        <div className="empty-cart">
-          <p>Your cart is empty 🛒</p>
-          <button onClick={() => navigate('/shop')}>Browse Products</button>
+        <div className="empty-state">
+          <img
+            src="/empty-cart.svg"
+            alt="Empty cart"
+            className="empty-img"
+          />
+          <p>Your cart is empty.</p>
+          <button onClick={() => navigate('/shop')} className="browse-btn">
+            🛍️ Browse Products
+          </button>
         </div>
       )}
     </div>
