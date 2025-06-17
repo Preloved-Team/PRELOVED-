@@ -1,0 +1,86 @@
+/* ─── global tokens (scoped to this file) ─── */
+:root {
+  --brand-blue: #0058b8;
+  --gray-100: #f6f7f9;
+  --gray-300: #dfe3e8;
+  --g: 16px;
+}
+
+/* container card */
+.invoice-container {
+  max-width: 720px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
+  font-family: "Inter", sans-serif;
+}
+
+/* brand block */
+.brand-block {
+  display: flex;
+  gap: var(--g);
+  align-items: flex-start;
+  margin-bottom: calc(var(--g) * 1.5);
+}
+
+.invoice-heading {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--brand-blue);
+  margin: 0 0 var(--g) 0;
+}
+
+/* meta section */
+.meta-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: var(--g);
+  font-size: 0.95rem;
+  margin-bottom: calc(var(--g) * 1.5);
+}
+
+/* line-item table */
+.invoice-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: var(--g);
+}
+
+.invoice-table th,
+.invoice-table td {
+  padding: 0.75rem;
+  border-bottom: 1px solid var(--gray-300);
+}
+
+.invoice-table th {
+  background: var(--gray-100);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.invoice-table td:nth-last-child(-n + 2),
+.invoice-table th:nth-last-child(-n + 2) {
+  text-align: right; /* right-align Qty and money */
+}
+
+/* summary row */
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--g);
+  border-top: 1px solid var(--gray-300);
+  padding-top: var(--g);
+}
+
+.totals {
+  min-width: 220px;
+  text-align: right;
+}
+
+.totals .total {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--brand-blue);
+}
