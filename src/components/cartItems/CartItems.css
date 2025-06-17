@@ -1,0 +1,207 @@
+/* CartItems.css */
+
+.cartitems {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.empty-cart {
+    text-align: center;
+    font-size: 1.5rem;
+    color: #666;
+    margin: 100px 0;
+    padding: 40px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.cartitems-header {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 20px;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #e1e1e1;
+    font-weight: 600;
+    color: #333;
+}
+
+.cartitems-format {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 20px;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px solid #e1e1e1;
+    transition: all 0.3s ease;
+}
+
+.cartitems-format:hover {
+    background-color: #f9f9f9;
+    transform: translateY(-2px);
+}
+
+.cartitems-format img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.cartitems-quantity {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.cartitems-quantity button {
+    width: 30px;
+    height: 30px;
+    border: none;
+    background-color: #f0f0f0;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.cartitems-quantity button:hover {
+    background-color: #e0e0e0;
+    transform: scale(1.1);
+}
+
+.cartitems-quantity span {
+    min-width: 20px;
+    text-align: center;
+}
+
+.cartitems-total {
+    margin-top: 50px;
+    width: 100%;
+    max-width: 400px;
+    margin-left: auto;
+    padding: 30px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.cartitems-total h3 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e1e1e1;
+    color: #333;
+}
+
+.cartitems-total div {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.cartitems-total-item {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #e1e1e1;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.cartitems-total button {
+    width: 100%;
+    padding: 15px;
+    margin-top: 20px;
+    background: linear-gradient(135deg, #ff7e5f, #feb47b);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.cartitems-total button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+    background: linear-gradient(135deg, #feb47b, #ff7e5f);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .cartitems-header {
+        grid-template-columns: 1.5fr 1fr 1fr 1fr;
+        font-size: 0.9rem;
+    }
+    
+    .cartitems-format {
+        grid-template-columns: 1.5fr 1fr 1fr 1fr;
+        font-size: 0.9rem;
+    }
+    
+    .cartitems-format img {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .cartitems-total {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .cartitems-header {
+        display: none;
+    }
+    
+    .cartitems-format {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        padding: 15px;
+        position: relative;
+    }
+    
+    .cartitems-format img {
+        width: 80px;
+        height: 80px;
+        margin-bottom: 10px;
+    }
+    
+    .cartitems-format p:first-of-type {
+        font-weight: 600;
+        font-size: 1.1rem;
+    }
+    
+    .cartitems-quantity {
+        justify-content: flex-start;
+    }
+    
+    .cartitems-format p:nth-child(3)::before {
+        content: "Price: ";
+        font-weight: 600;
+    }
+    
+    .cartitems-format p:last-child::before {
+        content: "Subtotal: ";
+        font-weight: 600;
+    }
+}
+
+/* Animation for empty cart */
+.empty-cart {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
