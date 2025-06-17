@@ -1,177 +1,243 @@
-/* AdminPermissions.css */
+/* AdminPermissions.css - Modernized Version */
 
-.manage-users-container {
-  padding: 30px;
-  max-width: 1200px;
-  margin: 0 auto;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+/* ========== CSS VARIABLES ========== */
+:root {
+  /* Colors */
+  --primary-dark: #2c3e50;
+  --primary-accent: #3498db;
+  --secondary-accent: #9b59b6;
+  --success-color: #4CAF50;
+  --success-dark: #3e8e41;
+  --danger-color: #f44336;
+  --danger-dark: #d32f2f;
+  --warning-color: #ff9800;
+  --warning-dark: #f57c00;
+  --text-color: #555;
+  --light-bg: #f8f9fa;
+  --border-color: #f0f2f5;
+  --white: #ffffff;
+  
+  /* Spacing */
+  --section-padding: clamp(1.5rem, 3vw, 2rem);
+  --cell-padding: clamp(0.75rem, 1.5vw, 1rem);
+  --button-padding: 0.5rem 1rem;
+  
+  /* Typography */
+  --font-main: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --font-size-heading: clamp(1.5rem, 2.5vw, 1.75rem);
+  
+  /* Effects */
+  --shadow-sm: 0 2px 5px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 4px 8px rgba(0, 0, 0, 0.15);
+  --transition: all 0.2s ease;
 }
 
-.manage-users-container h2 {
-  font-size: 28px;
-  color: #2c3e50;
-  margin-bottom: 25px;
-  padding-bottom: 15px;
-  border-bottom: 2px solid #f0f2f5;
+/* ========== DARK THEME ========== */
+[data-theme="dark"] {
+  --primary-dark: #1a252f;
+  --text-color: #e1e1e6;
+  --light-bg: #121417;
+  --border-color: #2c2c2c;
+  --white: #1e1e1e;
+}
+
+/* ========== BASE STYLES ========== */
+.manage-users-container {
+  padding: var(--section-padding);
+  max-width: min(1200px, 95%);
+  margin: 0 auto;
+  font-family: var(--font-main);
+}
+
+.manage-users-heading {
+  font-size: var(--font-size-heading);
+  color: var(--primary-dark);
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--border-color);
   position: relative;
 }
 
-.manage-users-container h2::after {
+.manage-users-heading::after {
   content: '';
   position: absolute;
   left: 0;
   bottom: -2px;
-  width: 100px;
+  width: min(100px, 25%);
   height: 2px;
-  background: linear-gradient(90deg, #3498db, #9b59b6);
+  background: linear-gradient(90deg, var(--primary-accent), var(--secondary-accent));
 }
 
+/* ========== USERS TABLE ========== */
 .users-table {
   width: 100%;
   border-collapse: separate;
   border-spacing: 0;
-  background: #fff;
+  background: var(--white);
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  margin-bottom: 30px;
+  box-shadow: var(--shadow-md);
+  margin-bottom: 2rem;
 }
 
 .users-table thead {
-  background: linear-gradient(135deg, #2c3e50, #4a6491);
-  color: white;
+  background: linear-gradient(135deg, var(--primary-dark), #4a6491);
+  color: var(--white);
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
 .users-table th {
-  padding: 18px 15px;
+  padding: var(--cell-padding);
   text-align: left;
   font-weight: 600;
-  font-size: 15px;
+  font-size: 0.875rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
 .users-table tbody tr {
-  transition: all 0.2s ease;
+  transition: var(--transition);
 }
 
 .users-table tbody tr:hover {
-  background-color: #f8f9fa;
+  background-color: var(--light-bg);
   transform: translateY(-1px);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow-sm);
 }
 
 .users-table td {
-  padding: 15px;
-  border-bottom: 1px solid #f0f2f5;
-  color: #555;
+  padding: var(--cell-padding);
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-color);
+  vertical-align: middle;
 }
 
-/* Action Buttons */
-.users-table button {
+/* ========== ACTION BUTTONS ========== */
+.action-btn {
   border: none;
-  padding: 8px 15px;
+  padding: var(--button-padding);
   border-radius: 6px;
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: 500;
   cursor: pointer;
-  margin-right: 8px;
-  transition: all 0.2s ease;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin-right: 0.5rem;
+  margin-bottom: 0.25rem;
+  transition: var(--transition);
+  box-shadow: var(--shadow-sm);
+  color: var(--white);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
-.approve {
-  background-color: #4CAF50;
-  color: white;
-}
-
-.approve:hover {
-  background-color: #3e8e41;
+.action-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--shadow-lg);
 }
 
-.reject {
-  background-color: #f44336;
-  color: white;
+.action-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
 }
 
-.reject:hover {
-  background-color: #d32f2f;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+.action-btn svg {
+  width: 1rem;
+  height: 1rem;
 }
 
-.delete {
-  background-color: #ff9800;
-  color: white;
+.btn-approve {
+  background-color: var(--success-color);
 }
 
-.delete:hover {
-  background-color: #f57c00;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+.btn-approve:hover {
+  background-color: var(--success-dark);
 }
 
-/* Status indicators */
-.users-table td:nth-child(3)::before {
+.btn-reject {
+  background-color: var(--danger-color);
+}
+
+.btn-reject:hover {
+  background-color: var(--danger-dark);
+}
+
+.btn-delete {
+  background-color: var(--warning-color);
+}
+
+.btn-delete:hover {
+  background-color: var(--warning-dark);
+}
+
+/* ========== STATUS INDICATORS ========== */
+.status-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.status-indicator::before {
   content: '';
   display: inline-block;
-  width: 10px;
-  height: 10px;
+  width: 0.75rem;
+  height: 0.75rem;
   border-radius: 50%;
-  margin-right: 8px;
 }
 
-.users-table td:nth-child(3):contains('Yes')::before {
-  background-color: #4CAF50;
+.status-active::before {
+  background-color: var(--success-color);
 }
 
-.users-table td:nth-child(3):contains('No')::before {
-  background-color: #f44336;
+.status-inactive::before {
+  background-color: var(--danger-color);
 }
 
-.users-table td:nth-child(3):contains('N/A')::before {
+.status-pending::before {
+  background-color: var(--warning-color);
+}
+
+.status-neutral::before {
   background-color: #9E9E9E;
 }
 
-/* Responsive design */
+/* ========== RESPONSIVE DESIGN ========== */
 @media (max-width: 992px) {
-  .manage-users-container {
-    padding: 20px;
-  }
-  
   .users-table {
     display: block;
     overflow-x: auto;
+    white-space: nowrap;
   }
   
-  .users-table button {
-    padding: 6px 12px;
-    margin-bottom: 5px;
-    display: inline-block;
+  .action-btn-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  .action-btn {
+    margin-right: 0;
+    flex: 1 1 auto;
+    justify-content: center;
   }
 }
 
-@media (max-width: 768px) {
-  .manage-users-container h2 {
-    font-size: 24px;
+@media (max-width: 576px) {
+  .manage-users-heading::after {
+    width: 60px;
   }
   
   .users-table th,
   .users-table td {
-    padding: 12px 8px;
-    font-size: 14px;
-  }
-  
-  .users-table button {
-    margin-right: 5px;
-    margin-bottom: 5px;
+    padding: 0.75rem 0.5rem;
   }
 }
 
-/* Animation */
-@keyframes fadeIn {
+/* ========== ANIMATIONS ========== */
+@keyframes fadeInRow {
   from {
     opacity: 0;
     transform: translateY(20px);
@@ -183,17 +249,39 @@
 }
 
 .users-table tbody tr {
-  animation: fadeIn 0.3s ease forwards;
-  animation-delay: calc(var(--i) * 0.05s);
+  animation: fadeInRow 0.3s ease forwards;
+  animation-delay: calc(var(--row-index) * 0.05s);
 }
 
-/* Empty state (if needed) */
+/* ========== EMPTY STATE ========== */
 .empty-state {
   text-align: center;
-  padding: 50px;
-  font-size: 16px;
-  color: #777;
-  background-color: #f9f9f9;
+  padding: 3rem;
+  font-size: 1rem;
+  color: var(--text-color);
+  background-color: var(--light-bg);
   border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ========== PRINT STYLES ========== */
+@media print {
+  .manage-users-container {
+    padding: 0;
+  }
+  
+  .users-table {
+    box-shadow: none;
+    border: 1px solid #ddd;
+  }
+  
+  .users-table thead {
+    background: #fff;
+    color: #000;
+    border-bottom: 2px solid #000;
+  }
+  
+  .action-btn {
+    display: none;
+  }
 }
