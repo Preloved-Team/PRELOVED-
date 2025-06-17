@@ -1,84 +1,154 @@
 import React, { memo, useEffect, Suspense, lazy, useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
+import { Helmet } from 'react-helmet-async'; // Using react-helmet-async for better SSR support
 import './AdminDashboard.css';
-import { Helmet } from 'react-helmet';
 
-// Lazy load components for performance optimization
-const SideBar = lazy(() => import('../components/AdminSideBar/SideBar'));
-const Body = lazy(() => import('../components/AdminBodySection/Body'));
+// Lazy load components with named exports for better debugging
+const SideBar = lazy(() => import('../components/AdminSideBar/SideBar')
+  .then(module => ({ default: module.SideBar })));
 
-// Error Boundary for capturing lazy-loading errors
+const Body = lazy(() => import('../components/AdminBodySection/Body')
+  .then(module => ({ default: module.Body })));
+
+// Enhanced Error Boundary with recovery option
 class ErrorBoundary extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { hasError: false };
+  state = { 
+    hasError: false,
+    error: null 
+  };
+
+  static getDerivedStateFromError(error) {
+    return { hasError: true, error };
   }
-  static getDerivedStateFromError() {
-    return { hasError: true };
-  }
+
   componentDidCatch(error, errorInfo) {
-    console.error('Error loading component:', error, errorInfo);
+    console.error('Component Error:', error, errorInfo);
+    // Log to error tracking service
   }
+
+  handleRetry = () => {
+    this.setState({ hasError: false, error: null });
+  };
+
   render() {
     if (this.state.hasError) {
-      return <div role="alert" style={{ padding: '1rem', color: 'red' }}>Something went wrong while loading.</div>;
+      return (
+        <div className="error-fallback" role="alert">
+          <h2>Something went wrong</h2>
+          <p>{this.state.error?.message || 'Failed to load component'}</p>
+          <button 
+            onClick={this.handleRetry}
+            className="retry-button"
+            aria-label="Retry loading component"
+          >
+            Try Again
+          </button>
+        </div>
+      );
     }
     return this.props.children;
   }
 }
 
+ErrorBoundary.propTypes = {
+  children: PropTypes.node.isRequired,
+};
+
 const AdminDashboard = () => {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
+  // Responsive sidebar handling
   useEffect(() => {
-    console.log('AdminDashboard mounted');
-    // Add analytics or initialization logic here
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+      if (window.innerWidth < 768) {
+        setSidebarCollapsed(true);
+      }
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
   const toggleSidebar = useCallback(() => {
-    setSidebarCollapsed((prev) => !prev);
-  }, []);
+    if (!isMobile) {
+      setSidebarCollapsed(prev => !prev);
+    }
+  }, [isMobile]);
+
+  // Keyboard accessibility for sidebar toggle
+  const handleKeyDown = useCallback((e) => {
+    if (e.key === 'Escape' && !sidebarCollapsed) {
+      setSidebarCollapsed(true);
+    }
+  }, [sidebarCollapsed]);
+
+  useEffect(() => {
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [handleKeyDown]);
 
   return (
     <>
       <Helmet>
         <title>Admin Dashboard | Preloved</title>
         <meta name="description" content="Powerful admin dashboard to manage products, users, and settings for the Preloved platform." />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Helmet>
 
-      <div className={`container${sidebarCollapsed ? ' sidebar-collapsed' : ''}`} role="main" aria-label="Admin dashboard">
-
-        <aside
-          className="sidebar"
-          aria-label="Admin navigation sidebar"
-          aria-expanded={!sidebarCollapsed}
-        >
-          <ErrorBoundary>
-            <Suspense fallback={<div className="loading" aria-live="polite">Loading Sidebar...</div>}>
-              <SideBar collapsed={sidebarCollapsed} toggleSidebar={toggleSidebar} />
+      <div 
+        className={`admin-dashboard${sidebarCollapsed ? ' sidebar-collapsed' : ''}`}
+        data-theme="light" // Can be dynamic based on user preference
+        role="main"
+      >
+        <ErrorBoundary>
+          <aside
+            className="sidebar"
+            aria-label="Main navigation"
+            aria-hidden={isMobile && sidebarCollapsed}
+          >
+            <Suspense fallback={
+              <div className="loading-spinner" aria-live="polite" aria-busy="true">
+                <span className="sr-only">Loading navigation...</span>
+              </div>
+            }>
+              <SideBar 
+                collapsed={sidebarCollapsed} 
+                toggleSidebar={toggleSidebar} 
+                isMobile={isMobile}
+              />
             </Suspense>
-          </ErrorBoundary>
-        </aside>
+          </aside>
+        </ErrorBoundary>
 
-        <main
-          className="body"
-          tabIndex={-1}
-          aria-live="polite"
-          aria-atomic="true"
-        >
-          <ErrorBoundary>
-            <Suspense fallback={<div className="loading" aria-live="polite">Loading Content...</div>}>
-              <Body />
+        <ErrorBoundary>
+          <main 
+            className="main-content"
+            id="main-content" 
+            tabIndex="-1"
+          >
+            <Suspense fallback={
+              <div className="loading-spinner" aria-live="polite" aria-busy="true">
+                <span className="sr-only">Loading dashboard content...</span>
+              </div>
+            }>
+              <Body 
+                sidebarCollapsed={sidebarCollapsed}
+                toggleSidebar={toggleSidebar}
+              />
             </Suspense>
-          </ErrorBoundary>
-        </main>
+          </main>
+        </ErrorBoundary>
       </div>
     </>
   );
 };
 
 AdminDashboard.propTypes = {
-  // Future props definitions can be added here
+  // Add prop types validation if needed
 };
 
 export default memo(AdminDashboard);
