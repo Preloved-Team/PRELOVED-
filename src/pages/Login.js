@@ -96,13 +96,7 @@ const Login = () => {
           </div>
           <button type='submit'>Continue</button>
           
-          <button 
-            type="button" 
-            onClick={signInWithGoogle}
-            className="google-signin-btn"
-          >
-            Continue with Google
-          </button>
+          
           
           <p className='login-guide'>
             Don't have an account? Sign up <Link to='/Register'>here</Link>
