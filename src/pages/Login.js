@@ -1,54 +1,83 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Form, Button, Container, Alert } from 'react-bootstrap';
+import { useNavigate, Link } from 'react-router-dom';
+import { auth, db } from '../Firebase';
+import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
+import { useState, useEffect } from 'react';
 import './Login.css';
-import { auth } from '../Firebase';
-import { signInWithEmailAndPassword } from 'firebase/auth';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [role, setRole] = useState('');
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
-  try {
-    await signInWithEmailAndPassword(auth, email, password);
-    console.log('Login successful');
-    
-    if (!role) {
-      alert('Please select a role before continuing');
-      return;
+    e.preventDefault();
+    setError('');
+    try {
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      await redirectUser(userCredential.user.uid);
+    } catch (err) {
+      console.error('Login error:', err);
+      setError('Login failed. ' + (err.message || 'Please try again.'));
     }
+  };
 
-    if (role === 'buyer') {
-      navigate('/BuyerDashboard');
-    } else if (role === 'seller') {
-      navigate('/SellerDashboard');
-    } else if (role === 'admin') {
-      navigate('/AdminDashboard');
+  const signInWithGoogle = async () => {
+    try {
+      const provider = new GoogleAuthProvider();
+      const userCredential = await signInWithPopup(auth, provider);
+      
+      const userDoc = await getDoc(doc(db, 'users', userCredential.user.uid));
+      
+      if (!userDoc.exists()) {
+        await setDoc(doc(db, 'users', userCredential.user.uid), {
+          email: userCredential.user.email,
+          name: userCredential.user.displayName,
+          role: 'buyer', 
+          createdAt: new Date()
+        });
+      }
+      
+      await redirectUser(userCredential.user.uid);
+    } catch (err) {
+      console.error('Google sign-in error:', err);
+      setError('Google sign-in failed. ' + (err.message || 'Please try again.'));
     }
+  };
 
-  } catch (err) {
-    console.error('Login failed:', err.code);
+  const redirectUser = async (uid) => {
+    try {
+      const userDoc = await getDoc(doc(db, 'users', uid));
+      const userData = userDoc.data();
 
-    if (err.code === 'auth/user-not-found') {
-      alert('User does not exist. Please sign up first.');
-    } else if (err.code === 'auth/wrong-password') {
-      alert('Incorrect password. Please try again.');
-    } else if (err.code === 'auth/invalid-email') {
-      alert('Invalid email format.');
-    } else {
-      alert('Login failed. Please try again.');
+      if (!userData || !userData.role) {
+        throw new Error('User role not found.');
+      }
+
+      const role = userData.role;
+      if (role === 'buyer') {
+        navigate('/BuyerDashboard');
+      } else if (role === 'seller') {
+        navigate('/sellerDashboard');
+      } else if (role === 'admin') {
+        navigate('/adminDashboard');
+      } else {
+        throw new Error('Unrecognized role.');
+      }
+    } catch (err) {
+      console.error('Redirect error:', err);
+      setError('Error redirecting. ' + (err.message || 'Please try again.'));
     }
-  }
-};
+  };
 
   return (
     <div>
       <div className='login'>
         <form className='login-container' onSubmit={handleSubmit}>
           <h1>Login Page</h1>
+          {error && <Alert variant="danger">{error}</Alert>}
           <div className='login-field'>
             <input type='email' 
             onChange={(e) => setEmail(e.target.value)} 
@@ -59,14 +88,6 @@ const Login = () => {
             placeholder='Password' 
             required />
           </div>
-          <div className='login-role'>
-            <select value={role} onChange={(e) => setRole(e.target.value)}>
-              <option value='' disabled>Select role</option>
-              <option value='buyer'>Buyer</option>
-              <option value='seller'>Seller</option>
-              <option value='admin'>Admin</option>
-            </select>
-          </div>
           <div className='login-agree'>
             <input type='checkbox' id='agree' />
             <label htmlFor='agree'>
@@ -74,6 +95,15 @@ const Login = () => {
             </label>
           </div>
           <button type='submit'>Continue</button>
+          
+          <button 
+            type="button" 
+            onClick={signInWithGoogle}
+            className="google-signin-btn"
+          >
+            Continue with Google
+          </button>
+          
           <p className='login-guide'>
             Don't have an account? Sign up <Link to='/Register'>here</Link>
           </p>
