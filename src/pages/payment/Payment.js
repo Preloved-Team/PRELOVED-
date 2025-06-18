@@ -1,10 +1,11 @@
 import React, { useState, useContext } from 'react';
 import './Payment.css';
-import { collection, addDoc, Timestamp, doc, getDoc } from 'firebase/firestore';
+import { collection, addDoc, Timestamp, doc, getDoc, serverTimestamp } from 'firebase/firestore';
 import { db } from '../../Firebase';
 import { getAuth } from 'firebase/auth';
 import { ShopContext } from '../../components/Context/ShopContext';
 import { useNavigate } from "react-router-dom";
+import { writeNotifications } from "../../utils/writeNotifications"; 
 
 const Payment = () => {
   const [cardNumber, setCardNumber] = useState('');
@@ -27,9 +28,11 @@ const Payment = () => {
     const auth = getAuth();
     const user = auth.currentUser;
     let userEmail = 'Guest';
+    let buyerId = null;
 
     if (user) {
-      const userRef = doc(db, 'users', user.uid);
+      buyerId = user.uid; // ✅ fix
+      const userRef = doc(db, 'users', buyerId);
       const userSnap = await getDoc(userRef);
       if (userSnap.exists()) {
         userEmail = userSnap.data().email;
@@ -43,6 +46,7 @@ const Payment = () => {
         title: product.name,
         price: product.price,
         quantity: cartItem[product.id],
+        sellerId: product.sellerId,
       }));
 
     const totalAmount = orderedItems.reduce(
@@ -52,22 +56,35 @@ const Payment = () => {
 
     const adminCommission = totalAmount * 0.10;
 
+    const { sellerId, title } = orderedItems[0]; // assume first item for notification
+
     const orderData = {
       items: orderedItems,
       nameOnCard,
       createdAt: Timestamp.now(),
       totalAmount,
       adminCommission,
-      userEmail, 
+      userEmail,
+      buyerId,
+      sellerId,
+      title,
     };
 
     try {
-      await addDoc(collection(db, 'orders'), orderData);
+      const orderRef = await addDoc(collection(db, 'orders'), orderData);
+
+      // ✅ Fan-out notifications
+      await writeNotifications(orderRef.id, {
+        buyerId,
+        sellerId,
+        title,
+        totalAmount,
+      });
 
       await addDoc(collection(db, 'adminEarnings'), {
         amount: adminCommission,
         createdAt: Timestamp.now(),
-        userEmail, 
+        userEmail,
       });
 
       setSuccess(true);
