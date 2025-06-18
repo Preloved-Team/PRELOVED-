@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import './navbar.css';
 import { Link } from 'react-router-dom';
+import { useNotifications } from '../Context/NotificationContext';
 
 const Navbar = () => {
   const [menu, setMenu] = useState("shop");
+  const { unread } = useNotifications(); // ✅ get unread count
 
   return (
     <div className='navbar'>
@@ -43,6 +45,14 @@ const Navbar = () => {
             Vehicles & Automotive
           </Link>
           {menu === "Vehicles_Automotive" ? <hr /> : null}
+        </li>
+
+        {/* ✅ Notification Bell */}
+        <li className="bell-wrap">
+          <Link to="/notifications" style={{ textDecoration: 'none' }}>
+            🔔
+            {unread > 0 && <span className="badge">{unread}</span>}
+          </Link>
         </li>
       </ul>
     </div>
