@@ -1,75 +1,62 @@
-<<<<<<< HEAD
-# Getting Started with Create React App
+# Preloved - Second-Hand Marketplace
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![Preloved Logo](https://via.placeholder.com/400x100/4CAF50/white?text=PRELOVED)
 
-## Available Scripts
+Preloved is a comprehensive, full-stack e-commerce platform designed for buying and selling second-hand goods. Built with modern web technologies, it provides a secure, user-friendly interface for listing, browsing, and purchasing pre-owned items while promoting sustainable consumption.
 
-In the project directory, you can run:
+## 🌟 Features
 
-### `npm start`
+### For Buyers
+- **Browse Products**: Search and filter through a wide variety of second-hand items
+- **Secure Messaging**: Direct communication with sellers through integrated messaging system
+- **Wishlist & Favorites**: Save items for later purchase
+- **Order Tracking**: Monitor purchase history and order status
+- **User Reviews**: Read and write reviews for sellers and products
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### For Sellers
+- **Product Listing**: Easy-to-use interface for listing items with multiple photos
+- **Inventory Management**: Track active listings and sales
+- **Order Management**: Process orders and communicate with buyers
+- **Analytics Dashboard**: View sales performance and listing insights
+- **Profile Management**: Build seller reputation through ratings and reviews
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### For Administrators
+- **Comprehensive Dashboard**: Real-time analytics and system overview
+- **User Management**: Monitor and manage user accounts
+- **Content Moderation**: Review and moderate product listings
+- **Report Handling**: Process user reports and disputes
+- **System Analytics**: Track platform performance and user engagement
 
-### `npm test`
+## 🛠️ Technology Stack
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Frontend
+- **React.js** - Component-based UI framework
+- **Tailwind CSS** - Utility-first CSS framework
+- **Bootstrap** - Responsive design components
+- **Chart.js** - Data visualization for analytics
 
-### `npm run build`
+### Backend
+- **Firebase Firestore** - NoSQL database
+- **Firebase Authentication** - User authentication and authorization
+- **Firebase Storage** - File and image storage
+- **Firebase Security Rules** - Database access control
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Development Tools
+- **GitHub** - Version control and collaboration
+- **GitHub Projects** - Project management and issue tracking
+- **Microsoft Teams** - Team communication
+- **Firebase Emulator** - Local development and testing
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 🚀 Getting Started
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Prerequisites
+- Node.js (v14 or higher)
+- npm or yarn package manager
+- Firebase account and project setup
 
-### `npm run eject`
+### Installation
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-=======
-# PRELOVED-
-Preloved is an e-commerce platform designed for buying and selling second-hand goods. Built with modern web technologies, it provides a user-friendly interface for listing, browsing, and purchasing pre-owned items.
->>>>>>> a517e045b1014febe2067dce28d35ff7f2bbe603
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/ARSH871-bot/PRELOVED.git
+   cd PRELOVED
