@@ -1,0 +1,107 @@
+/* Body.css */
+
+.mainContent {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin-left: 280px; /* Match sidebar width */
+  background-color: #f5f7fa;
+  transition: all 0.3s ease;
+}
+
+/* Top section container */
+.bottons {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 25px;
+  padding: 0 25px 25px;
+  width: 100%;
+}
+
+/* Listing section */
+.listing {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  padding: 25px;
+  transition: all 0.3s ease;
+}
+
+.listing:hover {
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  transform: translateY(-3px);
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .mainContent {
+    margin-left: 240px;
+  }
+  
+  .bottons {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 992px) {
+  .mainContent {
+    margin-left: 0;
+    padding-top: 70px; /* Space for mobile header */
+  }
+  
+  .bottons {
+    padding: 0 15px 15px;
+    gap: 15px;
+  }
+  
+  .listing {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .bottons {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.listing {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+/* Section transitions */
+.mainContent > * {
+  transition: all 0.4s ease;
+}
+
+/* Optional: Add a subtle pattern to the background */
+.mainContent::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 280px;
+  right: 0;
+  bottom: 0;
+  background-image: radial-gradient(rgba(0,0,0,0.03) 1px, transparent 1px);
+  background-size: 15px 15px;
+  z-index: -1;
+  pointer-events: none;
+}
+
+@media (max-width: 992px) {
+  .mainContent::before {
+    left: 0;
+  }
+}

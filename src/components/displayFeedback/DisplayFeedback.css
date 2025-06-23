@@ -1,0 +1,120 @@
+/* Feedback Container Styles */
+.feedback-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.feedback-container h3 {
+  margin: 0 0 1.5rem 0;
+  color: #2d3748;
+  font-size: 1.5rem;
+  font-weight: 600;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid #edf2f7;
+}
+
+/* Loading and Error States */
+.feedback-container > div:not(.feedback-list) {
+  text-align: center;
+  padding: 2rem;
+  color: #4a5568;
+}
+
+/* Feedback List Styles */
+.feedback-list {
+  display: grid;
+  gap: 1.5rem;
+}
+
+/* Individual Feedback Item */
+.feedback-item {
+  padding: 1.5rem;
+  background: #f8fafc;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  border-left: 4px solid #4299e1;
+}
+
+.feedback-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
+  background: #ffffff;
+}
+
+/* Feedback Header */
+.feedback-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.user-email {
+  font-weight: 600;
+  color: #2d3748;
+  font-size: 0.95rem;
+}
+
+.rating {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  background: #ebf8ff;
+  color: #3182ce;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/* Feedback Comment */
+.feedback-comment {
+  margin: 1rem 0;
+  color: #4a5568;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+/* Feedback Date */
+.feedback-date {
+  font-size: 0.8rem;
+  color: #718096;
+  text-align: right;
+  font-style: italic;
+}
+
+/* Star Rating Visualization (optional) */
+.rating-stars {
+  color: #ecc94b;
+  margin-right: 0.5rem;
+}
+
+/* Empty State */
+.feedback-container > p {
+  text-align: center;
+  color: #a0aec0;
+  padding: 2rem;
+  font-style: italic;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .feedback-container {
+    padding: 1.5rem;
+    margin: 1rem;
+  }
+  
+  .feedback-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .rating {
+    align-self: flex-end;
+  }
+}

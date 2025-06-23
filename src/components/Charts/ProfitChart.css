@@ -1,0 +1,228 @@
+/* ProfitChart.css */
+
+/* Main container styling */
+.profit-chart-container {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+  margin: 20px 0;
+  border: 1px solid rgba(0, 0, 0, 0.03);
+  transition: all 0.3s ease;
+}
+
+.profit-chart-container:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.1);
+}
+
+/* Earnings per Order styling */
+#earnings-per-order {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  padding: 0;
+  list-style-type: none;
+}
+
+#earnings-per-order > li {
+  margin-bottom: 15px;
+}
+
+#earnings-per-order > li > strong {
+  display: block;
+  font-size: 1.1em;
+  color: #333;
+  padding: 5px 0;
+  border-bottom: 1px solid #eee;
+}
+
+#earnings-per-order > li > ul {
+  list-style-type: none;
+  padding-left: 20px;
+  margin-top: 5px;
+}
+
+#earnings-per-order > li > ul > li {
+  padding: 3px 0;
+  color: #666;
+}
+
+#earnings-per-order > li > ul > li:before {
+  content: "•";
+  color: #999;
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
+}
+
+/* Title styling with modern typography */
+.profit-chart-title {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.5px;
+  position: relative;
+  display: inline-block;
+}
+
+.profit-chart-title::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -8px;
+  width: 50px;
+  height: 3px;
+  background: linear-gradient(90deg, #6366f1, #8b5cf6);
+  border-radius: 3px;
+}
+
+/* Chart container enhancements */
+.chart-wrapper {
+  margin-top: 1.5rem;
+  position: relative;
+}
+
+/* Axis text styling */
+.recharts-cartesian-axis-tick-value {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  fill: #64748b;
+}
+
+/* X-axis specific adjustments */
+.recharts-x-axis .recharts-cartesian-axis-tick-value {
+  transform: rotate(-45deg);
+  text-anchor: end;
+}
+
+/* Y-axis specific adjustments */
+.recharts-y-axis .recharts-cartesian-axis-tick-value {
+  text-anchor: end;
+}
+
+/* Grid line styling */
+.recharts-cartesian-grid line {
+  stroke: rgba(0, 0, 0, 0.03);
+}
+
+/* Bar styling with gradient and hover effects */
+.recharts-bar-rectangle {
+  transition: all 0.3s ease;
+  fill: url(#barGradient);
+  rx: 4; /* Rounded corners */
+  ry: 4; /* Rounded corners */
+}
+
+.recharts-bar-rectangle:hover {
+  opacity: 0.8;
+  filter: drop-shadow(0 4px 6px rgba(99, 102, 241, 0.2));
+}
+
+/* Gradient definition for bars */
+.chart-defs {
+  position: absolute;
+}
+
+/* Tooltip styling */
+.recharts-tooltip-wrapper {
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(10px);
+  border-radius: 10px !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1) !important;
+  border: 1px solid rgba(0, 0, 0, 0.05) !important;
+  padding: 12px 16px !important;
+  font-family: 'Inter', sans-serif;
+}
+
+.recharts-tooltip-label {
+  color: #6366f1 !important;
+  font-weight: 600 !important;
+  font-size: 0.85rem !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.recharts-tooltip-item {
+  color: #1e293b !important;
+  font-weight: 500 !important;
+  font-size: 0.9rem !important;
+}
+
+.recharts-tooltip-item-value {
+  color: #6366f1 !important;
+  font-weight: 600 !important;
+}
+
+/* Legend styling */
+.chart-legend {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem;
+  gap: 1rem;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  color: #64748b;
+}
+
+.legend-color {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  margin-right: 0.5rem;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .profit-chart-container {
+    padding: 20px;
+  }
+
+  .profit-chart-title {
+    font-size: 1.3rem;
+  }
+
+  .recharts-x-axis .recharts-cartesian-axis-tick-value {
+    font-size: 0.65rem;
+  }
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.profit-chart-container {
+  animation: fadeIn 0.6s ease-out;
+}
+
+/* Bar animation */
+@keyframes barRise {
+  from {
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+.recharts-bar-rectangle {
+  animation: barRise 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  animation-delay: calc(var(--index) * 0.05s);
+  transform-origin: bottom;
+}
