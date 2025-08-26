@@ -58,6 +58,7 @@ This project was built for educational and portfolio purposes to simulate a real
 
 ## 🌟 Key Features
 
+
 ### 👤 Buyer
 
 - Easy signup/login with role detection
