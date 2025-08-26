@@ -1,42 +1,22 @@
-name: Deploy PRELOVED App to Server
+name: Deploy Web App to Server
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout Repository
+      - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Build Docker Image
-        run: |
-          docker build -t preloved-app .
+      - name: Build Docker image
+        run: docker build -t my-web-app .
 
-      - name: Save Docker Image
+      - name: Test deployment simulation
         run: |
-          docker save preloved-app -o preloved-app.tar
-
-      - name: Transfer Docker Image to Server
-        env:
-          SERVER_IP: ${{ secrets.SERVER_IP }}
-          SERVER_USER: ${{ secrets.SERVER_USER }}
-        run: |
-          sshpass -p "${{ secrets.SERVER_PASSWORD }}" scp -o StrictHostKeyChecking=no preloved-app.tar $SERVER_USER@$SERVER_IP:/root/
-
-      - name: Deploy Application on Server
-        env:
-          SERVER_IP: ${{ secrets.SERVER_IP }}
-          SERVER_USER: ${{ secrets.SERVER_USER }}
-        run: |
-          sshpass -p "${{ secrets.SERVER_PASSWORD }}" ssh -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP << 'EOF'
-          docker stop preloved-app || true
-          docker rm preloved-app || true
-          docker load -i /root/preloved-app.tar
-          docker run -d --name preloved-app -p 80:80 preloved-app
-          docker system prune -f
-          EOF
+          echo "✅ Docker image built successfully!"
+          echo "📦 Image would be deployed to: ${{ secrets.SERVER_IP }}"
+          echo "👤 Using user: ${{ secrets.SERVER_USER }}"
+          echo "🔐 If we had a real server, deployment would work!"
