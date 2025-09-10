@@ -1,6 +1,13 @@
+// src/App.js
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+// Pages
+import LandingPage from './pages/LandingPage/LandingPage';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import ResetPassword from './pages/resetPassword/ResetPassword';
 import AdminDashboard from './pages/AdminDashboard';
 import BuyerDashboard from './pages/BuyerDashboard';
 import SellerDashboard from './pages/SellerDashboard';
@@ -8,90 +15,133 @@ import ShopCategory from './pages/ShopCategory';
 import Product from './pages/Product';
 import Cart from './pages/Cart';
 import AdminAddProduct from './pages/AdminAddProducts/AddProduct';
-import ResetPassword from './pages/resetPassword/ResetPassword';
 import Payment from './pages/payment/Payment';
 import AdminPermissions from './pages/adminPermissions/AdminPermissions';
 import AdminOrders from './pages/adminOrder/AdminOrders';
-import LandingPage from './pages/LandingPage/LandingPage';
 import AdminEarning from './pages/AmdinEarning/AdminEarning';
 import Feedback from './pages/feedback/Feedback';
 import All_Products from './components/All_Products/All_Products';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import Profile from './pages/profile/Profile';
-import ProtectedRoutes from './ProtectedRoutes';
 import WishList from './pages/wishList/WishList';
+import AdminCharts from './pages/adminCharts/AdminCharts';
+
+// Components
 import Messages from './components/message/Messages';
 import Notifications from './components/notifications/Notifications';
 import SellerMessages from './components/SellerMessages/SellerMessages';
 import SellerListings from './components/sellerListing/SellerListing';
-import AdminCharts from './pages/adminCharts/AdminCharts';
 
-function AppWrapper() {
+// Protected route wrapper
+import ProtectedRoutes from './ProtectedRoutes';
+
+function NotFound() {
   return (
-    <>
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/landing" element={<LandingPage />} />
-        <Route path='/ResetPassword' element={<ResetPassword/>} />
-        <Route
-              path="/AdminDashboard"
-              element={
-                <ProtectedRoutes allowedRoles={['admin']}>
-                  <AdminDashboard />
-                </ProtectedRoutes>
-              }
-            />
-        <Route
-              path="/BuyerDashboard"
-              element={
-                <ProtectedRoutes allowedRoles={['buyer']}>
-                  <BuyerDashboard />
-                </ProtectedRoutes>
-              }
-            />
-        <Route
-              path="/sellerDashboard"
-              element={
-                <ProtectedRoutes allowedRoles={['seller']}>
-                  <SellerDashboard />
-                </ProtectedRoutes>
-              }
-            />
-        <Route path="/Clothing_Accessories" element={<ShopCategory category="Clothing_Accessories" />} />
-        <Route path="/Electronics_Gadgets" element={<ShopCategory category="Electronics_Gadgets" />} />
-        <Route path="/Home_Living" element={<ShopCategory category="Home_Living" />} />
-        <Route path="/Kids_Baby_Items" element={<ShopCategory category="Kids_Baby_Items" />} />
-        <Route path="/Vehicles_Automotive" element={<ShopCategory category="Vehicles_Automotive" />} />
-        <Route path="/product/:productID" element={<Product />} />
-        <Route path="/profitChart" element={<AdminCharts />} />
-        <Route path="/AddProduct" element={<AdminAddProduct />} />
-        <Route path="/adminpermissions" element={<AdminPermissions />} />
-        <Route path="/all_products" element={<All_Products />} />
-        <Route path="/adminOrder" element={<AdminOrders />} />
-        <Route path="/product" element={<Product />} />
-        <Route path="/message" element={<Messages />} />
-        <Route path="/wishlist" element={<WishList />} />
-        <Route path="/sellerMessages" element={<SellerMessages />} />
-        <Route path="/sellerListing" element={<SellerListings />} />
-        <Route path="/feedback" element={<Feedback />} />
-        <Route path="/adminEarning" element={<AdminEarning />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/payment" element={<Payment />} />
-        <Route path="/login" element={<Login />} />
-        <Route path='/feedback' element={<Feedback />} />
-        <Route path="/notifications" element={<Notifications />} />
-      </Routes>
-    </>
+    <div className="text-center mt-5">
+      <h2>404 — Page not found</h2>
+      <p>The page you requested does not exist.</p>
+    </div>
   );
 }
 
 function App() {
   return (
     <Router>
-      <AppWrapper />
+      <Routes>
+        {/* Public routes */}
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/landing" element={<LandingPage />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/ResetPassword" element={<ResetPassword />} />
+        <Route path="/product/:productID" element={<Product />} />
+        <Route path="/product" element={<Product />} />
+        <Route path="/all_products" element={<All_Products />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/payment" element={<Payment />} />
+        <Route path="/wishlist" element={<WishList />} />
+        <Route path="/message" element={<Messages />} />
+        <Route path="/sellerMessages" element={<SellerMessages />} />
+        <Route path="/sellerListing" element={<SellerListings />} />
+        <Route path="/notifications" element={<Notifications />} />
+        <Route path="/feedback" element={<Feedback />} />
+
+        {/* Category example route (if ShopCategory uses props) */}
+        <Route path="/category/:category" element={<ShopCategory />} />
+
+        {/* Protected routes by role */}
+        <Route
+          path="/AdminDashboard"
+          element={
+            <ProtectedRoutes allowedRoles={['admin']}>
+              <AdminDashboard />
+            </ProtectedRoutes>
+          }
+        />
+        <Route
+          path="/BuyerDashboard"
+          element={
+            <ProtectedRoutes allowedRoles={['buyer']}>
+              <BuyerDashboard />
+            </ProtectedRoutes>
+          }
+        />
+        <Route
+          path="/sellerDashboard"
+          element={
+            <ProtectedRoutes allowedRoles={['seller']}>
+              <SellerDashboard />
+            </ProtectedRoutes>
+          }
+        />
+
+        <Route
+          path="/AddProduct"
+          element={
+            <ProtectedRoutes allowedRoles={['admin', 'seller']}>
+              <AdminAddProduct />
+            </ProtectedRoutes>
+          }
+        />
+
+        <Route
+          path="/adminpermissions"
+          element={
+            <ProtectedRoutes allowedRoles={['admin']}>
+              <AdminPermissions />
+            </ProtectedRoutes>
+          }
+        />
+
+        <Route
+          path="/adminOrder"
+          element={
+            <ProtectedRoutes allowedRoles={['admin']}>
+              <AdminOrders />
+            </ProtectedRoutes>
+          }
+        />
+
+        <Route
+          path="/profitChart"
+          element={
+            <ProtectedRoutes allowedRoles={['admin']}>
+              <AdminCharts />
+            </ProtectedRoutes>
+          }
+        />
+
+        <Route
+          path="/adminEarning"
+          element={
+            <ProtectedRoutes allowedRoles={['admin']}>
+              <AdminEarning />
+            </ProtectedRoutes>
+          }
+        />
+
+        {/* Fallback */}
+        <Route path="*" element={<NotFound />} />
+      </Routes>
     </Router>
   );
 }
