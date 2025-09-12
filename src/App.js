@@ -21,7 +21,7 @@ import AdminOrders from './pages/adminOrder/AdminOrders';
 import AdminEarning from './pages/AmdinEarning/AdminEarning';
 import Feedback from './pages/feedback/Feedback';
 import All_Products from './components/All_Products/All_Products';
-import Profile from './pages/profile/Profile';
+
 import WishList from './pages/wishList/WishList';
 import AdminCharts from './pages/adminCharts/AdminCharts';
 

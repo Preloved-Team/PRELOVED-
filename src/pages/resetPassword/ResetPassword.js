@@ -5,7 +5,6 @@ import { sendPasswordResetEmail } from 'firebase/auth';
 import { auth } from "../../Firebase";
 
 const ResetPassword = () => {
-  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');

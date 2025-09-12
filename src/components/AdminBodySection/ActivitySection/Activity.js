@@ -1,5 +1,5 @@
 import React from 'react'
-import ActivityStyle from './Activity.css';
+
 
 const Activity = () => {
   return (

@@ -1,9 +1,9 @@
-import { Form, Button, Container, Alert } from 'react-bootstrap';
+import { Alert } from 'react-bootstrap';
 import { useNavigate, Link } from 'react-router-dom';
 import { auth, db } from '../Firebase';
 import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import './Login.css';
 
 const Login = () => {

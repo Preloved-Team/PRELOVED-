@@ -9,7 +9,7 @@ const Top = () => {
   const [userName, setUserName] = useState('');
   const [userId, setUserId] = useState(null);
   const [darkMode, setDarkMode] = useState(() => localStorage.getItem("darkMode") === "true");
-  const navigate = useNavigate(); 
+   
 
   useEffect(() => {
     const auth = getAuth();
