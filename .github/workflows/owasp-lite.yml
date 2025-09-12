@@ -1,4 +1,12 @@
-name: OWASP Lite (Security Scanning)
+# ==============================================================  
+# GitHub Actions workflow: "OWASP Lite"  
+# Goal: Teach students how CI/CD can help check OWASP Top 10 issues  
+# Tools used:  
+#   - Gitleaks: finds hardcoded secrets (OWASP A08)  
+#   - Semgrep CLI: scans code for risky patterns (OWASP A01–A10)  
+# ==============================================================  
+
+name: OWASP Lite (Semgrep + Gitleaks)
 
 on:
   pull_request:
@@ -11,77 +19,37 @@ permissions:
   security-events: write
 
 jobs:
-  secrets-scan:   # ------------------- Secrets Scanning -------------------
+  gitleaks:
     name: Secrets scan (A08)
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          
-      - name: Run TruffleHog scan
-        uses: trufflesecurity/trufflehog@main
-        with:
-          args: --only-verified --no-update github.com/Preloved-Team/PRELOVED-
 
-  semgrep:    # ------------------- Static Code Analysis ----------------
+      - name: Gitleaks scan
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # If your repo is in an org and needs a license, uncomment below:
+          # GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE }}
+
+  semgrep:
     name: SAST OWASP Top 10
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        
-      - name: Run Semgrep scan
-        uses: semgrep/semgrep-action@v1
-        with:
-          config: p/owasp-top-ten
-          output: semgrep-results.sarif
-          
-      - name: Upload SARIF results
+      - uses: actions/checkout@v4
+
+      - name: Install Semgrep
+        run: |
+          python3 -m pip install --upgrade pip
+          pip install semgrep
+
+      - name: Run Semgrep OWASP Top 10
+        run: |
+          semgrep --config p/owasp-top-ten --sarif --sarif-output ${{ github.workspace }}/semgrep.sarif
+
+      - name: Upload Semgrep SARIF results
         uses: github/codeql-action/upload-sarif@v3
         with:
-          sarif_file: semgrep-results.sarifname: OWASP Lite (Security Scanning)
-
-on:
-  pull_request:
-  push:
-    branches: [main]
-
-permissions:
-  contents: read
-  pull-requests: write
-  security-events: write
-
-jobs:
-  secrets-scan:   # ------------------- Secrets Scanning -------------------
-    name: Secrets scan (A08)
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          
-      - name: Run TruffleHog scan
-        uses: trufflesecurity/trufflehog@main
-        with:
-          args: --only-verified --no-update github.com/Preloved-Team/PRELOVED-
-
-  semgrep:    # ------------------- Static Code Analysis ----------------
-    name: SAST OWASP Top 10
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        
-      - name: Run Semgrep scan
-        uses: semgrep/semgrep-action@v1
-        with:
-          config: p/owasp-top-ten
-          output: semgrep-results.sarif
-          
-      - name: Upload SARIF results
-        uses: github/codeql-action/upload-sarif@v3
-        with:
-          sarif_file: semgrep-results.sarif
+          sarif_file: ${{ github.workspace }}/semgrep.sarif
