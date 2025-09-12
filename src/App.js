@@ -20,7 +20,7 @@ import AdminPermissions from './pages/adminPermissions/AdminPermissions';
 import AdminOrders from './pages/adminOrder/AdminOrders';
 import AdminEarning from './pages/AmdinEarning/AdminEarning';
 import Feedback from './pages/feedback/Feedback';
-import All_Products from './components/All_Products/All_Products';
+import AllProducts from './components/All_Products/All_Products';
 
 import WishList from './pages/wishList/WishList';
 import AdminCharts from './pages/adminCharts/AdminCharts';
@@ -55,7 +55,7 @@ function App() {
         <Route path="/ResetPassword" element={<ResetPassword />} />
         <Route path="/product/:productID" element={<Product />} />
         <Route path="/product" element={<Product />} />
-        <Route path="/all_products" element={<All_Products />} />
+        <Route path="/AllProducts" element={<AllProducts />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/payment" element={<Payment />} />
         <Route path="/wishlist" element={<WishList />} />
