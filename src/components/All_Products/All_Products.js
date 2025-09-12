@@ -5,7 +5,7 @@ import Navbar from '../navbar/navbar'
 import Footer from '../footer/Footer'
 import Listing from '../AdminBodySection/ListingSection/Listing'
 
-const All_Products = () => {
+const AllProducts = () => {
   return (
     <div>
       <Top/>
@@ -16,4 +16,4 @@ const All_Products = () => {
   )
 }
 
-export default All_Products
+export default AllProducts
