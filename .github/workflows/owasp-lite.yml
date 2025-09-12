@@ -1,29 +1,29 @@
-name: OWASP Lite (Semgrep + Gitleaks)
+name: OWASP Lite (Security Scanning)
 
 on:
-  pull_request:         # Run on every pull request
+  pull_request:
   push:
-    branches: [main]    # Run on every push to main branch
+    branches: [main]
 
 permissions:
   contents: read
   pull-requests: write
   security-events: write
-#--changed file--
+
 jobs:
-  gitleaks:   # ------------------- Secrets Scanning -------------------
+  secrets-scan:   # ------------------- Secrets Scanning -------------------
     name: Secrets scan (A08)
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Required for Gitleaks to scan commit history
+          fetch-depth: 0
           
-      - name: Run Gitleaks scan
-        uses: gitleaks/gitleaks-action@v2
+      - name: Run TruffleHog scan
+        uses: trufflesecurity/trufflehog@main
         with:
-          args: detect --no-git -v --redact # Fail if secrets are found
+          args: --only-verified --no-update github.com/Preloved-Team/PRELOVED-
 
   semgrep:    # ------------------- Static Code Analysis ----------------
     name: SAST OWASP Top 10
@@ -36,9 +36,52 @@ jobs:
         uses: semgrep/semgrep-action@v1
         with:
           config: p/owasp-top-ten
-          generateSarif: true
+          output: semgrep-results.sarif
           
       - name: Upload SARIF results
         uses: github/codeql-action/upload-sarif@v3
         with:
-          sarif_file: semgrep.sarif
+          sarif_file: semgrep-results.sarifname: OWASP Lite (Security Scanning)
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  pull-requests: write
+  security-events: write
+
+jobs:
+  secrets-scan:   # ------------------- Secrets Scanning -------------------
+    name: Secrets scan (A08)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          
+      - name: Run TruffleHog scan
+        uses: trufflesecurity/trufflehog@main
+        with:
+          args: --only-verified --no-update github.com/Preloved-Team/PRELOVED-
+
+  semgrep:    # ------------------- Static Code Analysis ----------------
+    name: SAST OWASP Top 10
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Run Semgrep scan
+        uses: semgrep/semgrep-action@v1
+        with:
+          config: p/owasp-top-ten
+          output: semgrep-results.sarif
+          
+      - name: Upload SARIF results
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: semgrep-results.sarif
