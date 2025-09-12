@@ -27,7 +27,7 @@ const SellerMessages = () => {
     };
 
     fetchMessages();
-  }, []);
+  }, [auth]); // Fixed: Added auth to the dependency array
 
   return (
     <div style={{ padding: '20px' }}>

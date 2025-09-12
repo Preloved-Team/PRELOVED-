@@ -1,8 +1,8 @@
 import React from 'react'
-import BodyStyle from './Body.css';
+
 import Top from './TopSection/Top';
 import Listing from './ListingSection/Listing';
-import Activity from './ActivitySection/Activity';
+
 import TopAdmin from './TopSection/TopAdmin';
 
 const Body = () => {

@@ -1,5 +1,5 @@
 import React from 'react'
-import Popular from '../Popular/Popular'
+
 import Top from '../AdminBodySection/TopSection/Top'
 import Navbar from '../navbar/navbar'
 import Footer from '../footer/Footer'

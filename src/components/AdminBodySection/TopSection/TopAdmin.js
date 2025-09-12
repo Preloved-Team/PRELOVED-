@@ -1,7 +1,6 @@
 import React from 'react'
 import './TopAdmin.css';
 import Shubham from './../../../components/Assets/shubham.jpg';
-import ProfitChart from '../../Charts/ProfitChart';
 import OrdersChart from '../../Charts/OrdersChart';
 
 const TopAdmin = () => {
