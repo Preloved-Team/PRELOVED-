@@ -29,6 +29,7 @@
     "eject": "react-scripts eject",
     "lint": "eslint src --ext .js,.jsx",
     "format": "prettier --write ."
+    "test:coverage": "react-scripts test --env=jsdom --watchAll=false --coverage"
   },
   "eslintConfig": {
     "extends": [
