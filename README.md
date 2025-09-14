@@ -27,6 +27,8 @@
 
 ![Preloved Logo](https://via.placeholder.com/600x150/4CAF50/FFFFFF?text=Preloved)
 
+![CI](https://github.com/Preloved-Team/PRELOVED-/actions/workflows/tests.yml/badge.svg)
+
 **Preloved** is a full-featured web marketplace for buying and selling second-hand goods. Designed with sustainability and community in mind, Preloved connects buyers, sellers, and administrators through a clean, intuitive, and secure platform.
 
 ---
