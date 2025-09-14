@@ -2,6 +2,11 @@
   "name": "preloved",
   "version": "1.0.0",
   "private": true,
+  "jest": {
+  "coverageThreshold": {
+    "global": { "branches": 1, "functions": 1, "lines": 1, "statements": 1 }
+  }
+},
   "description": "♻️ Preloved – Sustainable Second-Hand Marketplace built with React, Firebase, and Bootstrap.",
   "author": "Arsh Vhora <vhoraarsh91@gmail.com>",
   "license": "MIT",
