@@ -30,6 +30,11 @@
 ![CI](https://github.com/Preloved-Team/PRELOVED-/actions/workflows/tests.yml/badge.svg)
 ![CodeQL](https://github.com/Preloved-Team/PRELOVED-/actions/workflows/codeql.yml/badge.svg)
 
+## CI & QA
+- CI runs tests with coverage and builds the app on every push/PR.
+- Artifacts available in Actions: `coverage-report/` and `production-build/`.
+- Security: CodeQL (code scanning) and Dependency Review (on PRs).
+
 **Preloved** is a full-featured web marketplace for buying and selling second-hand goods. Designed with sustainability and community in mind, Preloved connects buyers, sellers, and administrators through a clean, intuitive, and secure platform.
 
 ---
