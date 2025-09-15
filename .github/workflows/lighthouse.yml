@@ -28,20 +28,9 @@ jobs:
           npx wait-on http://127.0.0.1:8080
 
       - name: Run Lighthouse
-        id: lh
         uses: treosh/lighthouse-ci-action@v10
         with:
           urls: http://127.0.0.1:8080
-          uploadArtifacts: false            # <— turn off internal upload
-          temporaryPublicStorage: true      # public link printed in logs
-
-      - name: Upload Lighthouse artifacts
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: lighthouse_report           # <— safe artifact name
-          path: |
-            ./.lighthouseci/*.html
-            ./.lighthouseci/*.json
-            ./.lighthouseci/manifest.json
-          if-no-files-found: warn
+          uploadArtifacts: true            # Let the action upload
+          artifactName: lighthouse_report  # Safe name for the artifact
+          temporaryPublicStorage: true      # Public URL will be printed in logs
