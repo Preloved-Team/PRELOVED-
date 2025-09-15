@@ -1,0 +1,32 @@
+name: Docker Build (smoke)
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Lint Dockerfile (non-blocking)
+      - name: Hadolint Dockerfile
+        uses: hadolint/hadolint-action@v3.1.0
+        with:
+          dockerfile: Dockerfile
+        continue-on-error: true
+
+      - name: Build image
+        run: docker build -t preloved:ci .
+
+      # Optional: quick image vuln scan (non-blocking)
+      - name: Trivy scan (image)
+        uses: aquasecurity/trivy-action@0.22.0
+        with:
+          image-ref: preloved:ci
+          format: 'table'
+          exit-code: '0'
+        continue-on-error: true

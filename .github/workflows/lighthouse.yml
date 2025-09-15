@@ -1,0 +1,62 @@
+name: Lighthouse Report
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Build app
+        env:
+          CI: "true"
+        run: npm run build
+
+      - name: Serve build locally
+        run: |
+          npx http-server ./build -p 8080 & \
+          npx wait-on http://127.0.0.1:8080
+
+      # ---- Run Lighthouse via CLI and write reports to ./lhci ----
+      - name: Run Lighthouse (desktop)
+        run: |
+          mkdir -p lhci
+          npx --yes lighthouse http://127.0.0.1:8080 \
+            --chrome-flags="--headless --no-sandbox" \
+            --preset=desktop \
+            --output html --output json \
+            --output-path=./lhci/report-desktop
+
+      # (Optional) run a mobile preset too
+      # - name: Run Lighthouse (mobile)
+      #   run: |
+      #     npx --yes lighthouse http://127.0.0.1:8080 \
+      #       --chrome-flags="--headless --no-sandbox" \
+      #       --preset=mobile \
+      #       --output html --output json \
+      #       --output-path=./lhci/report-mobile
+
+      - name: Upload Lighthouse artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: lh-report          # safe artifact name
+          path: lhci/*
+          if-no-files-found: error
+          retention-days: 14
