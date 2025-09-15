@@ -1,0 +1,65 @@
+# ==============================================================
+# GitHub Actions workflow: "OWASP Lite"
+# Tools:
+#   - Gitleaks (OWASP A08) for hardcoded secrets
+#   - Semgrep (OWASP A01–A10) for SAST
+# ==============================================================
+
+name: OWASP Lite (Semgrep + Gitleaks)
+
+on:
+  workflow_dispatch:
+  pull_request:
+  push:
+    branches: [ main ]
+
+permissions:
+  contents: read
+  pull-requests: write
+  security-events: write
+
+jobs:
+  gitleaks:
+    name: Secrets scan (A08)
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install Gitleaks CLI
+        run: |
+          GL_VERSION=8.24.3
+          curl -sSL https://github.com/gitleaks/gitleaks/releases/download/v${GL_VERSION}/gitleaks_${GL_VERSION}_linux_x64.tar.gz \
+          | tar -xz
+          sudo mv gitleaks /usr/local/bin/gitleaks
+          gitleaks version
+
+      - name: Run Gitleaks scan
+        env:
+          # REQUIRED by org repos and by PR scans
+          GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gitleaks detect --source . --redact --config .gitleaks.toml
+
+  semgrep:
+    name: SAST OWASP Top 10
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Use the maintained Semgrep action which emits SARIF for Code Scanning
+      - name: Semgrep SAST (OWASP Top 10)
+        uses: returntocorp/semgrep-action@v1
+        with:
+          config: p/owasp-top-ten
+          generateSarif: "1"
+
+      - name: Upload Semgrep SARIF results
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: semgrep.sarif
