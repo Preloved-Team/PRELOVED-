@@ -1,17 +1,17 @@
-# ==============================================================  
-# GitHub Actions workflow: "OWASP Lite"  
-# Goal: Teach students how CI/CD can help check OWASP Top 10 issues  
-# Tools used:  
-#   - Gitleaks: finds hardcoded secrets (OWASP A08)  
-#   - Semgrep CLI: scans code for risky patterns (OWASP A01–A10)  
-# ==============================================================  
+# ==============================================================
+# GitHub Actions workflow: "OWASP Lite"
+# Tools:
+#   - Gitleaks (OWASP A08) for hardcoded secrets
+#   - Semgrep (OWASP A01–A10) for SAST
+# ==============================================================
 
 name: OWASP Lite (Semgrep + Gitleaks)
 
 on:
+  workflow_dispatch:
   pull_request:
   push:
-    branches: [main]
+    branches: [ main ]
 
 permissions:
   contents: read
@@ -22,6 +22,9 @@ jobs:
   gitleaks:
     name: Secrets scan (A08)
     runs-on: ubuntu-latest
+    env:
+      # REQUIRED for org repos using gitleaks-action@v2
+      GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -29,10 +32,10 @@ jobs:
 
       - name: Gitleaks scan
         uses: gitleaks/gitleaks-action@v2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # If your repo is in an org and needs a license, uncomment below:
-          # GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE }}
+        with:
+          # redact: masks matching secrets in logs
+          # config: optional custom rules/allowlist file
+          args: detect --source . --redact --config .gitleaks.toml
 
   semgrep:
     name: SAST OWASP Top 10
@@ -40,16 +43,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install Semgrep
-        run: |
-          python3 -m pip install --upgrade pip
-          pip install semgrep
-
-      - name: Run Semgrep OWASP Top 10
-        run: |
-          semgrep --config p/owasp-top-ten --sarif --sarif-output ${{ github.workspace }}/semgrep.sarif
+      # Use the maintained Semgrep action which emits SARIF for Code Scanning
+      - name: Semgrep SAST (OWASP Top 10)
+        uses: returntocorp/semgrep-action@v1
+        with:
+          config: p/owasp-top-ten
+          generateSarif: "1"
 
       - name: Upload Semgrep SARIF results
         uses: github/codeql-action/upload-sarif@v3
         with:
-          sarif_file: ${{ github.workspace }}/semgrep.sarif
+          sarif_file: semgrep.sarif

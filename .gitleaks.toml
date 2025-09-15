@@ -1,0 +1,10 @@
+title = "Preloved gitleaks configuration"
+
+[allowlist]
+description = "Allow known public/test strings"
+regexes = [
+  '''AIza[0-9A-Za-z\-_]{35}'''  # Firebase Web API keys (public)
+]
+paths = [
+  '''^src/.*\.(js|jsx|ts|tsx)$'''
+]
