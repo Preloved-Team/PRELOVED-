@@ -22,20 +22,29 @@ jobs:
   gitleaks:
     name: Secrets scan (A08)
     runs-on: ubuntu-latest
-    env:
-      # REQUIRED for org repos using gitleaks-action@v2
-      GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE }}
+    permissions:
+      contents: read
+      pull-requests: read
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Gitleaks scan
-        uses: gitleaks/gitleaks-action@v2
-        with:
-          # redact: masks matching secrets in logs
-          # config: optional custom rules/allowlist file
-          args: detect --source . --redact --config .gitleaks.toml
+      - name: Install Gitleaks CLI
+        run: |
+          GL_VERSION=8.24.3
+          curl -sSL https://github.com/gitleaks/gitleaks/releases/download/v${GL_VERSION}/gitleaks_${GL_VERSION}_linux_x64.tar.gz \
+          | tar -xz
+          sudo mv gitleaks /usr/local/bin/gitleaks
+          gitleaks version
+
+      - name: Run Gitleaks scan
+        env:
+          # REQUIRED by org repos and by PR scans
+          GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gitleaks detect --source . --redact --config .gitleaks.toml
 
   semgrep:
     name: SAST OWASP Top 10
